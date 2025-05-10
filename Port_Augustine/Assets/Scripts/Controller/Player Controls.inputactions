@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "9e32afbb-7c96-4b78-bdf8-6624df9b1e84",
+            "actions": [
+                {
+                    "name": "Inventory",
+                    "type": "PassThrough",
+                    "id": "98ad29ea-4703-4051-82a5-fc839341d70a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b1667b8b-cba5-4448-b02c-a1e19d891b78",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
