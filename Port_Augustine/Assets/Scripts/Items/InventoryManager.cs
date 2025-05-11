@@ -10,8 +10,15 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryScreen;
     public static bool isInventoryClick = false;
     public ItemDatabase[] itemData;
+    private PlayerControls playerControls;
 
     public ItemScriptObject[] ItemSO;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        playerControls.UI.Inventory.performed += ToggleInventory;
+    }
 
     void Start()
     {
@@ -21,6 +28,8 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+
+    /*
     public void OnInventoryBag()
     {
         Time.timeScale = 0;
@@ -35,6 +44,36 @@ public class InventoryManager : MonoBehaviour
         InventoryScreen.SetActive(false);
         isInventoryClick = false;
         Debug.Log("Exit Inventory");
+    }
+
+    */
+
+    private void OnEnable()
+    {
+        playerControls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+    }
+
+    private void ToggleInventory(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (!InventoryScreen.activeSelf)
+        {
+            Time.timeScale = 0;
+            InventoryScreen.SetActive(true);
+            isInventoryClick = true;
+            Debug.Log("Opened Inventory");
+        }
+        else
+        {
+            Time.timeScale = 1;
+            InventoryScreen.SetActive(false);
+            isInventoryClick = false;
+            Debug.Log("Closed Inventory");
+        }
     }
 
     public void UseItem(string itemName)

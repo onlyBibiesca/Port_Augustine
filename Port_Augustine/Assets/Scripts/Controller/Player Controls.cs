@@ -165,7 +165,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Inventory"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""98ad29ea-4703-4051-82a5-fc839341d70a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
