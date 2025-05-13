@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         //playerControls = new PlayerControls();
-        //playerControls.UI.Inventory.performed += ToggleInventory;
+       // playerControls.UI.Inventory.performed += ToggleInventory;
     }
 
     void Start()
