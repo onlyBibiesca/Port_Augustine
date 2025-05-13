@@ -10,14 +10,14 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryScreen;
     public static bool isInventoryClick = false;
     public ItemDatabase[] itemData;
-    private PlayerControls playerControls;
+    //private PlayerControls playerControls;
 
     public ItemScriptObject[] ItemSO;
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
-        playerControls.UI.Inventory.performed += ToggleInventory;
+        //playerControls = new PlayerControls();
+        //playerControls.UI.Inventory.performed += ToggleInventory;
     }
 
     void Start()
@@ -50,12 +50,12 @@ public class InventoryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        playerControls.Enable();
+        //playerControls.Enable();
     }
 
     private void OnDisable()
     {
-        playerControls.Disable();
+        //playerControls.Disable();
     }
 
     private void ToggleInventory(UnityEngine.InputSystem.InputAction.CallbackContext context)
