@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private GameObject InventoryScreen;
@@ -23,16 +23,16 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveInput * moveSpeed;
     }
 
-    // Called via Player Input > Events > Player > Move
+
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
     }
 
-    // Called via Player Input > Events > Player > Inventory
     public void OnInventory(InputAction.CallbackContext context)
     {
-        if (context.started)
+     
+        if (context.performed)
         {
             bool isActive = InventoryScreen.activeSelf;
             InventoryScreen.SetActive(!isActive);
