@@ -8,5 +8,6 @@ public class UseLogic : MonoBehaviour, InteractableObject
     {
         Debug.Log("Interacted");
         // Add additional logic here, change scene, open something or idk
+
     }
 }
