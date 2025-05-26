@@ -53,7 +53,7 @@ public class NPC : MonoBehaviour, InteractableObject
             isTyping = false;
         }
 
-        else if (++dialogueIndex + 1 < dialogueData.dialogueLines.Length)
+        else if (++dialogueIndex < dialogueData.dialogueLines.Length)
         {
             StartCoroutine(TypeLine());
         }
