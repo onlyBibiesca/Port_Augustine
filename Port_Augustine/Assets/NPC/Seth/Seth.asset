@@ -17,8 +17,19 @@ MonoBehaviour:
   dialogueLines:
   - Hello there!
   - My name is Seth!
-  autoProgressLines: 0100
+  - What is your name?
+  - Nice!
+  - PUT YOUR FUCKING HANDS UP
+  - GET DOWN ON THE GROUND
+  autoProgressLines: 0101000001
+  endDialogueLines: 00000001
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
   voicePitch: 1
+  choices:
+  - dialogueIndex: 2
+    choices:
+    - My name is Ryne!
+    - Under my rights, I have the remain silent
+    nextDialogueIndexes: 0300000004000000
