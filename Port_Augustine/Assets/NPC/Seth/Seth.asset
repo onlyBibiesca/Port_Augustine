@@ -19,9 +19,8 @@ MonoBehaviour:
   - My name is Seth!
   - What is your name?
   - Nice!
-  - PUT YOUR FUCKING HANDS UP
-  - GET DOWN ON THE GROUND
-  autoProgressLines: 0101000001
+  - Aw, hopefully I know your name soon
+  autoProgressLines: 01010100
   endDialogueLines: 00000001
   autoProgressDelay: 1.5
   typingSpeed: 0.05
