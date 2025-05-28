@@ -30,6 +30,6 @@ MonoBehaviour:
   choices:
   - dialogueIndex: 2
     choices:
-    - My name is Ryne!
-    - Under my rights, I have the remain silent
+    - Introduce
+    - Deny
     nextDialogueIndexes: 0300000004000000
