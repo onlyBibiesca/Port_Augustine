@@ -1,48 +1,51 @@
 using UnityEngine;
 using System;
 
-[Serializable]
+// ------------------ Serializable Save Class ------------------
+[System.Serializable]
 public class GameTimeData
 {
     public int hour;
     public int minute;
 }
 
-public enum TimePhase
-{
-    Sunrise,   // 6:00 - 8:00
-    Morning,   // 8:10 - 11:50
-    Noon,      // 12:00 - 13:50
-    Afternoon, // 14:00 - 17:50
-    Evening,   // 18:00 - 20:50
-    Night,     // 21:00 - 23:50
-    LateNight  // 0:00 - 1:50
-}
+// ------------------ Day and TimePhase Enums ------------------
+public enum GameDay { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } // Change to Mon, Tue, Wed etc for Watch 
+public enum TimePhase { Sunrise, Morning, Noon, Afternoon, Evening, Night, LateNight }
 
 public class TimeManager : MonoBehaviour
 {
+    // ------------------ Time Configuration ------------------
     [Header("Time Settings")]
     public int startHour = 6;
     public int startMinute = 0;
     public int endHour = 2; // 2 AM = 26:00
+    public float realSecondsPerGameStep = 7f; // Every real 7s = 10 in-game mins
 
-    public float realSecondsPerGameStep = 7f; // 10 in-game minutes = 7 real seconds
-
+    // ------------------ Current Time State ------------------
     public int currentHour { get; private set; }
     public int currentMinute { get; private set; }
-
     public TimePhase CurrentPhase { get; private set; }
+
+    // ------------------ Day & Week Tracking ------------------
+    public GameDay CurrentDay { get; private set; } = GameDay.Monday;
+    public int DayIndex { get; private set; } = 0;
+    public int TotalDaysPassed { get; private set; } = 0;
+
+    // ------------------ Time Progression Control ------------------
     public bool IsPaused { get; private set; } = false;
-
-    public event Action<string> OnTimeChanged;
-    public event Action<TimePhase> OnPhaseChanged;
-    public event Action OnDayEnd;
-
     private float timer;
 
+    // ------------------ Events ------------------
+    public event Action<string> OnTimeChanged;
+    public event Action<TimePhase> OnPhaseChanged;
+    public event Action<GameDay, int> OnDayChanged;
+    public event Action OnDayEnd;
+
+    // ------------------ Unity Methods ------------------
     void Start()
     {
-        LoadTime(); // Or StartNewDay();
+        LoadTime(); // Or StartNewDay() for testing
     }
 
     void Update()
@@ -57,6 +60,7 @@ public class TimeManager : MonoBehaviour
         }
     }
 
+    // ------------------ Time Management ------------------
     public void AdvanceTime(int minutesToAdd)
     {
         currentMinute += minutesToAdd;
@@ -67,6 +71,7 @@ public class TimeManager : MonoBehaviour
             currentHour++;
         }
 
+        // Handle overflow past "end of day"
         int currentTime24 = (currentHour < 6) ? currentHour + 24 : currentHour;
         int endTime24 = endHour + 24;
 
@@ -81,11 +86,7 @@ public class TimeManager : MonoBehaviour
         NotifyTimeChanged();
     }
 
-    public void SkipTime(int totalMinutes)
-    {
-        AdvanceTime(totalMinutes);
-    }
-
+    public void SkipTime(int totalMinutes) => AdvanceTime(totalMinutes);
     public void PauseTime() => IsPaused = true;
     public void ResumeTime() => IsPaused = false;
     public void TogglePause() => IsPaused = !IsPaused;
@@ -94,16 +95,25 @@ public class TimeManager : MonoBehaviour
     {
         currentHour = startHour;
         currentMinute = startMinute;
+
+        DayIndex = (DayIndex + 1) % 7;
+        CurrentDay = (GameDay)DayIndex;
+        TotalDaysPassed++;
+
+        OnDayChanged?.Invoke(CurrentDay, TotalDaysPassed);
         UpdatePhase();
         NotifyTimeChanged();
     }
 
+    // ------------------ Display Helpers ------------------
     public string GetFormattedTime()
     {
-        int displayHour = currentHour > 12 ? currentHour - 12 : currentHour;
+        int displayHour = currentHour % 12;
         if (displayHour == 0) displayHour = 12;
-        string ampm = (currentHour >= 12 && currentHour < 24) ? "PM" : "AM";
-        return $"{displayHour}:{currentMinute.ToString("D2")} {ampm}";
+
+        string ampm = currentHour >= 12 && currentHour < 24 ? "PM" : "AM";
+        string formattedTime = $"{displayHour:D2}:{currentMinute:D2} {ampm}";
+        return formattedTime;
     }
 
     public float GetTimeAsFloat()
@@ -116,8 +126,7 @@ public class TimeManager : MonoBehaviour
         OnTimeChanged?.Invoke(GetFormattedTime());
     }
 
-    // ----------- Time Phases -----------
-
+    // ------------------ Time Phase Management ------------------
     private void UpdatePhase()
     {
         TimePhase newPhase = GetPhaseFromTime(currentHour, currentMinute);
@@ -140,11 +149,10 @@ public class TimeManager : MonoBehaviour
         if (time >= 2100 && time < 2400) return TimePhase.Night;
         if (hour >= 0 && hour < 2) return TimePhase.LateNight;
 
-        return TimePhase.Morning; // fallback
+        return TimePhase.Morning;
     }
 
-    // ----------- Save / Load -----------
-
+    // ------------------ Save / Load ------------------
     public void SaveTime()
     {
         GameTimeData saveData = new GameTimeData
@@ -152,8 +160,10 @@ public class TimeManager : MonoBehaviour
             hour = currentHour,
             minute = currentMinute
         };
-        string json = JsonUtility.ToJson(saveData);
-        PlayerPrefs.SetString("GameTime", json);
+
+        PlayerPrefs.SetString("GameTime", JsonUtility.ToJson(saveData));
+        PlayerPrefs.SetInt("GameDay", DayIndex);
+        PlayerPrefs.SetInt("TotalDays", TotalDaysPassed);
     }
 
     public void LoadTime()
@@ -164,9 +174,14 @@ public class TimeManager : MonoBehaviour
             GameTimeData data = JsonUtility.FromJson<GameTimeData>(json);
             currentHour = data.hour;
             currentMinute = data.minute;
+
+            DayIndex = PlayerPrefs.GetInt("GameDay", 0);
+            CurrentDay = (GameDay)DayIndex;
+            TotalDaysPassed = PlayerPrefs.GetInt("TotalDays", 0);
         }
         else
         {
+            DayIndex = 6; // Forces next new day to be Monday
             StartNewDay();
         }
 
@@ -177,5 +192,7 @@ public class TimeManager : MonoBehaviour
     public void ClearSavedTime()
     {
         PlayerPrefs.DeleteKey("GameTime");
+        PlayerPrefs.DeleteKey("GameDay");
+        PlayerPrefs.DeleteKey("TotalDays");
     }
 }
