@@ -21,7 +21,7 @@ MonoBehaviour:
   - Nice!
   - Aw, hopefully I know your name soon
   autoProgressLines: 01010100
-  endDialogueLines: 00000001
+  endDialogueLines: 0000000101
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}

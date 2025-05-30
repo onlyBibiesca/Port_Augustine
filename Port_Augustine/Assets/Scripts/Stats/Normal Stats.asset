@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b1cfccfc5aaba418ae632d673caa12, type: 3}
   m_Name: Normal Stats
   m_EditorClassIdentifier: 
-  traitID: 
-  health: 0
-  hunger: 0
-  energy: 0
-  socialBattery: 0
+  traitID: Normal
+  health: 100
+  hunger: 50
+  energy: 50
+  socialBattery: 50
