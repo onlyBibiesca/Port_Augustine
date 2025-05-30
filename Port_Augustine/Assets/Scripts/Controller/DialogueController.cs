@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DialogueController : MonoBehaviour
 {
-    public static DialogueController Instance { get; private set; } 
-
+    public static DialogueController Instance { get; private set; }
+    public GameObject playerUI;
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
@@ -23,6 +23,7 @@ public class DialogueController : MonoBehaviour
     public void ShowDialogueUI(bool show)
     {
         dialoguePanel.SetActive(show);
+        playerUI.SetActive(!show);
     }
 
     public void SetNPCInfo(string npcName, Sprite portrait) 

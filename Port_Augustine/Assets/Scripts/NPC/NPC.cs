@@ -40,6 +40,7 @@ public class NPC : MonoBehaviour, InteractableObject
         dialogueUI.SetNPCInfo(dialogueData.npcName, dialogueData.npcPortrait);
         dialogueUI.ShowDialogueUI(true);
 
+
         DisplayCurrentLine();
     }
 

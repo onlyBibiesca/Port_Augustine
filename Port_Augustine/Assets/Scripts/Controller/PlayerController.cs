@@ -7,11 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private GameObject InventoryScreen;
+    [SerializeField] private GameObject debugScreen;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
-    public static bool isInventoryClick = false;
+    public static bool isInventoryClick, isDebugClick = false;
 
     private void Start()
     {
@@ -40,6 +41,19 @@ public class PlayerMovement : MonoBehaviour
             isInventoryClick = !isActive;
 
             Debug.Log(isActive ? "Closed Inventory" : "Opened Inventory");
+        }
+    }
+
+    public void OnDebug(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isActive = debugScreen.activeSelf;
+            debugScreen.SetActive(!isActive);
+            isDebugClick = !isActive;
+
+
+            Debug.Log(isActive ? "Closed Debug Screen" : "Opened Debug Screen");
         }
     }
 }
