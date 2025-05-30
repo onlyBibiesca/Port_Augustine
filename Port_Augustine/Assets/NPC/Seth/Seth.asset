@@ -20,6 +20,7 @@ MonoBehaviour:
   - What is your name?
   - Nice!
   - Aw, hopefully I know your name soon
+  - Haha
   autoProgressLines: 01010100
   endDialogueLines: 0000000101
   autoProgressDelay: 1.5
@@ -31,4 +32,13 @@ MonoBehaviour:
     choices:
     - Introduce
     - Deny
+    - Sarcastic
+    nextDialogueIndexes: 030000000400000005000000
+    requiredTraits:
+    - Sarcastic
+  - dialogueIndex: 2
+    choices:
+    - Introduce
+    - Deny
     nextDialogueIndexes: 0300000004000000
+    requiredTraits: []

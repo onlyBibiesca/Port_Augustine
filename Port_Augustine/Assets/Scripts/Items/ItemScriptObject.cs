@@ -55,37 +55,7 @@ public class ItemScriptObject : ScriptableObject
 
             }
         }
-            /*
-           if (statToChange == StatToChange.health)
-           {
-               //example codes if stats are scripted
-               //GameObject.Find("HealthManager").GetComponent<Health>().ChangeHealth(amountChangeStat);
-               //healthSlider.value += playerStats.hunger;
-               playerManager.ChangeHealth(amountChangeStat);
-               Debug.Log("Health Added");
-           }
-
-           if (statToChange == StatToChange.hunger)
-           {
-               playerManager.ChangeHunger(amountChangeStat);
-               Debug.Log("Hunger Added");
-           }
-
-           if (statToChange == StatToChange.energy)
-           {
-               //GameObject.Find("StaminaManager").GetComponent<Stamina>().ChangeStamina(amountChangeStat);
-               playerManager.ChangeEnergy(amountChangeStat);
-               Debug.Log("Stamina Added");
-           }
-
-           if (statToChange == StatToChange.socialbatt)
-           {
-               //GameObject.Find("StaminaManager").GetComponent<Stamina>().ChangeStamina(amountChangeStat);
-               playerManager.ChangeSocialBattery(amountChangeStat);
-               Debug.Log("Social Battery Added");
-           }
-        
-            */
+            
         
     }
 

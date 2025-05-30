@@ -24,4 +24,5 @@ public class DialogueChoice
     public int dialogueIndex;
     public string[] choices;
     public int[] nextDialogueIndexes;
+    public string[] requiredTraits; 
 }

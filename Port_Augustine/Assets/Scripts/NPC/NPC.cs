@@ -12,6 +12,8 @@ public class NPC : MonoBehaviour, InteractableObject
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
 
+    [SerializeField] 
+    private TraitManager traitManager; // assign this in Inspector
     private void Start()
     {
         dialogueUI = DialogueController.Instance;
@@ -104,13 +106,38 @@ public class NPC : MonoBehaviour, InteractableObject
             NextLine();
         }
     }
-
+    /*
     void DisplayChoices(DialogueChoice choice)
     {
         for(int i = 0; i < choice.choices.Length; i++)
         {
             int nextIndex = choice.nextDialogueIndexes[i];
             dialogueUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex));
+        }
+    }
+    */
+
+    void DisplayChoices(DialogueChoice choice)
+    {
+        for (int i = 0; i < choice.choices.Length; i++)
+        {
+            bool shouldShow = true;
+
+            // Check if trait is required for this choice
+            if (choice.requiredTraits != null && choice.requiredTraits.Length > i)
+            {
+                string requiredTrait = choice.requiredTraits[i];
+                if (!string.IsNullOrEmpty(requiredTrait) && !traitManager.HasTraitKeyword(requiredTrait))
+                {
+                    shouldShow = false;
+                }
+            }
+
+            if (shouldShow)
+            {
+                int nextIndex = choice.nextDialogueIndexes[i];
+                dialogueUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex));
+            }
         }
     }
 
