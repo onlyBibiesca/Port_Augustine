@@ -21,11 +21,11 @@ Code Bible
 * Train/Bus Station System
   * Players are able to use the station in order to navigate from one area to another with the consequence of consumption of time, which adds a new dynamic feautre since it involves time-management skills
 
-*RNG Events
- * During the navigation/event, players can be intervened with a random event such as getting mugged, getting into an accident, traffic, etc.
+* RNG Events
+  * During the navigation/event, players can be intervened with a random event such as getting mugged, getting into an accident, traffic, etc.
 
-*EventFlow System
- * It is a system that involves a scripted event when entering or doing a particulare action. 
+* EventFlow System
+  * It is a system that involves a scripted event when entering or doing a particulare action. 
 
-*Trait System
- * The start of the game, players are given a randomzied trait for a more dynamic dialogue system/interaction feature with an NPC or action.
+* Trait System
+  * The start of the game, players are given a randomzied trait for a more dynamic dialogue system/interaction feature with an NPC or action.
