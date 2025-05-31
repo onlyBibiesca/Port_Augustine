@@ -8,7 +8,7 @@ Code Bible
   * Depending on the relationship status, it can vary from NPC to NPC on what type of interaction or reply to the player
 
 * Movement System 
- * It is a simple 2D Top-Down movement with interaction using the new Unity Input System
+  * It is a simple 2D Top-Down movement with interaction using the new Unity Input System
 
 * Inventory System 
   * Player has a backpack to carry around the game such as food, items, quest items, etc. 
