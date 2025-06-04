@@ -129,7 +129,7 @@ public class NPC : MonoBehaviour, InteractableObject
                 string requiredTrait = choice.requiredTraits[i];
                 if (!string.IsNullOrEmpty(requiredTrait) && !traitManager.HasTraitKeyword(requiredTrait))
                 {
-                    shouldShow = false;
+                    shouldShow = true;
                 }
             }
 

@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4671a331c4cfd6418901ef74a1c7588, type: 3}
-  m_Name: Sarcastic
+  m_Script: {fileID: 11500000, guid: 38850fd5053da9c4f8c310b0d465da01, type: 3}
+  m_Name: HotDawg
   m_EditorClassIdentifier: 
-  traitName: Sarcastic
-  description: 
-  healthModifier: 0
-  hungerModifier: 0
-  energyModifier: 0
-  socialModifier: 0
-  unlockableKeywords:
-  - sarcasm
+  itemName: 
+  statChanges: []

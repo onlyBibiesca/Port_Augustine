@@ -35,6 +35,8 @@ MonoBehaviour:
     - Sarcastic
     nextDialogueIndexes: 030000000400000005000000
     requiredTraits:
+    - 
+    - 
     - Sarcastic
   - dialogueIndex: 2
     choices:
