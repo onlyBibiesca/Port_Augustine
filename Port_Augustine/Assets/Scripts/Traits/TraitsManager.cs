@@ -6,7 +6,7 @@ public class TraitManager : MonoBehaviour
     [Header("Traits the player currently has")]
     public List<Trait> activeTraits = new List<Trait>();
 
-    [Header("All available traits to give (for debug)")]
+    [Header("Traits available in the game")]
     public List<Trait> availableTraits = new List<Trait>();
 
     // Check if the player has a trait by keyword
@@ -45,7 +45,6 @@ public class TraitManager : MonoBehaviour
         activeTraits.Clear();
     }
 
-    // For debug use: get all names
     public List<string> GetAllTraitNames()
     {
         List<string> names = new List<string>();
