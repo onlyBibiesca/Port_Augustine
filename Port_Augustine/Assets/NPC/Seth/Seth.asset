@@ -21,8 +21,9 @@ MonoBehaviour:
   - Nice!
   - Aw, hopefully I know your name soon
   - Haha
+  - Nice bod bro
   autoProgressLines: 01010100
-  endDialogueLines: 0000000101
+  endDialogueLines: 00000001010101
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
@@ -33,11 +34,13 @@ MonoBehaviour:
     - Introduce
     - Deny
     - Sarcastic
-    nextDialogueIndexes: 030000000400000005000000
+    - Athletic
+    nextDialogueIndexes: 03000000040000000500000006000000
     requiredTraits:
     - 
     - 
-    - Sarcastic
+    - sarcasm
+    - athlete
   - dialogueIndex: 2
     choices:
     - Introduce

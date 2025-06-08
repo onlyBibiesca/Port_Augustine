@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sarcastic
   m_EditorClassIdentifier: 
   traitName: Sarcastic
-  description: 
+  description: ayos gago
   healthModifier: 0
   hungerModifier: 0
   energyModifier: 0

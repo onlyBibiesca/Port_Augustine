@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Athletic
   m_EditorClassIdentifier: 
   traitName: Athletic
-  description: 
+  description: batak mo pre
   healthModifier: 0
   hungerModifier: 0
   energyModifier: 0
   socialModifier: 0
   unlockableKeywords:
-  - athletic
+  - athlete
