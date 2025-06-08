@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Sample
   m_EditorClassIdentifier: 
   questID: 69aabc78-5c25-41ed-a0f7-078d5d2dfeaf
-  questName: 
-  description: 
-  objectives: []
+  questName: TalkToNPC
+  description: Talk to this NPC in order to start
+  objectives:
+  - objectiveID: 1
+    description: Talk to the strange man
+    type: 2
+    requiredAmount: 0
+    currentAmount: 0
