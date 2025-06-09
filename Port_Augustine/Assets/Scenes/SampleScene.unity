@@ -4486,6 +4486,7 @@ GameObject:
   - component: {fileID: 786404599}
   - component: {fileID: 786404597}
   - component: {fileID: 786404602}
+  - component: {fileID: 786404603}
   m_Layer: 0
   m_Name: NPC_Triangle
   m_TagString: Untagged
@@ -4620,8 +4621,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39960e71813ee3a419cf77a870f21315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueData: {fileID: 11400000, guid: 92ea68d2d0db6e44da47f421416d6f04, type: 2}
+  dialogueData: {fileID: 11400000, guid: 877f8f1d2e1e2004ca1fd909c3d4e326, type: 2}
   traitManager: {fileID: 23262486}
+--- !u!114 &786404603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786404596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6156e5c363833c84791c8da8eeefd097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectID: 1
 --- !u!1 &792870158
 GameObject:
   m_ObjectHideFlags: 0

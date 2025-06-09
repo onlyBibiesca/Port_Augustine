@@ -25,7 +25,7 @@ public class Quest : ScriptableObject
 [System.Serializable]
 public class QuestObjective
 {
-    //public string objectiveID; //match id
+    public string objectiveID; //match id
     public string description;
     public ObjectiveType type;
     //public string objectiveDescription;

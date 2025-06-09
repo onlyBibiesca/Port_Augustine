@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31f31bb1ae3f08940925a6f57edf26a3, type: 3}
+  m_Name: Steve
+  m_EditorClassIdentifier: 
+  npcName: Steve
+  npcPortrait: {fileID: 21300000, guid: fa4e37cdaf501944cb7c8a375d338bc6, type: 3}
+  dialogueLines:
+  - Hello!
+  - My name's steve!
+  - What is your name?
+  - I understand. Hopefully I know your name soon.
+  - I see! Welcome to Port Augustine
+  - There are other people in this town!
+  - Meet with them!
+  - Nice folks aren't they?
+  - Really?
+  autoProgressLines: 01010100010101
+  endDialogueLines: 0000000100000101
+  autoProgressDelay: 1.5
+  typingSpeed: 0.05
+  voiceSound: {fileID: 0}
+  voicePitch: 1.03
+  choices:
+  - dialogueIndex: 2
+    choices:
+    - Name
+    - Ignore
+    - doofenschmert
+    nextDialogueIndexes: 040000000300000008000000
+    requiredTraits:
+    - 
+    - 
+    - sarcasm
+    givesQuest: 010000
+  questInProgressIndex: 6
+  questCompletedIndex: 7
+  quest: {fileID: 11400000, guid: f1eb5f8477abe7145be46189fcbe1279, type: 2}

@@ -65,7 +65,7 @@ public class NPC : MonoBehaviour, InteractableObject
         Debug.Log("Starting Dialogue");
     }
 
-    public void SyncQuestData()
+    private void SyncQuestData()
     {
         if (dialogueData.quest == null) return;
 
