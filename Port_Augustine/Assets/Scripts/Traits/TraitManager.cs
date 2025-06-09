@@ -54,4 +54,9 @@ public class TraitManager : MonoBehaviour
         }
         return names;
     }
+
+    public List<Trait> GetAllActiveTraits()
+    {
+        return activeTraits;
+    }
 }

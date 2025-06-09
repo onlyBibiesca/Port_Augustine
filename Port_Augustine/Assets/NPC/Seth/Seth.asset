@@ -24,8 +24,9 @@ MonoBehaviour:
   - Nice bod bro
   - Whatever
   - I'm glad I know your name!
+  - Funny guy huh?
   autoProgressLines: 00000000
-  endDialogueLines: 0000000101010101
+  endDialogueLines: 00000001010101010101
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
@@ -35,8 +36,12 @@ MonoBehaviour:
     choices:
     - Ryne
     - Deny
-    nextDialogueIndexes: 0400000007000000
-    requiredTraits: []
+    - Seth
+    nextDialogueIndexes: 040000000700000009000000
+    requiredTraits:
+    - 
+    - 
+    - sarcasm
     givesQuest: 01
   questInProgressIndex: 4
   questCompletedIndex: 8
