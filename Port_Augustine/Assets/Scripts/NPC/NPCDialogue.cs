@@ -16,6 +16,10 @@ public class NPCDialogue : ScriptableObject
     public float voicePitch = 1f;
 
     public DialogueChoice[] choices;
+
+    public int questInProgressIndex;
+    public int questCompletedIndex;
+    public Quest quest;
 }
 
 [System.Serializable]
@@ -24,5 +28,6 @@ public class DialogueChoice
     public int dialogueIndex;
     public string[] choices;
     public int[] nextDialogueIndexes;
-    public string[] requiredTraits; 
+    public string[] requiredTraits;
+    public bool[] givesQuest;
 }

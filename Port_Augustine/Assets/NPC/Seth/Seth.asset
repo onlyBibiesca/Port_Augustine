@@ -17,13 +17,15 @@ MonoBehaviour:
   dialogueLines:
   - Hello there!
   - My name is Seth!
-  - What is your name?
+  - Can I know your name?
   - Nice!
   - Aw, hopefully I know your name soon
   - Haha
   - Nice bod bro
-  autoProgressLines: 01010100
-  endDialogueLines: 00000001010101
+  - Whatever
+  - I'm glad I know your name!
+  autoProgressLines: 00000000
+  endDialogueLines: 0000000101010101
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
@@ -31,19 +33,11 @@ MonoBehaviour:
   choices:
   - dialogueIndex: 2
     choices:
-    - Introduce
+    - Ryne
     - Deny
-    - Sarcastic
-    - Athletic
-    nextDialogueIndexes: 03000000040000000500000006000000
-    requiredTraits:
-    - 
-    - 
-    - sarcasm
-    - athlete
-  - dialogueIndex: 2
-    choices:
-    - Introduce
-    - Deny
-    nextDialogueIndexes: 0300000004000000
+    nextDialogueIndexes: 0400000007000000
     requiredTraits: []
+    givesQuest: 01
+  questInProgressIndex: 4
+  questCompletedIndex: 8
+  quest: {fileID: 11400000, guid: 331a0c6aef9cd6241b1ac6e99c2ab542, type: 2}

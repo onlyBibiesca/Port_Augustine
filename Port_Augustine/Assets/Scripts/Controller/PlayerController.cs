@@ -8,11 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private GameObject InventoryScreen;
     [SerializeField] private GameObject debugScreen;
+    [SerializeField] private GameObject questScreen;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
-    public static bool isInventoryClick, isDebugClick = false;
+    public static bool isInventoryClick, isDebugClick, isQuestClick = false;
 
     private void Start()
     {
@@ -54,6 +55,18 @@ public class PlayerMovement : MonoBehaviour
 
 
             Debug.Log(isActive ? "Closed Debug Screen" : "Opened Debug Screen");
+        }
+    }
+
+    public void OnQuest(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isActive = questScreen.activeSelf;
+            questScreen.SetActive(!isActive);
+            isQuestClick = !isActive;
+
+            Debug.Log(isActive ? "Closed Quest Screen" : "Opened Quest Screen");
         }
     }
 }

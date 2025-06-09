@@ -13,8 +13,10 @@ public class Quest : ScriptableObject
 
     private void OnValidate()
     {
-        if(string.IsNullOrEmpty(questID))
+        if (string.IsNullOrEmpty(questID))
+        {
             questID = questName + Guid.NewGuid().ToString();
+        }
     }
 
     
@@ -23,7 +25,7 @@ public class Quest : ScriptableObject
 [System.Serializable]
 public class QuestObjective
 {
-    public string objectiveID; //match id
+    //public string objectiveID; //match id
     public string description;
     public ObjectiveType type;
     //public string objectiveDescription;
@@ -51,7 +53,7 @@ public class QuestProgress
         {
             objectives.Add(new QuestObjective
             {
-                objectiveID = ob.objectiveID,
+                //objectiveID = ob.objectiveID,
                 description = ob.description,
                 type = ob.type,
                 requiredAmount = ob.requiredAmount,
