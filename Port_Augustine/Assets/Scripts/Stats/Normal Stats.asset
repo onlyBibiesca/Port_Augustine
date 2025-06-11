@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   traitID: Normal
   health: 100
-  hunger: 50
+  hunger: 80
   energy: 50
   socialBattery: 50
