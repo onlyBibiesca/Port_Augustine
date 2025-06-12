@@ -16,4 +16,7 @@ public class Trait : ScriptableObject
 
     // Influence on dialogue
     public List<string> unlockableKeywords; // e.g. "sarcastic", "athletic", etc.
+
+    // Modifiers that affect gameplay
+    public float cameraZoomOffset; // e.g., nearsighted could be -2
 }
