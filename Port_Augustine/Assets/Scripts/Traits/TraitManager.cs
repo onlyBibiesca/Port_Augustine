@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+
 public class TraitManager : MonoBehaviour
 {
     [Header("Traits the player currently has")]
@@ -11,14 +12,16 @@ public class TraitManager : MonoBehaviour
     [Header("Traits available in the game")]
     public List<Trait> availableTraits = new List<Trait>();
 
-    [Header("Camera Settings")]
+    [Header("Gameplay References")]
     public CinemachineVirtualCamera virtualCamera;
-    [SerializeField] private float baseZoomSize = 4f;
+    public PlayerMovement playerMovement;
+
+    private float baseZoomSize = 5f; // Default orthographic size (can set in inspector)
 
     void Start()
     {
-        AssignRandomTrait(); // Ensure trait is added randomly at start
-        RecalculateCameraZoom(); // Ensure zoom is updated at start
+        AssignRandomTrait();
+        RecalculateGameplayModifiers();
     }
 
     // Check if the player has a trait by keyword
@@ -32,26 +35,7 @@ public class TraitManager : MonoBehaviour
         return false;
     }
 
-    // Recalculate zoom based on all active traits
-    private void RecalculateCameraZoom()
-    {
-        if (virtualCamera == null)
-        {
-            Debug.LogWarning("Virtual Camera is not assigned!");
-            return;
-        }
-
-        float zoomOffset = 0f;
-        foreach (var trait in activeTraits)
-        {
-            zoomOffset += trait.cameraZoomOffset;
-        }
-
-        virtualCamera.m_Lens.OrthographicSize = baseZoomSize + zoomOffset;
-        Debug.Log($"[TraitManager] Camera zoom set to {virtualCamera.m_Lens.OrthographicSize}");
-    }
-
-    // Apply stat modifiers (zoom is handled separately)
+    // Apply trait modifiers to the player stats
     public void ApplyTraitModifiers(PlayerManager player)
     {
         foreach (var trait in activeTraits)
@@ -61,6 +45,27 @@ public class TraitManager : MonoBehaviour
             player.ChangeEnergy(trait.energyModifier);
             player.ChangeSocialBattery(trait.socialModifier);
         }
+
+        RecalculateGameplayModifiers(); // Also apply camera & movement changes
+    }
+
+    // Recalculate zoom and speed modifiers
+    private void RecalculateGameplayModifiers()
+    {
+        float zoomOffset = 0f;
+        float speedOffset = 0f;
+
+        foreach (var trait in activeTraits)
+        {
+            zoomOffset += trait.cameraZoomOffset;
+            speedOffset += trait.moveSpeedModifier;
+        }
+
+        if (virtualCamera != null)
+            virtualCamera.m_Lens.OrthographicSize = baseZoomSize + zoomOffset;
+
+        if (playerMovement != null)
+            playerMovement.moveSpeedModifier = speedOffset;
     }
 
     // Give a trait to the player
@@ -69,28 +74,27 @@ public class TraitManager : MonoBehaviour
         if (!activeTraits.Contains(trait))
         {
             activeTraits.Add(trait);
-            Debug.Log($"Trait added: {trait.traitName}");
-            RecalculateCameraZoom();
+            RecalculateGameplayModifiers();
+            Debug.Log($"Added trait: {trait.traitName}");
         }
     }
 
-    // Remove a trait (Removes the trait's effects ie Zoom)
+    // Remove a trait
     public void RemoveTrait(Trait trait)
     {
         if (activeTraits.Contains(trait))
         {
             activeTraits.Remove(trait);
-            Debug.Log($"Trait removed: {trait.traitName}");
-            RecalculateCameraZoom();
+            RecalculateGameplayModifiers();
+            Debug.Log($"Removed trait: {trait.traitName}");
         }
     }
 
-    // Clear all traits (Removes the trait from the player)
+    // Remove all traits
     public void ClearAllTraits()
     {
         activeTraits.Clear();
-        RecalculateCameraZoom();
-        Debug.Log("All traits cleared.");
+        RecalculateGameplayModifiers();
     }
 
     public List<string> GetAllTraitNames()
@@ -108,7 +112,7 @@ public class TraitManager : MonoBehaviour
         return activeTraits;
     }
 
-    // Assign one random trait
+    // Assign a random trait from the available list
     public void AssignRandomTrait()
     {
         if (availableTraits.Count == 0)
@@ -123,7 +127,7 @@ public class TraitManager : MonoBehaviour
         {
             activeTraits.Add(randomTrait);
             Debug.Log($"Randomly assigned trait: {randomTrait.traitName}");
-            RecalculateCameraZoom();
+            RecalculateGameplayModifiers();
         }
     }
 }

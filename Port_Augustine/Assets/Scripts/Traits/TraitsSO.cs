@@ -19,4 +19,5 @@ public class Trait : ScriptableObject
 
     // Modifiers that affect gameplay
     public float cameraZoomOffset; // e.g., nearsighted could be -2
+    public float moveSpeedModifier;
 }

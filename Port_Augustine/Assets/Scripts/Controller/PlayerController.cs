@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
 
     public static bool isInventoryClick, isDebugClick, isQuestClick = false;
 
+    [HideInInspector] public float moveSpeedModifier = 0f; // Trait system will modify this
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,9 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * (moveSpeed + moveSpeedModifier);
     }
-
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnInventory(InputAction.CallbackContext context)
     {
-     
         if (context.performed)
         {
             bool isActive = InventoryScreen.activeSelf;
@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
             bool isActive = debugScreen.activeSelf;
             debugScreen.SetActive(!isActive);
             isDebugClick = !isActive;
-
 
             Debug.Log(isActive ? "Closed Debug Screen" : "Opened Debug Screen");
         }
