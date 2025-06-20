@@ -12,17 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f31bb1ae3f08940925a6f57edf26a3, type: 3}
   m_Name: Hiroshi Lawson
   m_EditorClassIdentifier: 
-  npcName: 
+  npcName: Hiroshi
   npcPortrait: {fileID: 0}
-  dialogueLines: []
-  autoProgressLines: 
-  endDialogueLines: 
+  dialogueLines:
+  - Welcome to Lawson, I'm Hiroshi
+  autoProgressLines: 00
+  endDialogueLines: 00
   autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
   voicePitch: 1
-  choices: []
+  choices:
+  - dialogueIndex: 0
+    choices: []
+    nextDialogueIndexes: 
+    requiredTraits: []
+    givesQuest: 
+    opensShop: 01
   questInProgressIndex: 0
   questCompletedIndex: 0
   quest: {fileID: 0}
   shopThankYouMessage: 
+  shopUIPanel: {fileID: 0}
