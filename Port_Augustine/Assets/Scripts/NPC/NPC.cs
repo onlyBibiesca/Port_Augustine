@@ -170,19 +170,43 @@ public class NPC : MonoBehaviour, InteractableObject
             if (shouldShow)
             {
                 int nextIndex = choice.nextDialogueIndexes[i];
-                bool givesQuest = choice.givesQuest[i];
-                dialogueUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex, givesQuest));
+                bool givesQuest = choice.givesQuest != null && choice.givesQuest.Length > i && choice.givesQuest[i];
+                bool opensShop = choice.opensShop != null && choice.opensShop.Length > i && choice.opensShop[i];
+
+                dialogueUI.CreateChoiceButton(
+                    choice.choices[i],
+                    () => ChooseOption(nextIndex, givesQuest, opensShop)
+                );
             }
         }
     }
-
-    void ChooseOption(int nextIndex, bool givesQuest)
+    void ChooseOption(int nextIndex, bool givesQuest, bool opensShop)
     {
-        if(givesQuest)
+        if (givesQuest)
         {
             QuestController.Instance.AcceptQuest(dialogueData.quest);
             questState = QuestState.InProgress;
         }
+
+        if (opensShop)
+        {
+            ShopController.Instance.OpenShop(() =>
+            {
+                // After shop is closed, show thank-you message if it exists
+                if (!string.IsNullOrEmpty(dialogueData.shopThankYouMessage))
+                {
+                    dialogueUI.ClearChoices();
+                    dialogueUI.SetDialogueText(dialogueData.shopThankYouMessage);
+                }
+                else
+                {
+                    EndDialogue(); // fallback if no message is defined
+                }
+            });
+
+            return; // Wait until shop is closed
+        }
+
         dialogueIndex = nextIndex;
         dialogueUI.ClearChoices();
         DisplayCurrentLine();

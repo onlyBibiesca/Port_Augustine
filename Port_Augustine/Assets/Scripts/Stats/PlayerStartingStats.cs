@@ -11,4 +11,5 @@ public class PlayerStartingStats : ScriptableObject
     public int hunger;
     public int energy;
     public int socialBattery;
+    public int money;
 }

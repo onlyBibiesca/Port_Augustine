@@ -14,12 +14,18 @@ public class NPCDialogue : ScriptableObject
     public float typingSpeed = 0.05f;
     public AudioClip voiceSound;
     public float voicePitch = 1f;
+    
 
     public DialogueChoice[] choices;
 
     public int questInProgressIndex;
     public int questCompletedIndex;
     public Quest quest;
+
+    [TextArea]
+    public string shopThankYouMessage;
+
+    public GameObject shopUIPanel;
 }
 
 [System.Serializable]
@@ -30,4 +36,5 @@ public class DialogueChoice
     public int[] nextDialogueIndexes;
     public string[] requiredTraits;
     public bool[] givesQuest;
+    public bool[] opensShop;
 }

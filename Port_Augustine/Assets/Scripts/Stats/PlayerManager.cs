@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class PlayerManager : MonoBehaviour
@@ -15,9 +16,13 @@ public class PlayerManager : MonoBehaviour
     public Slider hungerSlider;
     public Slider socialbatSlider;
 
+    [Header("Money UI")]
+    public TMP_Text moneyText;
+
     private void Start()
     {
         SetStats();
+        UpdateMoneyUI();
     }
 
     public void SetStats()
@@ -50,5 +55,32 @@ public class PlayerManager : MonoBehaviour
     {
         stats.socialBattery = Mathf.Clamp(stats.socialBattery + amount, 0, (int)socialbatSlider.maxValue);
         socialbatSlider.value = (float)stats.socialBattery;
+    }
+
+    public void AddMoney(int amount)
+    {
+        stats.money += amount;
+        UpdateMoneyUI();
+    }
+
+    public bool SpendMoney(int amount)
+    {
+        if (stats.money >= amount)
+        {
+            stats.money -= amount;
+            UpdateMoneyUI();
+            return true;
+        }
+
+        Debug.Log("Not enough money!");
+        return false;
+    }
+
+    public void UpdateMoneyUI()
+    {
+        if (moneyText != null)
+        {
+            moneyText.text = $"$ {stats.money}";
+        }
     }
 }
