@@ -20,3 +20,12 @@ MonoBehaviour:
   socialModifier: 0
   unlockableKeywords:
   - athlete
+  cameraZoomOffset: 0
+  moveSpeedModifier: 0
+  dialogueReactions:
+  - choiceType: 
+    healthChange: 0
+    hungerChange: 0
+    energyChange: 0
+    socialBatteryChange: 0
+    moneyChange: 0

@@ -43,6 +43,19 @@ MonoBehaviour:
     - 
     - sarcasm
     givesQuest: 01
+    opensShop: 
+    choiceTypes:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - sarcasm
   questInProgressIndex: 4
   questCompletedIndex: 8
   quest: {fileID: 11400000, guid: 331a0c6aef9cd6241b1ac6e99c2ab542, type: 2}
+  shopThankYouMessage: 
+  shopUIPanel: {fileID: 0}

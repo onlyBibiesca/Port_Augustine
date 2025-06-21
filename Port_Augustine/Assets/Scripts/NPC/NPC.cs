@@ -16,7 +16,8 @@ public class NPC : MonoBehaviour, InteractableObject
     private QuestState questState = QuestState.NotStarted;
 
     [SerializeField] 
-    private TraitManager traitManager; // assign this in Inspector
+    private TraitManager traitManager;
+    private PlayerManager player; // assign this in Inspector
     private void Start()
     {
         dialogueUI = DialogueController.Instance;
@@ -157,7 +158,7 @@ public class NPC : MonoBehaviour, InteractableObject
         {
             bool shouldShow = true;
 
-            // Check if trait is required for this choice
+            // Trait requirement
             if (choice.requiredTraits != null && choice.requiredTraits.Length > i)
             {
                 string requiredTrait = choice.requiredTraits[i];
@@ -172,16 +173,23 @@ public class NPC : MonoBehaviour, InteractableObject
                 int nextIndex = choice.nextDialogueIndexes[i];
                 bool givesQuest = choice.givesQuest != null && choice.givesQuest.Length > i && choice.givesQuest[i];
                 bool opensShop = choice.opensShop != null && choice.opensShop.Length > i && choice.opensShop[i];
+                string choiceType = (choice.choiceTypes != null && choice.choiceTypes.Length > i) ? choice.choiceTypes[i] : "";
 
                 dialogueUI.CreateChoiceButton(
                     choice.choices[i],
-                    () => ChooseOption(nextIndex, givesQuest, opensShop)
+                    () => ChooseOption(nextIndex, givesQuest, opensShop, choiceType)
                 );
             }
         }
     }
-    void ChooseOption(int nextIndex, bool givesQuest, bool opensShop)
+
+    void ChooseOption(int nextIndex, bool givesQuest, bool opensShop, string choiceType)
     {
+        if (!string.IsNullOrEmpty(currentChoiceType)) // <-- Pass this from dialogue data
+        {
+            traitManager.ApplyTraitDialogueReaction(currentChoiceType, player);
+        }
+
         if (givesQuest)
         {
             QuestController.Instance.AcceptQuest(dialogueData.quest);
@@ -192,7 +200,6 @@ public class NPC : MonoBehaviour, InteractableObject
         {
             ShopController.Instance.OpenShop(() =>
             {
-                // After shop is closed, show thank-you message if it exists
                 if (!string.IsNullOrEmpty(dialogueData.shopThankYouMessage))
                 {
                     dialogueUI.ClearChoices();
@@ -200,11 +207,11 @@ public class NPC : MonoBehaviour, InteractableObject
                 }
                 else
                 {
-                    EndDialogue(); // fallback if no message is defined
+                    EndDialogue();
                 }
             });
 
-            return; // Wait until shop is closed
+            return;
         }
 
         dialogueIndex = nextIndex;

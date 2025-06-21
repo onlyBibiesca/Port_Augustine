@@ -15,6 +15,7 @@ public class TraitManager : MonoBehaviour
     [Header("Gameplay References")]
     public CinemachineVirtualCamera virtualCamera;
     public PlayerMovement playerMovement;
+    [SerializeField] private PlayerManager player;
 
     private float baseZoomSize = 5f; // Default orthographic size (can set in inspector)
 
@@ -22,6 +23,8 @@ public class TraitManager : MonoBehaviour
     {
         AssignRandomTrait();
         RecalculateGameplayModifiers();
+        player = FindObjectOfType<PlayerManager>();
+
     }
 
     // Check if the player has a trait by keyword
@@ -49,8 +52,47 @@ public class TraitManager : MonoBehaviour
         RecalculateGameplayModifiers(); // Also apply camera & movement changes
     }
 
-    // Recalculate zoom and speed modifiers
-    private void RecalculateGameplayModifiers()
+    /*
+    public void ApplyTraitDialogueReaction(string choiceType)
+    {
+        if (playerManager == null)
+        {
+            Debug.LogWarning("PlayerManager not found.");
+            return;
+        }
+
+        foreach (var trait in activeTraits)
+        {
+            // Skip if this trait matches the choice type
+            if (trait.unlockableKeywords.Contains(choiceType)) continue;
+
+            // Otherwise apply penalties (you can expand this logic per trait)
+            playerManager.ChangeSocialBattery(-5); // Generic penalty
+            Debug.Log($"Trait '{trait.traitName}' mismatched with '{choiceType}' — social battery reduced.");
+        }
+    }
+    */
+
+    public void ApplyTraitDialogueReaction(string choiceType, PlayerManager player)
+    {
+        foreach (Trait trait in activeTraits)
+        {
+            foreach (DialogueReaction reaction in trait.dialogueReactions)
+            {
+                if (reaction.choiceType.Equals(choiceType, StringComparison.OrdinalIgnoreCase))
+                {
+                    player.ChangeHealth(reaction.healthChange);
+                    player.ChangeHunger(reaction.hungerChange);
+                    player.ChangeEnergy(reaction.energyChange);
+                    player.ChangeSocialBattery(reaction.socialBatteryChange);
+                    player.AddMoney(reaction.moneyChange);
+                }
+            }
+        }
+    }
+
+        // Recalculate zoom and speed modifiers
+        private void RecalculateGameplayModifiers()
     {
         float zoomOffset = 0f;
         float speedOffset = 0f;
@@ -130,4 +172,6 @@ public class TraitManager : MonoBehaviour
             RecalculateGameplayModifiers();
         }
     }
+
+
 }

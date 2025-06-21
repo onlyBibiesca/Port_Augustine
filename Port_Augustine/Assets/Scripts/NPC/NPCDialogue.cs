@@ -37,4 +37,6 @@ public class DialogueChoice
     public string[] requiredTraits;
     public bool[] givesQuest;
     public bool[] opensShop;
+
+    public string[] choiceTypes;
 }

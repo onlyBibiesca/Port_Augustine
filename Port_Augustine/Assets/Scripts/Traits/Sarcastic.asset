@@ -20,3 +20,12 @@ MonoBehaviour:
   socialModifier: 0
   unlockableKeywords:
   - sarcasm
+  cameraZoomOffset: 0
+  moveSpeedModifier: 0
+  dialogueReactions:
+  - choiceType: sarcasm
+    healthChange: 0
+    hungerChange: 0
+    energyChange: 0
+    socialBatteryChange: 10
+    moneyChange: 0

@@ -16,5 +16,5 @@ MonoBehaviour:
   health: 100
   hunger: 80
   energy: 50
-  socialBattery: 50
+  socialBattery: 10
   money: 23
