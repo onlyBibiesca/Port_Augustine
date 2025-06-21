@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject InventoryScreen;
     [SerializeField] private GameObject debugScreen;
     [SerializeField] private GameObject questScreen;
+    [SerializeField] public Animator _Animator;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -30,6 +31,46 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        if (Input.GetKey(KeyCode.D))
+        {
+            _Animator.SetBool("IsMovingRight", true);
+            _Animator.SetBool("IsMovingLeft", false);
+            _Animator.SetBool("IsMovingUp", false);
+            _Animator.SetBool("IsMovingDown", false);
+            _Animator.SetBool("StandingStill", false);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            _Animator.SetBool("IsMovingLeft", true);
+            _Animator.SetBool("IsMovingRight", false);
+            _Animator.SetBool("IsMovingUp", false);
+            _Animator.SetBool("IsMovingDown", false);
+            _Animator.SetBool("StandingStill", false);
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            _Animator.SetBool("IsMovingRight", false);
+            _Animator.SetBool("IsMovingLeft", false);
+            _Animator.SetBool("IsMovingUp", true);
+            _Animator.SetBool("IsMovingDown", false);
+            _Animator.SetBool("StandingStill", false);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            _Animator.SetBool("IsMovingDown", true);
+            _Animator.SetBool("IsMovingRight", false);
+            _Animator.SetBool("IsMovingLeft", false);
+            _Animator.SetBool("IsMovingUp", false);
+            _Animator.SetBool("StandingStill", false);
+        }
+        else 
+        {
+            _Animator.SetBool("IsMovingRight", false);
+            _Animator.SetBool("IsMovingLeft", false);
+            _Animator.SetBool("IsMovingUp", false);
+            _Animator.SetBool("IsMovingDown", false);
+            _Animator.SetBool("StandingStill", true);
+        }
     }
 
     public void OnInventory(InputAction.CallbackContext context)
