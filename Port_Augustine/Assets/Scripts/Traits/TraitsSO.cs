@@ -27,7 +27,7 @@ public class Trait : ScriptableObject
 [System.Serializable]
 public class DialogueReaction
 {
-    public string choiceType; // e.g., "honest", "sarcastic", "brag" THIS CHANGES YOUR STATS ie this basically answer the game's question "What kind of answer did I choose?"
+    public string choiceType; // e.g., "honest", "sarcastic", "brag" THIS CHANGES YOUR STATS ie this basically answer the game's question "What kind of answer did I choose?" also unlockablekeywords and choicetype can be the same name ie sarcasm-sarcasm
     public int healthChange;
     public int hungerChange;
     public int energyChange;
