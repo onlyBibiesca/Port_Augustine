@@ -185,10 +185,15 @@ public class NPC : MonoBehaviour, InteractableObject
 
     void ChooseOption(int nextIndex, bool givesQuest, bool opensShop, string choiceType)
     {
+
+        // eh I'll fix this later
+        /*
         if (!string.IsNullOrEmpty(currentChoiceType)) // <-- Pass this from dialogue data
         {
             traitManager.ApplyTraitDialogueReaction(currentChoiceType, player);
         }
+        */
+
 
         if (givesQuest)
         {
