@@ -6,22 +6,39 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, InteractableObject
 {
-    public NPCDialogue dialogueData;
     private DialogueController dialogueUI;
+    private PlayerManager player;
+    private TraitManager traitManager;
+
+    public NPCDialogue dialogueData; // Still public for debugging, but auto-assigned
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
 
-    private enum QuestState { NotStarted, InProgress, Completed}
+    private enum QuestState { NotStarted, InProgress, Completed }
     private QuestState questState = QuestState.NotStarted;
 
-    [SerializeField] 
-    private TraitManager traitManager;
-    private PlayerManager player; // assign this in Inspector
     private void Start()
     {
+        player = FindObjectOfType<PlayerManager>();
+        traitManager = FindObjectOfType<TraitManager>();
         dialogueUI = DialogueController.Instance;
+
+        if (player == null) Debug.LogError("PlayerManager not found!");
+        if (traitManager == null) Debug.LogError("TraitManager not found!");
+        if (dialogueUI == null) Debug.LogError("DialogueController.Instance not found!");
+
+        // Auto-load dialogue asset based on the GameObject name
+        if (dialogueData == null)
+        {
+            string npcName = gameObject.name;
+            dialogueData = Resources.Load<NPCDialogue>("NPCDialogues/" + npcName);
+
+            if (dialogueData == null)
+                Debug.LogWarning($"Dialogue asset for '{npcName}' not found in Resources/NPCDialogues/");
+        }
     }
+
     public void Interact()
     {
         Debug.Log("Interacted");
@@ -158,7 +175,6 @@ public class NPC : MonoBehaviour, InteractableObject
         {
             bool shouldShow = true;
 
-            // Trait requirement
             if (choice.requiredTraits != null && choice.requiredTraits.Length > i)
             {
                 string requiredTrait = choice.requiredTraits[i];
@@ -173,32 +189,47 @@ public class NPC : MonoBehaviour, InteractableObject
                 int nextIndex = choice.nextDialogueIndexes[i];
                 bool givesQuest = choice.givesQuest != null && choice.givesQuest.Length > i && choice.givesQuest[i];
                 bool opensShop = choice.opensShop != null && choice.opensShop.Length > i && choice.opensShop[i];
-                string choiceType = (choice.choiceTypes != null && choice.choiceTypes.Length > i) ? choice.choiceTypes[i] : "";
+                int capturedIndex = i;
 
                 dialogueUI.CreateChoiceButton(
                     choice.choices[i],
-                    () => ChooseOption(nextIndex, givesQuest, opensShop, choiceType)
+                    () => ChooseOption(nextIndex, givesQuest, opensShop, choice, capturedIndex)
                 );
             }
         }
     }
 
-    void ChooseOption(int nextIndex, bool givesQuest, bool opensShop, string choiceType)
+    private string GetChoiceType(DialogueChoice choice, int index)
     {
+        if (choice.choiceTypes != null && choice.choiceTypes.Length > index)
+            return choice.choiceTypes[index];
 
-        // eh I'll fix this later
-        /*
-        if (!string.IsNullOrEmpty(currentChoiceType)) // <-- Pass this from dialogue data
-        {
-            traitManager.ApplyTraitDialogueReaction(currentChoiceType, player);
-        }
-        */
+        return string.Empty;
+    }
 
-
+    void ChooseOption(int nextIndex, bool givesQuest, bool opensShop, DialogueChoice choice, int choiceIndex)
+    {
         if (givesQuest)
         {
             QuestController.Instance.AcceptQuest(dialogueData.quest);
             questState = QuestState.InProgress;
+        }
+
+        string currentChoiceType = GetChoiceType(choice, choiceIndex);
+
+        foreach (Trait trait in traitManager.GetAllActiveTraits())
+        {
+            foreach (DialogueReaction reaction in trait.dialogueReactions)
+            {
+                if (reaction.choiceType.Equals(currentChoiceType, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    if (reaction.healthChange != 0) player.ChangeHealth(reaction.healthChange);
+                    if (reaction.hungerChange != 0) player.ChangeHunger(reaction.hungerChange);
+                    if (reaction.energyChange != 0) player.ChangeEnergy(reaction.energyChange);
+                    if (reaction.socialBatteryChange != 0) player.ChangeSocialBattery(reaction.socialBatteryChange);
+                    if (reaction.moneyChange != 0) player.AddMoney(reaction.moneyChange);
+                }
+            }
         }
 
         if (opensShop)
