@@ -383,7 +383,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 645bde526f3e1254ab6b599671c61659, type: 2}
   virtualCamera: {fileID: 1479845402}
   playerMovement: {fileID: 1804967200}
-  player: {fileID: 0}
+  player: {fileID: 717505104}
 --- !u!1 &30924558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3498,7 +3498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &435027820
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4038,7 +4038,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: a82f7854ac0a2114a80a9447d130610e, type: 2}
-  traitManager: {fileID: 23262486}
 --- !u!1 &457098111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5945,7 +5944,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: 877f8f1d2e1e2004ca1fd909c3d4e326, type: 2}
-  traitManager: {fileID: 23262486}
 --- !u!114 &786404603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6384,7 +6382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIHighlight: {fileID: 259888521}
-  ToggleableMenu: {fileID: 984210273}
+  ToggleableMenu: {fileID: 733348701}
   hoverLiftAmount: 15
   tweenDuration: 0.5
 --- !u!1 &859484897
@@ -507099,7 +507097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIHighlight: {fileID: 2058134800}
-  ToggleableMenu: {fileID: 984210273}
+  ToggleableMenu: {fileID: 30924558}
   hoverLiftAmount: 15
   tweenDuration: 0.5
 --- !u!1 &1688357793
@@ -508554,6 +508552,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 156a3194-2fba-47d0-8c0f-4e911e15d519
     m_ActionName: Player/QuestScreen[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 53dae21f-6f2d-439e-b813-2716b2552193
+    m_ActionName: Player/PauseScreen[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
