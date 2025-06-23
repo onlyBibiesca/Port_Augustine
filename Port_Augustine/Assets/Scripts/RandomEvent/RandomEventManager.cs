@@ -6,6 +6,7 @@ public class RandomEventManager : MonoBehaviour
 {
     [Header("GameObjects")]
     public GameObject freakyPNG;
+    public GameObject subGame;
 
     //Defining events
     public enum EventType
@@ -49,11 +50,16 @@ public class RandomEventManager : MonoBehaviour
         Debug.Log(randomChance);
 
         //lowest to highest chance format
-        if (randomChance >= 0.7f) //20 percent
+        if (randomChance > 0.5f) //20 percent
         {
             DisplayFreaky();
         }
-        /*EventType randomEvent = (EventType)Random.Range(0, System.Enum.GetValues(typeof(EventType)).Length);
+
+        if (randomChance < 0.5)
+        {
+            DisplaySubtraction();
+        }
+        /*EventType randomEvent = (EventT{ype)Random.Range(0, System.Enum.GetValues(typeof(EventType)).Length);
 
         //execute chosen event
         switch (randomEvent)
@@ -76,6 +82,12 @@ public class RandomEventManager : MonoBehaviour
     {
         freakyPNG.SetActive(true);
         Debug.Log("Freaky NPC Triggering");
+    }
+
+    void DisplaySubtraction()
+    {
+        subGame.SetActive(true);
+        Debug.Log("Subtraction Game Triggering");
     }
 
     

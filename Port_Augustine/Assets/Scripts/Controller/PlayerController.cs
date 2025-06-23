@@ -9,12 +9,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject InventoryScreen;
     [SerializeField] private GameObject debugScreen;
     [SerializeField] private GameObject questScreen;
+    [SerializeField] private GameObject pauseScreen;
     [SerializeField] public Animator _Animator;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
-    public static bool isInventoryClick, isDebugClick, isQuestClick = false;
+    public static bool isInventoryClick, isDebugClick, isQuestClick, isPausePressed = false;
 
     [HideInInspector] public float moveSpeedModifier = 0f; // Trait system will modify this
 
@@ -84,6 +85,18 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log(isActive ? "Closed Inventory" : "Opened Inventory");
         }
+    }
+
+    public void PauseScreen (InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            bool isActive = pauseScreen.activeSelf;
+            pauseScreen.SetActive(!isActive);
+            isPausePressed = !isActive;
+            Debug.Log(isActive ? "Closed Pause Screen" : "Opened Pause Screen");
+        }
+    
     }
 
     public void OnDebug(InputAction.CallbackContext context)
