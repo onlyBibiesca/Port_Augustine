@@ -35,12 +35,24 @@ public class ItemDatabase : MonoBehaviour, IPointerClickHandler
     public bool thisItemSelected;
 
     private InventoryManager inventoryManager;
-   
-       void Start()
-       {
-           inventoryManager = GameObject.Find("InventoryManager").GetComponent<InventoryManager>();
-       }
-   
+
+    void Start()
+    {
+        if (inventoryManager == null)
+        {
+            inventoryManager = FindObjectOfType<InventoryManager>();
+            if (inventoryManager == null)
+            {
+                Debug.LogError("InventoryManager not found in scene!");
+            }
+        }
+
+        if (inventoryManager.itemData == null || inventoryManager.itemData.Count == 0)
+        {
+            Debug.LogError("itemData list in InventoryManager is empty or not assigned!");
+        }
+    }
+
 
 
 
@@ -103,20 +115,30 @@ public class ItemDatabase : MonoBehaviour, IPointerClickHandler
 
     public void UseButton()
     {
-        // Ensure only the selected item is used
+        // If not assigned yet, try to find manually now
+        if (inventoryManager == null)
+            inventoryManager = FindObjectOfType<InventoryManager>();
+
+        if (inventoryManager == null || inventoryManager.itemData == null || inventoryManager.itemData.Count == 0)
+        {
+            Debug.LogError("InventoryManager or itemData is not set!");
+            return;
+        }
+
         foreach (var item in inventoryManager.itemData)
         {
             if (item.thisItemSelected)
             {
                 Debug.Log("Using item: " + item.itemName);
                 inventoryManager.UseItem(item.itemName);
-                item.EmptySlot(); // Remove item after use
-                return; // Exit after using the selected item
+                item.EmptySlot(); // Clear after use
+                return;
             }
         }
 
         Debug.LogWarning("No item selected!");
     }
+
     public void EmptySlot()
     {
         thisItemSelected = true;

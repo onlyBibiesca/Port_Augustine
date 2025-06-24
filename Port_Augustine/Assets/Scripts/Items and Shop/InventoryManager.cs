@@ -9,7 +9,7 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject InventoryScreen;
     public static bool isInventoryClick = false;
-    public ItemDatabase[] itemData;
+    public List<ItemDatabase> itemData = new List<ItemDatabase>();
     //private PlayerControls playerControls;
 
     public ItemScriptObject[] ItemSO;
@@ -22,10 +22,18 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
+        // Clear existing list just in case
+        itemData.Clear();
+
+        // Grab all ItemDatabase components from children (e.g., ItemSlots)
+        itemData.AddRange(GetComponentsInChildren<ItemDatabase>(true));
+
         foreach (var item in ItemSO)
         {
             Debug.Log("ItemSO contains: " + item.itemName);
         }
+
+        Debug.Log("Item slots found: " + itemData.Count);
     }
 
 
@@ -93,7 +101,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
-        for (int i = 0; i < itemData.Length; i++)
+        for (int i = 0; i < itemData.Count; i++)
         {
             if (itemData[i].isFull == false)
             {
@@ -107,7 +115,7 @@ public class InventoryManager : MonoBehaviour
 
     public void DeselectAllSlots()
     {
-        for (int i = 0; i < itemData.Length; i++)
+        for (int i = 0; i < itemData.Count; i++)
         {
             itemData[i].selectedShader.SetActive(false);
             itemData[i].thisItemSelected = false;
