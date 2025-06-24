@@ -12,6 +12,8 @@ public class TraitManager : MonoBehaviour
     [Header("Traits available in the game")]
     public List<Trait> availableTraits = new List<Trait>();
 
+    [Header("No. of traits to be randomly assigned")]
+    [SerializeField] public int randomTraitCount = 2;
     [Header("Gameplay References")]
     public CinemachineVirtualCamera virtualCamera;
     public PlayerMovement playerMovement;
@@ -21,7 +23,10 @@ public class TraitManager : MonoBehaviour
 
     void Start()
     {
-        AssignRandomTrait();
+        //AssignRandomTrait();
+        for (int traitLoop = 0; traitLoop < randomTraitCount; traitLoop++) {
+            AssignRandomTrait();
+        }//loop to assign more than one random trait
         RecalculateGameplayModifiers();
         player = FindObjectOfType<PlayerManager>();
 

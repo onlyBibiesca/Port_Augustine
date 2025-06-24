@@ -53,7 +53,7 @@ public class QuestProgress
         {
             objectives.Add(new QuestObjective
             {
-                //objectiveID = ob.objectiveID,
+                objectiveID = ob.objectiveID,
                 description = ob.description,
                 type = ob.type,
                 requiredAmount = ob.requiredAmount,
