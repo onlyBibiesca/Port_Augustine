@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc945769b5ffd7349b251ef1a16c1d7e, type: 3}
-  m_Name: TalkToNPC
+  m_Name: MeetMembers
   m_EditorClassIdentifier: 
-  questID: b7dea691-e199-4f6b-bd8f-d71940a876b3
-  questName: Meet the members!
-  description: Meeting the members
+  questID: M15e480e7-f43d-4220-8bf9-ae12cf5a08ff
+  questName: Meet members!
+  description: 
   objectives:
   - objectiveID: 1
-    description: Meet peole!
-    type: 2
+    description: Meet the members!
+    type: 0
     requiredAmount: 5
     currentAmount: 0

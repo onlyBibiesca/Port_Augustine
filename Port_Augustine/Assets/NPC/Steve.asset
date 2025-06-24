@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f31bb1ae3f08940925a6f57edf26a3, type: 3}
   m_Name: Steve
   m_EditorClassIdentifier: 
-  npcName: Steve
-  npcPortrait: {fileID: 21300000, guid: fa4e37cdaf501944cb7c8a375d338bc6, type: 3}
+  npcName: JeyEm
+  npcPortrait: {fileID: 21300000, guid: b0bf5c8c83db9be4eb3e7e49e3f0538f, type: 3}
   dialogueLines:
   - Hello!
   - My name's steve!
