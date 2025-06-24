@@ -162,6 +162,8 @@ public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         {
             Destroy(gameObject);
         }
+
+        QuestInventoryController.Instance.RebuildItemCounts();
         
     }
 

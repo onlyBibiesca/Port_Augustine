@@ -34,6 +34,7 @@ public class QuestInventoryController : MonoBehaviour
     {
 
         itemDictionary = FindObjectOfType<ItemDictionary>();
+        RebuildItemCounts();
         for (int i = 0; i < slotCOunt; i++)
         {
             Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
@@ -47,7 +48,7 @@ public class QuestInventoryController : MonoBehaviour
         }
     }
 
-    /*public void RebuildItemCounts()
+    public void RebuildItemCounts()
     {
         itemsCountCache.Clear();
 
@@ -59,12 +60,16 @@ public class QuestInventoryController : MonoBehaviour
                 Item item = slot.currentItem.GetComponent<Item>();  
                 if(item != null)
                 {
-                    itemsCountCache[item.ID] = itemsCountCache.GetValueOrDefault(item.ID, 0) + Item.quantity;
+                    itemsCountCache[item.ID] = itemsCountCache.GetValueOrDefault(item.ID, 0) + item.quantity;
                 }
                 
             }
         }
-    }*/
+
+        OnInventoryChanged?.Invoke();
+    }
+
+    public Dictionary<int, int> GetItemCounts() => itemsCountCache;
     public bool AddItem(GameObject itemPrefab)
     {
         Item itemToAdd = itemPrefab.GetComponent<Item>();
@@ -81,6 +86,7 @@ public class QuestInventoryController : MonoBehaviour
                 {
                     //same item stack
                     slotItem.AddToStack();
+                    RebuildItemCounts();
                     return true;
                 }
             }
@@ -95,6 +101,7 @@ public class QuestInventoryController : MonoBehaviour
                 GameObject newItem = Instantiate(itemPrefab, slot.transform);
                 newItem.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 slot.currentItem = newItem;
+                RebuildItemCounts();
                 return true;
             }
         }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: TalkToNPC
   m_EditorClassIdentifier: 
   questID: b7dea691-e199-4f6b-bd8f-d71940a876b3
-  questName: TalkToNPC
-  description: Talk to the first NPC
+  questName: GiveMeWeezerAlbum
+  description: Collect Weezer Albums
   objectives:
   - objectiveID: 1
-    description: Talk to NPC
-    type: 2
-    requiredAmount: 1
+    description: Collect Weezer Albums
+    type: 0
+    requiredAmount: 2
     currentAmount: 0
