@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             _Animator.SetBool("IsMovingRight", true);
             _Animator.SetBool("IsMovingLeft", false);
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             _Animator.SetBool("IsMovingDown", false);
             _Animator.SetBool("StandingStill", false);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             _Animator.SetBool("IsMovingLeft", true);
             _Animator.SetBool("IsMovingRight", false);
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
             _Animator.SetBool("IsMovingDown", false);
             _Animator.SetBool("StandingStill", false);
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             _Animator.SetBool("IsMovingRight", false);
             _Animator.SetBool("IsMovingLeft", false);
@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
             _Animator.SetBool("IsMovingDown", false);
             _Animator.SetBool("StandingStill", false);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             _Animator.SetBool("IsMovingDown", true);
             _Animator.SetBool("IsMovingRight", false);
