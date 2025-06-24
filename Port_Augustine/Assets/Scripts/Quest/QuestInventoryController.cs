@@ -14,6 +14,7 @@ public class QuestInventoryController : MonoBehaviour
     public GameObject[] itemPrefabs;
 
     public static QuestInventoryController Instance { get; private set; }
+
     Dictionary<int, int> itemsCountCache = new();
     public event Action OnInventoryChanged;
 
@@ -66,6 +67,25 @@ public class QuestInventoryController : MonoBehaviour
     }*/
     public bool AddItem(GameObject itemPrefab)
     {
+        Item itemToAdd = itemPrefab.GetComponent<Item>();
+        if (itemToAdd == null) return false;
+
+        //check item type
+        foreach (Transform slotTransform in inventoryPanel.transform)
+        {
+            Slot slot = slotTransform.GetComponent<Slot>();
+            if (slot != null && slot.currentItem != null)
+            {
+                Item slotItem = slot.currentItem.GetComponent<Item>();
+                if(slotItem != null && slotItem.ID == itemToAdd.ID)
+                {
+                    //same item stack
+                    slotItem.AddToStack();
+                    return true;
+                }
+            }
+        }
+
         //look for empty slot
         foreach (Transform slotTransform in inventoryPanel.transform)
         {
