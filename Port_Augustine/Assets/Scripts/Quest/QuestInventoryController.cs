@@ -109,4 +109,28 @@ public class QuestInventoryController : MonoBehaviour
         Debug.Log("Quest Inventory is full");
         return false;
     }
+
+    public void RemoveItemsFromInventory(int itemID, int amountToRemove)
+    {
+        foreach(Transform slotTransform in inventoryPanel.transform)
+        {
+            if (amountToRemove <= 0) break;
+
+            Slot slot = slotTransform.GetComponent<Slot>();
+            if(slot?.currentItem?.GetComponent<Item>() is Item item && item.ID == itemID)
+            {
+                int removed = Math.Min(amountToRemove, item.quantity);
+                item.RemoveFromStack(removed);
+                amountToRemove -= removed;
+
+                if(item.quantity == 0)
+                {
+                    Destroy(slot.currentItem);
+                    slot.currentItem = null;
+                }
+            }
+
+        }
+        RebuildItemCounts();
+    }
 }
