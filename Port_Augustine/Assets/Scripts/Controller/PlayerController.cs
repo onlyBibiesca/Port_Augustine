@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] public Animator _Animator;
 
+    public AudioSource source;
+    public AudioClip clip;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
 
@@ -120,6 +123,14 @@ public class PlayerMovement : MonoBehaviour
             isQuestClick = !isActive;
 
             Debug.Log(isActive ? "Closed Quest Screen" : "Opened Quest Screen");
+        }
+    }
+
+    public void Click(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            source.PlayOneShot(clip);
         }
     }
 }

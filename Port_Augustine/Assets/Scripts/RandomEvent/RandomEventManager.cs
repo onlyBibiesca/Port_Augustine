@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomEventManager : MonoBehaviour
 {
     [Header("GameObjects")]
-    public GameObject freakyPNG;
+    public GameObject game_1;
     public GameObject subGame;
 
     //Defining events
@@ -52,7 +52,7 @@ public class RandomEventManager : MonoBehaviour
         //lowest to highest chance format
         if (randomChance > 0.5f) //20 percent
         {
-            DisplayFreaky();
+            DisplayGame();
         }
 
         if (randomChance < 0.5)
@@ -78,9 +78,9 @@ public class RandomEventManager : MonoBehaviour
         }*/
     }
 
-    void DisplayFreaky()
+    void DisplayGame()
     {
-        freakyPNG.SetActive(true);
+        game_1.SetActive(true);
         Debug.Log("Freaky NPC Triggering");
     }
 
