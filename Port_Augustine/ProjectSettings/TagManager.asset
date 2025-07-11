@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Teleporter
   - Item
+  - PAPER_HR
+  - PAPER_FIN
+  - PAPER_IT
+  - PAPER_TRA
   layers:
   - Default
   - TransparentFX
