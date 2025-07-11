@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Day1Sched
   m_EditorClassIdentifier: 
   schedule:
-  - eventName: Ambasing
-    hour: 8
+  - eventName: Jim Appear
+    hour: 7
     description: 
-  - eventName: Ohshit....
-    hour: 9
-    description: 
+    eventType: 0
+    targetObjectID: Jim
