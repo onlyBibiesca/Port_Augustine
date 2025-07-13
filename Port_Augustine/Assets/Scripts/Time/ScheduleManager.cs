@@ -3,15 +3,25 @@ using UnityEngine;
 
 public class ScheduleManager : MonoBehaviour
 {
-    [SerializeField] private TimeScheduleSO scheduleData;
+    [SerializeField] private List<TimeScheduleSO> dailySchedules; // One SO per day
     [SerializeField] private TimeManager timeManager;
+
+    private TimeScheduleSO currentSchedule;
     private List<TimeScheduleSO.TimeEvent> triggeredToday = new();
 
-    void Update()
+    private void Start()
     {
+        UpdateCurrentSchedule(timeManager.TotalDaysPassed); // e.g., Day 0 = Day1Sched
+        timeManager.OnDayChanged += OnNewDay;
+    }
+
+    private void Update()
+    {
+        if (currentSchedule == null) return;
+
         int currentHour = timeManager.currentHour;
 
-        foreach (var timeEvent in scheduleData.schedule)
+        foreach (var timeEvent in currentSchedule.schedule)
         {
             if (timeEvent.hour == currentHour && !triggeredToday.Contains(timeEvent))
             {
@@ -22,42 +32,61 @@ public class ScheduleManager : MonoBehaviour
 
         if (currentHour == 0)
         {
-            triggeredToday.Clear(); // Reset for new day
+            triggeredToday.Clear();
         }
+    }
+
+    private GameObject FindObjectByID(string id)
+    {
+        ScheduledObject[] allObjects = Resources.FindObjectsOfTypeAll<ScheduledObject>();
+        foreach (var obj in allObjects)
+        {
+            if (obj.objectID == id)
+                return obj.gameObject;
+        }
+
+        Debug.LogWarning($"[ScheduleManager] No object found with ID: {id}");
+        return null;
     }
 
     void TriggerEvent(TimeScheduleSO.TimeEvent timeEvent)
     {
         Debug.Log($"[Schedule] {timeEvent.description} at {timeEvent.hour}:00");
 
+        GameObject target = FindObjectByID(timeEvent.objectID);
+
         switch (timeEvent.eventType)
         {
-            case ScheduledEventType.CharacterAppear:
-                GameObject target = FindObjectByID(timeEvent.targetObjectID);
-                if (target != null)
-                    target.SetActive(true);
-                else
-                    Debug.LogWarning($"Target '{timeEvent.targetObjectID}' not found.");
+            case ScheduledEventType.ShowObject:
+                if (target) target.SetActive(true);
+                break;
+
+            case ScheduledEventType.HideObject:
+                if (target) target.SetActive(false);
                 break;
 
             case ScheduledEventType.SceneDarken:
                 FindObjectOfType<MoodManager>()?.SetNightLighting();
-                break;
-
-            case ScheduledEventType.Custom:
-                // Placeholder for more stuff
-                break;
+                break;         
         }
     }
 
-    GameObject FindObjectByID(string id)
+    private void OnNewDay(GameDay day, int totalDays)
     {
-        ScheduledObject[] all = GameObject.FindObjectsOfType<ScheduledObject>(true);
-        foreach (var obj in all)
+        triggeredToday.Clear();
+        UpdateCurrentSchedule(totalDays);
+    }
+
+    private void UpdateCurrentSchedule(int totalDaysPassed)
+    {
+        if (dailySchedules.Count == 0)
         {
-            if (obj.objectID == id)
-                return obj.gameObject;
+            Debug.LogWarning("[ScheduleManager] No schedules assigned.");
+            return;
         }
-        return null;
+
+        int index = Mathf.Clamp(totalDaysPassed, 0, dailySchedules.Count - 1);
+        currentSchedule = dailySchedules[index];
+        Debug.Log($"[ScheduleManager] Loaded schedule for day {totalDaysPassed}: {currentSchedule.name}");
     }
 }

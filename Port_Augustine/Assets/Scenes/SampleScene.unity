@@ -187239,7 +187239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb461dd50a56c1409a8e7da7f22652e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scheduleData: {fileID: 11400000, guid: 51f6637630d007f4eb89389b84519d4b, type: 2}
+  dailySchedules:
+  - {fileID: 11400000, guid: 51f6637630d007f4eb89389b84519d4b, type: 2}
   timeManager: {fileID: 1339812651}
 --- !u!224 &1074991583 stripped
 RectTransform:

@@ -17,4 +17,9 @@ MonoBehaviour:
     hour: 7
     description: 
     eventType: 0
-    targetObjectID: Jim
+    objectID: Jim
+  - eventName: Jim Appear
+    hour: 8
+    description: 
+    eventType: 1
+    objectID: Jim

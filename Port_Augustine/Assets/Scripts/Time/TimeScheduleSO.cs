@@ -16,7 +16,7 @@ public class TimeScheduleSO : ScriptableObject
         public string description; // e.g., "Triple 777 closes", "Clerk appears"
         public ScheduledEventType eventType;
         //public GameObject targetObject; // Optional, for spawning/enabling
-        public string targetObjectID;
+        public string objectID;
 
     }
 
@@ -25,8 +25,8 @@ public class TimeScheduleSO : ScriptableObject
 
 public enum ScheduledEventType
 {
-    CharacterAppear,
-    CharacterDisappear,
+    ShowObject,
+    HideObject,
     SceneDarken,
     Custom
 }
