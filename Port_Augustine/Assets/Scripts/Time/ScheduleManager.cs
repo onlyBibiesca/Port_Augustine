@@ -53,7 +53,14 @@ public class ScheduleManager : MonoBehaviour
     {
         Debug.Log($"[Schedule] {timeEvent.description} at {timeEvent.hour}:00");
 
-        GameObject target = FindObjectByID(timeEvent.objectID);
+        GameObject target = null;
+
+        // Only look for a GameObject if the event type needs one
+        if (timeEvent.eventType == ScheduledEventType.ShowObject ||
+            timeEvent.eventType == ScheduledEventType.HideObject)
+        {
+            target = FindObjectByID(timeEvent.objectID);
+        }
 
         switch (timeEvent.eventType)
         {
@@ -65,9 +72,20 @@ public class ScheduleManager : MonoBehaviour
                 if (target) target.SetActive(false);
                 break;
 
-            case ScheduledEventType.SceneDarken:
-                FindObjectOfType<MoodManager>()?.SetNightLighting();
-                break;         
+            case ScheduledEventType.SceneChangeToMorning:
+                FindObjectOfType<MoodManager>()?.SetMorningMood();
+                break;
+
+            case ScheduledEventType.SceneChangeToAfternoon:
+                FindObjectOfType<MoodManager>()?.SetAfternoonMood();
+                break;
+
+            case ScheduledEventType.SceneChangeToNight:
+                FindObjectOfType<MoodManager>()?.SetNightMood();
+                break;
+
+            case ScheduledEventType.Custom:
+                break;
         }
     }
 

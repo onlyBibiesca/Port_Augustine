@@ -28,5 +28,8 @@ public enum ScheduledEventType
     ShowObject,
     HideObject,
     SceneDarken,
+    SceneChangeToMorning,
+    SceneChangeToAfternoon,
+    SceneChangeToNight,
     Custom
 }

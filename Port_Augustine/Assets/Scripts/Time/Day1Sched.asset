@@ -23,3 +23,8 @@ MonoBehaviour:
     description: 
     eventType: 1
     objectID: Jim
+  - eventName: Afternoon
+    hour: 8
+    description: 
+    eventType: 4
+    objectID: 
