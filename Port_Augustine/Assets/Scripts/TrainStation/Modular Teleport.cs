@@ -16,14 +16,14 @@ public class ModularTeleportSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentTeleporter != null && !isTeleporting)
+        /*if (Input.GetKeyDown(KeyCode.E) && currentTeleporter != null && !isTeleporting)
         {
-            Transform destination = currentTeleporter.GetComponent<Teleporters>().GetDestination();
+            //Transform destination = currentTeleporter.GetComponent<Teleporters>().GetDestination();
             if (destination != null)
             {
                 StartCoroutine(TeleportPlayer(destination.position));
             }
-        }
+        }*/
     }
 
     private IEnumerator TeleportPlayer(Vector3 targetPosition)
