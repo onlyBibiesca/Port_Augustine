@@ -9,14 +9,30 @@ public class PaperSpawner : MonoBehaviour
     public Transform spawnPoint;
     public Transform ParentObject;
 
+    public int maxPapers = 10;
+    public int currentPapers = 10;
+
+    public TextMeshProUGUI papersLeftText;
+
     private void Start()
     {
         if (ParentObject == null)
+        {
             Debug.LogWarning("ParentObject is not assigned. Check the inspector.");
+        }
+
+        UpdatePaperCounter();
     }
 
     public void SpawnPaper()
     {
+
+        if (currentPapers <= 0)
+        {
+            Debug.Log("No more papers left!");
+            return;
+        }
+
         int randomIndex = Random.Range(0, paperPrefabs.Length);
         GameObject paper = Instantiate(paperPrefabs[randomIndex], spawnPoint.position, Quaternion.identity, ParentObject);
         Debug.Log("Paper spawned.");
@@ -58,5 +74,21 @@ public class PaperSpawner : MonoBehaviour
         {
             Debug.LogWarning("DragAndDrop script not found on spawned paper.");
         }
+
+        currentPapers--;
+        UpdatePaperCounter();
+    }
+
+    public void UpdatePaperCounter()
+    {
+        if (papersLeftText != null)
+        {
+            papersLeftText.text = currentPapers.ToString();
+        }
+    }
+
+    public int GetRemainingPaperCount()
+    {
+        return currentPapers;
     }
 }

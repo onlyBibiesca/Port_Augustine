@@ -9,8 +9,6 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public Canvas canvas;
     public TextMeshProUGUI scoreText;
 
-    private FolderZone currentZone = null;
-
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -19,6 +17,7 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private void Start()
     {
         //BIG NOTE: BECAUSE IT'S A PREFAB, AUTO-ASSIGN THE SHIT!
+        //BIG NOTE 2: AVOID PHYSICS BASED TRIGGERS. WE ARE USING TIMESCALE 0 TO PREVENT INTERACTIONS IN THE BACKGROUND!
 
         //Auto assign the canvas
         if (canvas == null)
@@ -64,9 +63,12 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (currentZone != null)
+        FolderZone closestZone = FindClosestFolderZone();
+
+        // Only accept it if it’s within a reasonable distance (like 100 pixels)
+        if (closestZone != null && IsNearZone(closestZone, 100f))
         {
-            bool isCorrect = currentZone.AcceptsTag(gameObject.tag);
+            bool isCorrect = closestZone.AcceptsTag(gameObject.tag);
 
             if (isCorrect)
             {
@@ -75,7 +77,7 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             }
             else
             {
-                int penalty = currentZone.IsShredder ? 10 : 5;
+                int penalty = closestZone.IsShredder ? 10 : 5;
                 AddScore(-penalty);
                 Debug.Log("Wrong folder!");
             }
@@ -89,6 +91,30 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         }
     }
 
+    private FolderZone FindClosestFolderZone()
+    {
+        FolderZone[] zones = FindObjectsOfType<FolderZone>();
+        FolderZone closest = null;
+        float minDist = float.MaxValue;
+
+        foreach (var zone in zones)
+        {
+            float dist = Vector2.Distance(transform.position, zone.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                closest = zone;
+            }
+        }
+
+        return closest;
+    }
+
+    private bool IsNearZone(FolderZone zone, float maxDistance)
+    {
+        return Vector2.Distance(transform.position, zone.transform.position) <= maxDistance;
+    }
+
     private void AddScore(int amount)
     {
         if (scoreText != null)
@@ -96,24 +122,6 @@ public class DragAndDropper : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
             int currentScore = int.Parse(scoreText.text);
             currentScore += amount;
             scoreText.text = currentScore.ToString();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        FolderZone zone = collision.GetComponent<FolderZone>();
-        if (zone != null)
-        {
-            currentZone = zone;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        FolderZone zone = collision.GetComponent<FolderZone>();
-        if (zone != null && currentZone == zone)
-        {
-            currentZone = null;
         }
     }
 }
