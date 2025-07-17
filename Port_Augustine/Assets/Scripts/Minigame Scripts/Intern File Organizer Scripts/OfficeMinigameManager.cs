@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -33,16 +34,27 @@ public class OfficeMinigameManager : MonoBehaviour
     [Header("Reference to PaperSpawner")]
     public PaperSpawner paperSpawner;
 
+    [Header("Tutorial UI")]
+    public GameObject TutorialPanel;
+    public GameObject[] TutorialPages;
+    private int currentPageIndex = 0;
+
+    public GameObject NextButton;
+    public GameObject PrevButton;
+    public TextMeshProUGUI PageNumberText;
+
+    private bool isPausedByTutorial = false;
+
 
     private void OnEnable()
     {
-        UnityEngine.Debug.Log("Panel appeared, enabling time ");
+        Debug.Log("Panel appeared, enabling time ");
         StartMinigame();
     }
 
     private void OnDisable()
     {
-        UnityEngine.Debug.Log("Disabling time freeze, Minigame Panel has been disabled");
+        Debug.Log("Disabling time freeze, Minigame Panel has been disabled");
         Time.timeScale = 1.0f;
 
         //GET RIDDA PAPUHS
@@ -57,7 +69,7 @@ public class OfficeMinigameManager : MonoBehaviour
 
     public void StartMinigame()
     {
-        UnityEngine.Debug.Log("Minigame started!");
+        Debug.Log("Minigame started!");
         Time.timeScale = 0.0f;
 
         if (Stats != null)
@@ -75,7 +87,7 @@ public class OfficeMinigameManager : MonoBehaviour
 
     private void Update()
     {
-        if (hasGameEnded) return;
+        if (hasGameEnded || isPausedByTutorial) return;
 
         CurrentTime -= Time.unscaledDeltaTime;
         CurrentTime = Mathf.Clamp(CurrentTime, 0, GameDuration);
@@ -86,6 +98,7 @@ public class OfficeMinigameManager : MonoBehaviour
             EndGame();
         }
     }
+
 
     public void OnPaperSpawned()
     {
@@ -127,7 +140,7 @@ public class OfficeMinigameManager : MonoBehaviour
     private void EndGame()
     {
         hasGameEnded = true;
-        UnityEngine.Debug.Log("Game done, let's do the results.");
+        Debug.Log("Game done, let's do the results.");
 
         if (ResultsScreen != null)
             ResultsScreen.SetActive(true);
@@ -168,19 +181,19 @@ public class OfficeMinigameManager : MonoBehaviour
         //MONEY REWARD BASED ON TOTAL
         int moneyEarned;
         if (total >= 200) //S
-            moneyEarned = 100;
+            moneyEarned = 120;
 
         else if (total >= 180) //A
-            moneyEarned = 90;
+            moneyEarned = 100;
 
         else if (total >= 160) //B
-            moneyEarned = 85;
+            moneyEarned = 90;
 
         else if (total >= 140) //C
-            moneyEarned = 80;
+            moneyEarned = 85;
 
         else //D
-            moneyEarned = 75;
+            moneyEarned = 80;
 
         if (ResultMoneyText) ResultMoneyText.text = moneyEarned.ToString();
 
@@ -245,7 +258,7 @@ public class OfficeMinigameManager : MonoBehaviour
         }
 
 
-        UnityEngine.Debug.Log("Minigame has been reset.");
+        Debug.Log("Minigame has been reset.");
     }
 
 
@@ -253,4 +266,60 @@ public class OfficeMinigameManager : MonoBehaviour
     {
         return Mathf.CeilToInt(CurrentTime);
     }
+
+    public void ReadTutorial()
+    {
+        if (TutorialPanel != null)
+            TutorialPanel.SetActive(true);
+
+        isPausedByTutorial = true;
+        currentPageIndex = 0;
+        UpdateTutorialPages();
+    }
+
+    public void CloseTutorial()
+    {
+        if (TutorialPanel != null)
+            TutorialPanel.SetActive(false);
+
+        isPausedByTutorial = false;
+    }
+
+    public void NextPage()
+    {
+        if (currentPageIndex < TutorialPages.Length - 1)
+        {
+            currentPageIndex++;
+            UpdateTutorialPages();
+        }
+    }
+
+    public void PreviousPage()
+    {
+        if (currentPageIndex > 0)
+        {
+            currentPageIndex--;
+            UpdateTutorialPages();
+        }
+    }
+
+    private void UpdateTutorialPages()
+    {
+        for (int i = 0; i < TutorialPages.Length; i++)
+        {
+            TutorialPages[i].SetActive(i == currentPageIndex);
+        }
+
+        if (PrevButton != null)
+            PrevButton.SetActive(currentPageIndex > 0);
+
+        if (NextButton != null)
+            NextButton.SetActive(currentPageIndex < TutorialPages.Length - 1);
+
+        if (PageNumberText != null)
+            PageNumberText.text = (currentPageIndex + 1).ToString();
+
+    }
+
+
 }
