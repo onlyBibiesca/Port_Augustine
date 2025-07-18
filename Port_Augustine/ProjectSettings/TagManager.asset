@@ -10,6 +10,7 @@ TagManager:
   - PAPER_FIN
   - PAPER_IT
   - PAPER_TRA
+  - Interactable
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,9 @@ TagManager:
     locked: 0
   - name: Collision
     uniqueID: 3915806887
+    locked: 0
+  - name: Interactable
+    uniqueID: 1927640965
     locked: 0
   - name: Player
     uniqueID: 1124546587

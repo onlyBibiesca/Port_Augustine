@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Interactions : MonoBehaviour
+public class Interactions : MonoBehaviour, InteractableObject
 {
     private InteractableObject nearbyInteractable;
     [SerializeField] private GameObject promptUI; // Assign UI prompt in the Inspector
@@ -38,6 +38,12 @@ public class Interactions : MonoBehaviour
         if (context.performed && nearbyInteractable != null)
         {
             nearbyInteractable.Interact();
+            Debug.Log("Interacted");
         }
+    }
+
+    public void Interact()
+    {
+        throw new System.NotImplementedException();
     }
 }
