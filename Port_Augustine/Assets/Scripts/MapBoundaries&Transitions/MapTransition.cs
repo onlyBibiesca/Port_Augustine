@@ -6,32 +6,47 @@ using UnityEngine;
 
 public class MapTransition : MonoBehaviour
 {
-
+    [Header("Go to Confiner")]
     [SerializeField] PolygonCollider2D mapBoundary;
     [SerializeField] Direction direction;
+
+    [Header("Next Confiner waypoint")]
     [SerializeField] Transform teleportPosition;
-    [SerializeField] float distancePos;
+
+    [Header("Position Increment")]
+    [SerializeField] float distancePos; //increment position of player after teleporting to avoid landing on another collider
+
+    [Header("Prefab Transition Animation")]
+    [SerializeField] Animation transitionAnim; //this is for our cute designer just to drag the animation
+    [SerializeField] int animationTimer; //how long does the animation last
     CinemachineConfiner confiner;
 
-    enum Direction {  up, down, left, right, teleport }
+    enum Direction {  up, down, left, right, teleport } //depedning on the direction, it will be according to the distancePos
 
     private void Awake()
     {
-        confiner = FindObjectOfType<CinemachineConfiner>(); 
+        confiner = FindObjectOfType<CinemachineConfiner>();
+        transitionAnim = GetComponent<Animation>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            StartCoroutine(DelayedFunction(collision.gameObject));
+            transitionAnim.Play();
+            Debug.Log("Waiting animation to be done for " + animationTimer);
+            /*Invoke("UpdatePlayerPosition", animationTimer);
+            transitionAnim.Play();
+            Debug.Log("Waiting for " + animationTimer);*/
 
+            /*UpdatePlayerPosition(collision.gameObject);
             confiner.m_BoundingShape2D = mapBoundary;
-            UpdatePlayerPosition(collision.gameObject);
-            Debug.Log("Entering " + mapBoundary);
+            Debug.Log("Entering " + mapBoundary);*/
         }
     }
 
-    private void UpdatePlayerPosition(GameObject player)
+    public void UpdatePlayerPosition(GameObject player)
     {
 
         if(direction == Direction.teleport)
@@ -59,5 +74,13 @@ public class MapTransition : MonoBehaviour
         }
 
         player.transform.position = newPos;
+    }
+
+    private IEnumerator DelayedFunction(GameObject player)
+    {
+        yield return new WaitForSeconds(animationTimer);
+        UpdatePlayerPosition(player);
+        confiner.m_BoundingShape2D = mapBoundary;
+        Debug.Log("Entering " + mapBoundary);
     }
 }

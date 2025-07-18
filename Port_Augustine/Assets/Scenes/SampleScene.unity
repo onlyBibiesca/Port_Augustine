@@ -154466,6 +154466,8 @@ MonoBehaviour:
   direction: 1
   teleportPosition: {fileID: 0}
   distancePos: 3
+  transitionAnim: {fileID: 0}
+  animationTimer: 0
 --- !u!61 &469067374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -181359,6 +181361,8 @@ MonoBehaviour:
   direction: 4
   teleportPosition: {fileID: 1125154225}
   distancePos: 0
+  transitionAnim: {fileID: 0}
+  animationTimer: 5
 --- !u!61 &791129763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -190927,6 +190931,8 @@ MonoBehaviour:
   direction: 4
   teleportPosition: {fileID: 1625137962}
   distancePos: 0
+  transitionAnim: {fileID: 0}
+  animationTimer: 0
 --- !u!61 &1161596574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -441078,6 +441084,8 @@ MonoBehaviour:
   direction: 0
   teleportPosition: {fileID: 0}
   distancePos: 3
+  transitionAnim: {fileID: 0}
+  animationTimer: 0
 --- !u!61 &1624099160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -510811,6 +510819,8 @@ MonoBehaviour:
   direction: 1
   teleportPosition: {fileID: 0}
   distancePos: 3
+  transitionAnim: {fileID: 0}
+  animationTimer: 0
 --- !u!61 &1979638968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -513176,6 +513186,8 @@ MonoBehaviour:
   direction: 0
   teleportPosition: {fileID: 0}
   distancePos: 3
+  transitionAnim: {fileID: 0}
+  animationTimer: 0
 --- !u!61 &2107949609
 BoxCollider2D:
   m_ObjectHideFlags: 0
