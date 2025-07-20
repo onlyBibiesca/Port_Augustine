@@ -23,6 +23,7 @@ public class MapTransition : MonoBehaviour
 
     enum Direction {  up, down, left, right, teleport } //depedning on the direction, it will be according to the distancePos
 
+   
     private void Awake()
     {
         confiner = FindObjectOfType<CinemachineConfiner>();
@@ -76,11 +77,13 @@ public class MapTransition : MonoBehaviour
         player.transform.position = newPos;
     }
 
-    private IEnumerator DelayedFunction(GameObject player)
+    public IEnumerator DelayedFunction(GameObject player)
     {
         yield return new WaitForSeconds(animationTimer);
         UpdatePlayerPosition(player);
         confiner.m_BoundingShape2D = mapBoundary;
         Debug.Log("Entering " + mapBoundary);
     }
+
+    
 }

@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class RandomEventManager : MonoBehaviour
 {
+
+    //this script is a single-father handling all the children colliders
     [Header("GameObjects")]
     public GameObject game_1;
-    public GameObject subGame;
+    public GameObject game_2;
 
     //Defining events
-    public enum EventType
-    {
-        Notification,
-        Audio,
-        Picture
-    }
+   
     private float eventInterval;
     private float timer;
 
@@ -27,9 +24,9 @@ public class RandomEventManager : MonoBehaviour
 
     void Start()
     {
-        eventInterval = Random.Range(10f, 20f);
+        eventInterval = Random.Range(3f, 10f);
     }
-    void Update()
+    /*void Update()
     {
         //set interval timer
         timer += Time.deltaTime;
@@ -40,25 +37,41 @@ public class RandomEventManager : MonoBehaviour
             TriggerRandomEvent();
             timer = 0f; //resets timer
         }
+    }*/
+
+    public void TriggeredColliders(Collider2D collision)
+    {
+        //set interval timer
+        timer += Time.deltaTime;
+
+        if (timer >= eventInterval)
+        {
+            Debug.Log("EventInterval " + eventInterval);
+            TriggerRandomEvent();
+            timer = 0f; //resets timer
+        }
+
+        TriggerRandomEvent();
     }
 
     void TriggerRandomEvent()
     {
         Debug.Log("RandomEvent Triggering");
         //random choose event
-        float randomChance = Random.Range(0f, 1f);
+        int randomChance = Random.Range(1, 10);
         Debug.Log(randomChance);
 
         //lowest to highest chance format
-        if (randomChance > 0.5f) //20 percent
+        if (randomChance == 1) //20 percent
         {
             DisplayGame();
         }
 
-        if (randomChance < 0.5)
+        if (randomChance == 2)
         {
             DisplaySubtraction();
         }
+
         /*EventType randomEvent = (EventT{ype)Random.Range(0, System.Enum.GetValues(typeof(EventType)).Length);
 
         //execute chosen event
@@ -81,16 +94,13 @@ public class RandomEventManager : MonoBehaviour
     void DisplayGame()
     {
         game_1.SetActive(true);
-        Debug.Log("Freaky NPC Triggering");
+        Debug.Log(game_1 + "Triggered");
     }
 
     void DisplaySubtraction()
     {
-        subGame.SetActive(true);
-        Debug.Log("Subtraction Game Triggering");
+        game_2.SetActive(true);
+        Debug.Log(game_2 + "Triggering");
     }
-
-    
-
 }
 
