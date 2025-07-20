@@ -4,30 +4,54 @@ using UnityEngine;
 
 public class NPCPatrol : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
+    public Transform waypointParent;
+    [SerializeField] float moveSpeed = 2f;
+    [SerializeField] float waitTime = 2f;
+    public bool loopWaypoints = true;
 
-    private Rigidbody2D rb;
-    private Transform currentPoint;
-    public float speed;
-    // Start is called before the first frame update
-    void Start()
+    private Transform[] waypoints;
+    private int currentWaypointIndex;
+    private bool isWaiting;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        currentPoint = pointB.transform;
+        waypoints = new Transform[waypointParent.childCount];
+
+        for(int i = 0; i < waypointParent.childCount; i++)
+        {
+            waypoints[i] = waypointParent.GetChild(i);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint == pointB.transform)
+
+        if(isWaiting)
         {
-            rb.velocity = new Vector2(speed, 0);
+            return;
         }
-        else
+
+        MoveToWaypoint();
+    }
+
+    void MoveToWaypoint()
+    {
+        Transform target = waypoints[currentWaypointIndex];
+
+        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+
+        if(Vector2.Distance(transform.position, target.position) < 0.1f)
         {
-            rb.velocity = new Vector2(-speed,0);
+            StartCoroutine(WaitAtWaypoint());
         }
+    }
+    IEnumerator WaitAtWaypoint()
+    {
+        isWaiting = true;  
+        yield return new WaitForSeconds(waitTime);
+
+        currentWaypointIndex = loopWaypoints ? (currentWaypointIndex + 1) % waypoints.Length : Mathf.Min(currentWaypointIndex + 1, waypoints.Length - 1);
+
+        isWaiting = false;
     }
 }
