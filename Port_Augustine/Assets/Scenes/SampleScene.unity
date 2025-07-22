@@ -135733,7 +135733,7 @@ MonoBehaviour:
   afternoonColor: {r: 1, g: 0.85, b: 0.7, a: 1}
   nightColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
   ambientAudio: {fileID: 277907667}
-  morningClip: {fileID: 0}
+  morningClip: {fileID: 8300000, guid: f84a0438088bc6f4cbead558926f89ea, type: 3}
   afternoonClip: {fileID: 8300000, guid: da71968baa01d7c4ca7c07a20993481f, type: 3}
   nightClip: {fileID: 8300000, guid: 6ee8e8e28e598084fa12baa2b0ca9cba, type: 3}
 --- !u!1 &208989216
@@ -190804,6 +190804,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dailySchedules:
   - {fileID: 11400000, guid: 51f6637630d007f4eb89389b84519d4b, type: 2}
+  - {fileID: 11400000, guid: 6dc1a7d0797cfa648b2ab37e0ce7d7ae, type: 2}
   timeManager: {fileID: 1339812651}
 --- !u!224 &1074991583 stripped
 RectTransform:
