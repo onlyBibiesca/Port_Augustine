@@ -10,21 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f012b9255fc610348b00f753c7b16533, type: 3}
-  m_Name: Day1Sched
+  m_Name: Day2Sched
   m_EditorClassIdentifier: 
   schedule:
-  - eventName: Jim Appear
-    hour: 7
+  - eventName: Morning
+    hour: 6
+    description: 
+    eventType: 3
+    objectID: 
+  - eventName: JimboShow
+    hour: 8
     description: 
     eventType: 0
     objectID: Jim
-  - eventName: Jim Appear
-    hour: 8
+  - eventName: JimboLeave
+    hour: 9
     description: 
     eventType: 1
     objectID: Jim
   - eventName: Afternoon
-    hour: 8
+    hour: 9
     description: 
     eventType: 4
     objectID: 

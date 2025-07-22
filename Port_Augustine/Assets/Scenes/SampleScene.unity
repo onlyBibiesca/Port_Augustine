@@ -135732,10 +135732,10 @@ MonoBehaviour:
   morningColor: {r: 1, g: 0.95, b: 0.85, a: 1}
   afternoonColor: {r: 1, g: 0.85, b: 0.7, a: 1}
   nightColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
-  ambientAudio: {fileID: 0}
+  ambientAudio: {fileID: 277907667}
   morningClip: {fileID: 0}
-  afternoonClip: {fileID: 0}
-  nightClip: {fileID: 0}
+  afternoonClip: {fileID: 8300000, guid: da71968baa01d7c4ca7c07a20993481f, type: 3}
+  nightClip: {fileID: 8300000, guid: 6ee8e8e28e598084fa12baa2b0ca9cba, type: 3}
 --- !u!1 &208989216
 GameObject:
   m_ObjectHideFlags: 0

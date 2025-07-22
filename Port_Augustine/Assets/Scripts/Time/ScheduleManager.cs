@@ -6,27 +6,28 @@ public class ScheduleManager : MonoBehaviour
     [SerializeField] private List<TimeScheduleSO> dailySchedules; // One SO per day
     [SerializeField] private TimeManager timeManager;
 
-    private TimeScheduleSO currentSchedule;
-    private List<TimeScheduleSO.TimeEvent> triggeredToday = new();
+    private List<TimeScheduleSO.TimeEvent> activeSchedule; // Deep copied version
+    private HashSet<string> triggeredToday = new(); // Track using string key
 
     private void Start()
     {
-        UpdateCurrentSchedule(timeManager.TotalDaysPassed); // e.g., Day 0 = Day1Sched
+        UpdateCurrentSchedule(timeManager.TotalDaysPassed); // Day 0 = Day1Sched
         timeManager.OnDayChanged += OnNewDay;
     }
 
     private void Update()
     {
-        if (currentSchedule == null) return;
+        if (activeSchedule == null) return;
 
         int currentHour = timeManager.currentHour;
 
-        foreach (var timeEvent in currentSchedule.schedule)
+        foreach (var timeEvent in activeSchedule)
         {
-            if (timeEvent.hour == currentHour && !triggeredToday.Contains(timeEvent))
+            string eventKey = $"{timeEvent.hour}|{timeEvent.eventType}|{timeEvent.description}";
+            if (timeEvent.hour == currentHour && !triggeredToday.Contains(eventKey))
             {
                 TriggerEvent(timeEvent);
-                triggeredToday.Add(timeEvent);
+                triggeredToday.Add(eventKey);
             }
         }
 
@@ -55,21 +56,25 @@ public class ScheduleManager : MonoBehaviour
 
         GameObject target = null;
 
-        // Only look for a GameObject if the event type needs one
         if (timeEvent.eventType == ScheduledEventType.ShowObject ||
             timeEvent.eventType == ScheduledEventType.HideObject)
         {
             target = FindObjectByID(timeEvent.objectID);
+            if (target == null)
+            {
+                Debug.LogWarning($"[Schedule] Target object not found for ID: {timeEvent.objectID}");
+                return;
+            }
         }
 
         switch (timeEvent.eventType)
         {
             case ScheduledEventType.ShowObject:
-                if (target) target.SetActive(true);
+                target?.SetActive(true);
                 break;
 
             case ScheduledEventType.HideObject:
-                if (target) target.SetActive(false);
+                target?.SetActive(false);
                 break;
 
             case ScheduledEventType.SceneChangeToMorning:
@@ -85,6 +90,7 @@ public class ScheduleManager : MonoBehaviour
                 break;
 
             case ScheduledEventType.Custom:
+                // Handle your custom event type here if needed
                 break;
         }
     }
@@ -104,7 +110,27 @@ public class ScheduleManager : MonoBehaviour
         }
 
         int index = Mathf.Clamp(totalDaysPassed, 0, dailySchedules.Count - 1);
-        currentSchedule = dailySchedules[index];
-        Debug.Log($"[ScheduleManager] Loaded schedule for day {totalDaysPassed}: {currentSchedule.name}");
+        TimeScheduleSO selectedSchedule = dailySchedules[index];
+
+        // Deep copy the schedule list to avoid shared references
+        activeSchedule = new List<TimeScheduleSO.TimeEvent>();
+        foreach (var e in selectedSchedule.schedule)
+        {
+            TimeScheduleSO.TimeEvent copy = new TimeScheduleSO.TimeEvent
+            {
+                eventName = e.eventName,
+                hour = e.hour,
+                description = e.description,
+                eventType = e.eventType,
+                objectID = e.objectID
+            };
+            activeSchedule.Add(copy);
+        }
+
+        Debug.Log($"[ScheduleManager] Loaded schedule for day {totalDaysPassed}: {selectedSchedule.name}");
+        foreach (var e in activeSchedule)
+        {
+            Debug.Log($"[ScheduleManager] Event: {e.description} at {e.hour}:00 | type: {e.eventType} | ID: {e.objectID}");
+        }
     }
 }
