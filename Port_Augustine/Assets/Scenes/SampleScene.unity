@@ -136433,8 +136433,8 @@ MonoBehaviour:
   nightColor: {r: 0.2, g: 0.2, b: 0.4, a: 1}
   ambientAudio: {fileID: 277907667}
   morningClip: {fileID: 8300000, guid: f84a0438088bc6f4cbead558926f89ea, type: 3}
-  afternoonClip: {fileID: 8300000, guid: da71968baa01d7c4ca7c07a20993481f, type: 3}
-  nightClip: {fileID: 8300000, guid: 6ee8e8e28e598084fa12baa2b0ca9cba, type: 3}
+  afternoonClip: {fileID: 8300000, guid: 1773befed2e223b4ca715a3901fd8934, type: 3}
+  nightClip: {fileID: 8300000, guid: abeb8f120096cac4abc9695402b3b143, type: 3}
 --- !u!1 &208989216
 GameObject:
   m_ObjectHideFlags: 0
@@ -145909,7 +145909,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.1718876, y: -2.2878828, z: -10}
+  m_LocalPosition: {x: 3.1717885, y: -2.2663708, z: -10}
   m_LocalScale: {x: 1, y: 1, z: -1}
   m_ConstrainProportionsScale: 1
   m_Children: []
