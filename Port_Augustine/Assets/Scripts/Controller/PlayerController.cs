@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject debugScreen;
     [SerializeField] private GameObject questScreen;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject sureButton;
     [SerializeField] public Animator _Animator;
 
     public AudioSource source;
@@ -98,6 +100,13 @@ public class PlayerMovement : MonoBehaviour
             bool isActive = pauseScreen.activeSelf;
             pauseScreen.SetActive(!isActive);
             isPausePressed = !isActive;
+
+            
+            if (!isActive)
+            {
+                // Pause menu is being closed
+                sureButton.SetActive(false);
+            }
             Debug.Log(isActive ? "Closed Pause Screen" : "Opened Pause Screen");
         }
     

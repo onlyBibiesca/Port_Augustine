@@ -41,17 +41,22 @@ public class RandomEventManager : MonoBehaviour
 
     public void TriggeredColliders(Collider2D collision)
     {
-        //set interval timer
-        timer += Time.deltaTime;
 
-        if (timer >= eventInterval)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("EventInterval " + eventInterval);
+            //set interval timer
+            timer += Time.deltaTime;
+
+            if (timer >= eventInterval)
+            {
+                Debug.Log("EventInterval " + eventInterval);
+                TriggerRandomEvent();
+                timer = 0f; //resets timer
+            }
+
             TriggerRandomEvent();
-            timer = 0f; //resets timer
         }
 
-        TriggerRandomEvent();
     }
 
     void TriggerRandomEvent()
@@ -62,7 +67,7 @@ public class RandomEventManager : MonoBehaviour
         Debug.Log(randomChance);
 
         //lowest to highest chance format
-        if (randomChance == 1) //20 percent
+        if (randomChance == 1)
         {
             DisplayGame();
         }
