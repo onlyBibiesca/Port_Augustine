@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartPlaying()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("CutsceneScene"); // Load the cutscene scene first
         Debug.Log("Playing...");
     }
 
