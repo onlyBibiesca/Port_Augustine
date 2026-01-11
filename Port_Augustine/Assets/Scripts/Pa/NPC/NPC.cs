@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NPC : MonoBehaviour, InteractableObject
+/*public class NPC : MonoBehaviour, InteractableObject
 {
     private DialogueController dialogueUI;
     private PlayerManager player;
@@ -164,7 +164,7 @@ public class NPC : MonoBehaviour, InteractableObject
             NextLine();
         }
     }
-    /*
+    *//*
     void DisplayChoices(DialogueChoice choice)
     {
         for(int i = 0; i < choice.choices.Length; i++)
@@ -173,7 +173,7 @@ public class NPC : MonoBehaviour, InteractableObject
             dialogueUI.CreateChoiceButton(choice.choices[i], () => ChooseOption(nextIndex));
         }
     }
-    */
+    *//*
 
     void DisplayChoices(DialogueChoice choice)
     {
@@ -289,3 +289,4 @@ public class NPC : MonoBehaviour, InteractableObject
     }
 
 }
+*/

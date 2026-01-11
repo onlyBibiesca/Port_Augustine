@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewNPCDialogue", menuName = "NPC Dialogue")]
+/*[CreateAssetMenu(fileName = "NewNPCDialogue", menuName = "NPC Dialogue")]
 public class NPCDialogue : ScriptableObject
 {
     public string npcName;
@@ -39,4 +39,4 @@ public class DialogueChoice
     public bool[] opensShop;
 
     public string[] choiceTypes;
-}
+}*/

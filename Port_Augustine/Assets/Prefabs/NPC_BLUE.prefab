@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.6698113, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.1231513, b: 0.67058825, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 3501905657944729175}
   - component: {fileID: 4663131258967245090}
   m_Layer: 0
-  m_Name: NPC_DRAFT_INTERACTABLE
+  m_Name: NPC_BLUE
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
