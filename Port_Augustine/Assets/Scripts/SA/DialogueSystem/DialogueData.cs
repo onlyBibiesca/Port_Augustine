@@ -21,6 +21,10 @@ public class DialogueLine
     [Header("Choices (Optional)")]
     public bool hasChoices = false;
     public Dialogue_Choice[] choices;
+
+    [Header("Character Portrait (Optional)")]
+    public Sprite characterPortrait;
+
 }
 
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue System/Dialogue")]

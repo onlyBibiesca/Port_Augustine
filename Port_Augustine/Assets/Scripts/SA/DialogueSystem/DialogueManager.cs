@@ -18,6 +18,10 @@ public class DialogueManager : MonoBehaviour
     public GameObject choiceButtonPrefab;
     public Transform choiceContainer;
 
+    [Header("Portrait References")]
+    public GameObject portraitContainer;
+    public UnityEngine.UI.Image portraitImage;
+
     [Header("Choice Settings")]
     public float delayBeforeChoices = 2f;
 
@@ -25,6 +29,8 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
     private System.Action onDialogueComplete;
     private bool waitingForChoice = false;
+
+    public bool IsDialogueActive { get; private set; }
 
     void Awake()
     {
@@ -41,6 +47,8 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        IsDialogueActive = false;
+
         if (dialoguePanel != null)
         {
             dialoguePanel.SetActive(false);
@@ -59,6 +67,11 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Choice Panel not assigned. Choices won't work!");
         }
 
+        if (portraitContainer != null)
+        {
+            portraitContainer.SetActive(false);
+        }
+
         if (nextButton != null)
         {
             nextButton.onClick.AddListener(DisplayNextLine);
@@ -73,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
 
+        IsDialogueActive = true;
         currentDialogue = dialogue;
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
@@ -106,6 +120,36 @@ public class DialogueManager : MonoBehaviour
 
         if (dialogueText != null)
             dialogueText.text = line.text;
+
+        // Handle character portrait
+        if (line.characterPortrait != null)
+        {
+            if (portraitImage != null)
+            {
+                portraitImage.sprite = line.characterPortrait;
+                portraitImage.enabled = true;
+            }
+
+            if (portraitContainer != null)
+            {
+                portraitContainer.SetActive(true);
+            }
+
+            Debug.Log($"Displaying portrait for: {line.speakerName}");
+        }
+        else
+        {
+            // No portrait for this line, hide it
+            if (portraitContainer != null)
+            {
+                portraitContainer.SetActive(false);
+            }
+
+            if (portraitImage != null)
+            {
+                portraitImage.enabled = false;
+            }
+        }
 
         Debug.Log($"Displaying line {currentLineIndex}: {line.text}");
 
@@ -166,11 +210,28 @@ public class DialogueManager : MonoBehaviour
         {
             GameObject buttonObj = Instantiate(choiceButtonPrefab, choiceContainer);
             UnityEngine.UI.Button button = buttonObj.GetComponent<UnityEngine.UI.Button>();
-            UnityEngine.UI.Text buttonText = buttonObj.GetComponentInChildren<UnityEngine.UI.Text>();
 
-            if (buttonText != null)
+            // Try to find TMP_Text component
+            TMPro.TMP_Text buttonText = buttonObj.GetComponentInChildren<TMP_Text>();
+
+            // If TMP not found, try standard Text
+            if (buttonText == null)
+            {
+                TMPro.TMP_Text standardText = buttonObj.GetComponentInChildren<TMP_Text>();
+                if (standardText != null)
+                {
+                    standardText.text = choice.choiceText;
+                    Debug.Log($"Set button text (Standard) to: {choice.choiceText}");
+                }
+                else
+                {
+                    Debug.LogError("Could not find Text or TMP_Text component on choice button!");
+                }
+            }
+            else
             {
                 buttonText.text = choice.choiceText;
+                Debug.Log($"Set button text (TMP) to: {choice.choiceText}");
             }
 
             // Capture the choice in a local variable for the lambda
@@ -207,11 +268,16 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Dialogue ended");
 
+        IsDialogueActive = false;
+
         if (dialoguePanel != null)
             dialoguePanel.SetActive(false);
 
         if (choicePanel != null)
             choicePanel.SetActive(false);
+
+        if (portraitContainer != null)
+            portraitContainer.SetActive(false);
 
         currentDialogue = null;
         waitingForChoice = false;

@@ -28,6 +28,14 @@ public class NPC_Dialogue : MonoBehaviour
 
     public void OnInteract()
     {
+        // Block interaction if dialogue is already active
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
+        {
+            if (showDebugMessages)
+                Debug.Log($"Cannot interact with {gameObject.name} - dialogue already active!");
+            return;
+        }
+
         if (showDebugMessages)
             Debug.Log($"NPC {gameObject.name} interacted!");
 

@@ -11,9 +11,28 @@ public class PlayerInteraction2D : MonoBehaviour
     public bool showDebugMessages = true;
 
     private NPC_Dialogue currentNPC;
+    private bool isEnabled = true;
 
     void Update()
     {
+        // Completely disable functionality if dialogue is active
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
+        {
+            if (isEnabled)
+            {
+                isEnabled = false;
+                if (showDebugMessages)
+                    Debug.Log("Player interaction disabled - dialogue active");
+            }
+            return;
+        }
+        else if (!isEnabled)
+        {
+            isEnabled = true;
+            if (showDebugMessages)
+                Debug.Log("Player interaction enabled - dialogue ended");
+        }
+
         if (Input.GetKeyDown(interactKey))
         {
             if (showDebugMessages)
@@ -36,6 +55,10 @@ public class PlayerInteraction2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // Don't register new NPCs if dialogue is active
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
+            return;
+
         NPC_Dialogue npc = other.GetComponent<NPC_Dialogue>();
         if (npc != null)
         {
@@ -53,6 +76,15 @@ public class PlayerInteraction2D : MonoBehaviour
             currentNPC = null;
             if (showDebugMessages)
                 Debug.Log($"Exited NPC trigger: {other.gameObject.name}");
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // Clear current NPC reference when dialogue becomes active
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive && currentNPC != null)
+        {
+            currentNPC = null;
         }
     }
 }
