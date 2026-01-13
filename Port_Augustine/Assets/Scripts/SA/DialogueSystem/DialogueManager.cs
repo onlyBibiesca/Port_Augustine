@@ -9,18 +9,23 @@ public class DialogueManager : MonoBehaviour
 
     [Header("UI References")]
     public GameObject dialoguePanel;
-    public TMP_Text speakerNameText;
-    public TMP_Text dialogueText;
+    public TMPro.TMP_Text speakerNameText;
+    public TMPro.TMP_Text dialogueText;
     public UnityEngine.UI.Button nextButton;
+
+    [Header("Portrait References")]
+    public GameObject portraitContainer;
+    public UnityEngine.UI.Image portraitImage;
 
     [Header("Choice UI References")]
     public GameObject choicePanel;
     public GameObject choiceButtonPrefab;
     public Transform choiceContainer;
 
-    [Header("Portrait References")]
-    public GameObject portraitContainer;
-    public UnityEngine.UI.Image portraitImage;
+    [Header("Typewriter Settings")]
+    public bool enableTypewriter = true;
+    public float typewriterSpeed = 0.05f; // Time between each character
+    public KeyCode skipTypewriterKey = KeyCode.Space;
 
     [Header("Choice Settings")]
     public float delayBeforeChoices = 2f;
@@ -29,6 +34,9 @@ public class DialogueManager : MonoBehaviour
     private int currentLineIndex = 0;
     private System.Action onDialogueComplete;
     private bool waitingForChoice = false;
+    private Coroutine typewriterCoroutine;
+    private bool isTyping = false;
+    private string fullText = "";
 
     public bool IsDialogueActive { get; private set; }
 
@@ -82,6 +90,15 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        // Allow skipping typewriter effect
+        if (isTyping && Input.GetKeyDown(skipTypewriterKey))
+        {
+            SkipTypewriter();
+        }
+    }
+
     public void StartDialogue(Dialogue dialogue, System.Action onComplete = null)
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
@@ -118,9 +135,6 @@ public class DialogueManager : MonoBehaviour
         if (speakerNameText != null)
             speakerNameText.text = line.speakerName;
 
-        if (dialogueText != null)
-            dialogueText.text = line.text;
-
         // Handle character portrait
         if (line.characterPortrait != null)
         {
@@ -151,10 +165,67 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        // Start typewriter effect or display text immediately
+        if (enableTypewriter && dialogueText != null)
+        {
+            fullText = line.text;
+            if (typewriterCoroutine != null)
+            {
+                StopCoroutine(typewriterCoroutine);
+            }
+            typewriterCoroutine = StartCoroutine(TypewriterEffect(line.text));
+        }
+        else if (dialogueText != null)
+        {
+            dialogueText.text = line.text;
+            OnTypewriterComplete();
+        }
+
         Debug.Log($"Displaying line {currentLineIndex}: {line.text}");
+    }
+
+    System.Collections.IEnumerator TypewriterEffect(string text)
+    {
+        isTyping = true;
+        dialogueText.text = "";
+
+        // Disable next button while typing
+        if (nextButton != null)
+            nextButton.interactable = false;
+
+        foreach (char c in text)
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(typewriterSpeed);
+        }
+
+        isTyping = false;
+        OnTypewriterComplete();
+    }
+
+    void SkipTypewriter()
+    {
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+        }
+
+        isTyping = false;
+        dialogueText.text = fullText;
+        OnTypewriterComplete();
+    }
+
+    void OnTypewriterComplete()
+    {
+        // Re-enable next button after typing completes
+        if (nextButton != null)
+            nextButton.interactable = true;
 
         // Check if this is the last line and has choices
         bool isLastLine = (currentLineIndex == currentDialogue.lines.Length - 1);
+        DialogueLine line = currentDialogue.lines[currentLineIndex];
+
         if (isLastLine && line.hasChoices && line.choices.Length > 0)
         {
             // Hide next button and prepare to show choices
@@ -174,7 +245,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextLine()
     {
-        if (waitingForChoice)
+        if (waitingForChoice || isTyping)
             return;
 
         currentLineIndex++;
@@ -212,12 +283,12 @@ public class DialogueManager : MonoBehaviour
             UnityEngine.UI.Button button = buttonObj.GetComponent<UnityEngine.UI.Button>();
 
             // Try to find TMP_Text component
-            TMPro.TMP_Text buttonText = buttonObj.GetComponentInChildren<TMP_Text>();
+            TMPro.TMP_Text buttonText = buttonObj.GetComponentInChildren<TMPro.TMP_Text>();
 
             // If TMP not found, try standard Text
             if (buttonText == null)
             {
-                TMPro.TMP_Text standardText = buttonObj.GetComponentInChildren<TMP_Text>();
+                UnityEngine.UI.Text standardText = buttonObj.GetComponentInChildren<UnityEngine.UI.Text>();
                 if (standardText != null)
                 {
                     standardText.text = choice.choiceText;
@@ -269,6 +340,13 @@ public class DialogueManager : MonoBehaviour
         Debug.Log("Dialogue ended");
 
         IsDialogueActive = false;
+        isTyping = false;
+
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+        }
 
         if (dialoguePanel != null)
             dialoguePanel.SetActive(false);
