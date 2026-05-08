@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Pink TEST
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
-  dialogueName: 
-  lines: []
+  dialogueName: Cuddy_Test
+  lines:
+  - speakerName: Lisa Cuddy
+    text: My name is Lisa.
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 0}
+  - speakerName: Lisa Cuddy
+    text: Last name is Cuddy.
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 0}

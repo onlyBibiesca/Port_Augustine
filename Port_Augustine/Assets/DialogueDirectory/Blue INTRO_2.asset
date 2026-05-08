@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Blue INTRO_2
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
-  dialogueName: 
-  lines: []
+  dialogueName: INTRO_BLUE_2
+  lines:
+  - speakerName: Gregory House
+    text: I know you aren't wearing panties.
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 194e6aac964351547ace9c9571a9c232, type: 3}

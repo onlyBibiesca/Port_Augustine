@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogueName: INTRO_BLUE
   lines:
-  - speakerName: Blue
+  - speakerName: Gregory House
     text: Hello! What's your name?
-  - speakerName: Blue
-    text: You don't have a name? Weird
+    hasChoices: 1
+    choices:
+    - choiceText: My name is Lisa Cuddy, House. You know me.
+      nextDialogue: {fileID: 11400000, guid: 722383a7df4b7164c94e9697b2bd9f3d, type: 2}
+    - choiceText: I would rather not say to some old crippled man.
+      nextDialogue: {fileID: 11400000, guid: a79b7afbc25ba504285dc56747e896de, type: 2}
+    characterPortrait: {fileID: 21300000, guid: d760f447bf9ce094a9b99aee5193b491, type: 3}
