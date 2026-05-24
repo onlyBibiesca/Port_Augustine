@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -257,7 +257,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeChoices);
         ShowChoices(choices);
     }
-
+    /*
     void ShowChoices(Dialogue_Choice[] choices)
     {
         if (choicePanel == null || choiceContainer == null || choiceButtonPrefab == null)
@@ -312,6 +312,68 @@ public class DialogueManager : MonoBehaviour
 
         Debug.Log($"Showing {choices.Length} choices");
     }
+    */
+    void ShowChoices(Dialogue_Choice[] choices)
+    {
+
+
+        if (choicePanel == null || choiceContainer == null || choiceButtonPrefab == null)
+        {
+            Debug.LogError("Choice UI not properly set up!");
+            EndDialogue();
+            return;
+        }
+
+        // Clear any existing choice buttons
+        foreach (Transform child in choiceContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Show choice panel
+        choicePanel.SetActive(true);
+
+        foreach (Dialogue_Choice choice in choices)
+        {
+            // TRAIT CHECK
+            if (choice.requiredTrait != null)
+            {
+                bool hasTrait = TraitsManager.Instance.HasTrait(choice.requiredTrait);
+
+                if (!hasTrait && choice.hideIfTraitMissing)
+                {
+                    continue;
+                }
+            }
+
+            GameObject buttonObj = Instantiate(choiceButtonPrefab, choiceContainer);
+
+            UnityEngine.UI.Button button =
+                buttonObj.GetComponent<UnityEngine.UI.Button>();
+
+            TMPro.TMP_Text buttonText =
+                buttonObj.GetComponentInChildren<TMPro.TMP_Text>();
+
+            if (buttonText != null)
+            {
+                // Optional locked text
+                if (choice.requiredTrait != null &&
+                    !TraitsManager.Instance.HasTrait(choice.requiredTrait))
+                {
+                    buttonText.text = "[Locked]";
+                    button.interactable = false;
+                }
+                else
+                {
+                    buttonText.text = choice.choiceText;
+                }
+            }
+
+            Dialogue_Choice selectedChoice = choice;
+            button.onClick.AddListener(() => OnChoiceSelected(selectedChoice));
+        }
+    }
+
 
     void OnChoiceSelected(Dialogue_Choice choice)
     {
@@ -332,6 +394,11 @@ public class DialogueManager : MonoBehaviour
         {
             // No follow-up dialogue, just end
             EndDialogue();
+        }
+
+        if (choice.gainedTrait != null)
+        {
+            TraitsManager.Instance.AddTrait(choice.gainedTrait);
         }
     }
 

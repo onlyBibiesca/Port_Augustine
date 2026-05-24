@@ -9,6 +9,15 @@ public class Dialogue_Choice
     [TextArea(2, 5)]
     public string choiceText;
     public Dialogue nextDialogue; // The dialogue to play if this choice is selected
+
+    [Header("Trait Requirements")]
+    public TraitSO requiredTrait;
+
+    [Header("Trait Rewards")]
+    public TraitSO gainedTrait;
+
+    [Header("Visibility")]
+    public bool hideIfTraitMissing = true;
 }
 
 [System.Serializable]
