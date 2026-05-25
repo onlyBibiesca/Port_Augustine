@@ -2,6 +2,8 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
+using static TimeSystem;
 
 public class InteractableTransitions : MonoBehaviour, InteractableObject
 {
@@ -25,6 +27,9 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     [SerializeField] int animationTimer; //how long does the animation last
     CinemachineConfiner confiner;
 
+    [Header("Time Consumption Module")]
+    [SerializeField] TimeConsumable timeConsumable;
+
     enum Direction { teleport }
 
     private void Start()
@@ -41,8 +46,52 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
+
+        Debug.Log("========== INTERACT CALLED ==========");
+        Debug.Log($"Player is null? {player == null}");
+        Debug.Log($"MapBoundary is null? {mapBoundary == null}");
+
         if (player != null && mapBoundary != null)
         {
+
+
+            // DETAILED TIME CONSUMPTION DEBUGGING
+            Debug.Log("--- TIME CONSUMPTION CHECK ---");
+            Debug.Log($"timeConsumable is null? {timeConsumable == null}");
+
+            if (timeConsumable != null)
+            {
+                Debug.Log($"TimeConsumable Name: {timeConsumable.consumableName}");
+                Debug.Log($"Consumes Time: {timeConsumable.consumesTime}");
+                Debug.Log($"Hours: {timeConsumable.hoursToConsume}");
+                Debug.Log($"Minutes: {timeConsumable.minutesToConsume}");
+            }
+
+            Debug.Log($"TimeSystem.Instance is null? {TimeSystem.Instance == null}");
+
+            if (TimeSystem.Instance != null)
+            {
+                Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
+            }
+
+            // CONSUME TIME HERE
+            if (timeConsumable != null && TimeSystem.Instance != null)
+            {
+                Debug.Log(">>> CALLING ConsumeTime() <<<");
+                TimeSystem.Instance.ConsumeTime(timeConsumable);
+                Debug.Log($"Current time AFTER: {TimeSystem.Instance.GetFormattedTime()}");
+            }
+            else if (timeConsumable == null)
+            {
+                Debug.LogWarning("No TimeConsumable assigned to this transition!");
+            }
+            else if (TimeSystem.Instance == null)
+            {
+                Debug.LogError("TimeSystem not found in scene!");
+            }
+
+            Debug.Log("========== INTERACT END ==========");
+
             StartCoroutine(DelayedAction(player));
             transitionAnim.Play();
             Debug.Log("Waiting animation to be done for " + animationTimer);

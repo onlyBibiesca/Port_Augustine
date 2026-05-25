@@ -1,7 +1,16 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+public interface ITimeConsumer
+{
+    bool ConsumesTime { get; }
+    int HoursToConsume { get; }
+    int MinutesToConsume { get; }
+    string GetConsumerName();
+}
+
 
 public class TimeSystem : MonoBehaviour
 {
@@ -70,6 +79,27 @@ public class TimeSystem : MonoBehaviour
 
         if (showDebugMessages)
             Debug.Log($"Current time: {GetFormattedTime()}");
+    }
+
+    public void ConsumeTime(ITimeConsumer consumer)
+    {
+        if (consumer == null)
+        {
+            Debug.LogError("Cannot consume time: consumer is null!");
+            return;
+        }
+
+        if (!consumer.ConsumesTime)
+        {
+            if (showDebugMessages)
+                Debug.Log($"{consumer.GetConsumerName()} does not consume time.");
+            return;
+        }
+
+        AddTime(consumer.HoursToConsume, consumer.MinutesToConsume);
+
+        if (showDebugMessages)
+            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {consumer.HoursToConsume}h {consumer.MinutesToConsume}m");
     }
 
     public void SetTime(int hour, int minute)
