@@ -41,4 +41,9 @@ public class Dialogue : ScriptableObject
 {
     public string dialogueName;
     public DialogueLine[] lines;
+
+    [Header("Time Consumption")]
+    public bool consumesTime = true;
+    public int hoursToConsume = 1;
+    public int minutesToConsume = 0;
 }

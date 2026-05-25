@@ -406,6 +406,31 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Dialogue ended");
 
+        // Consume time when dialogue ends
+        if (currentDialogue != null)
+        {
+            Debug.Log($"Checking time consumption for: {currentDialogue.dialogueName}");
+            Debug.Log($"Consumes Time: {currentDialogue.consumesTime}");
+            Debug.Log($"Hours: {currentDialogue.hoursToConsume}, Minutes: {currentDialogue.minutesToConsume}");
+
+            if (currentDialogue.consumesTime)
+            {
+                if (TimeSystem.Instance != null)
+                {
+                    TimeSystem.Instance.AddTime(currentDialogue.hoursToConsume, currentDialogue.minutesToConsume);
+                    Debug.Log($"? Time consumed! Added {currentDialogue.hoursToConsume}h {currentDialogue.minutesToConsume}m");
+                }
+                else
+                {
+                    Debug.LogError("TimeSystem not found in scene! Add TimeSystem component to a GameObject.");
+                }
+            }
+            else
+            {
+                Debug.Log("This dialogue does not consume time.");
+            }
+        }
+
         IsDialogueActive = false;
         isTyping = false;
 
