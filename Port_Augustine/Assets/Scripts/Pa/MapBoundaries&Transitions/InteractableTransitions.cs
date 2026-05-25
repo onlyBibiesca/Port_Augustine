@@ -8,7 +8,7 @@ using static TimeSystem;
 public class InteractableTransitions : MonoBehaviour, InteractableObject
 {
     private GameObject player;
-    
+
     private InteractableObject nearbyInteractable;
     private MapTransition mapTransition;
 
@@ -29,6 +29,9 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
 
     [Header("Time Consumption Module")]
     [SerializeField] TimeConsumable timeConsumable;
+
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Transform playerTransform;
 
     enum Direction { teleport }
 
@@ -132,23 +135,30 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     {
         yield return new WaitForSeconds(animationTimer);
         ChangePlayerPosition(player);
-        confiner.m_BoundingShape2D = mapBoundary;
+        // Remove: confiner.m_BoundingShape2D = mapBoundary; this was a redundant swap without InvalidatePathCache()
         Debug.Log("Entering " + mapBoundary);
     }
 
     public void ChangePlayerPosition(GameObject player)
     {
-
         if (direction == Direction.teleport)
         {
-            player.transform.position = teleportPosition.position;
+            Vector3 delta = teleportPosition.position - player.transform.position; // delta BEFORE moving
+
+            player.transform.position = teleportPosition.position; // move player
+
+            virtualCamera.OnTargetObjectWarped(playerTransform, delta); // snap camera
+            SwapConfiner(); // swap confiner
             return;
         }
+    }
 
-        Vector3 newPos = player.transform.position;
-
-
-        player.transform.position = newPos;
+    private void SwapConfiner()
+    {
+        var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
+        // swap your confiner collider here
+        confiner.m_BoundingShape2D = mapBoundary;
+        confiner.InvalidatePathCache(); // important after swapping!
     }
 
 }
