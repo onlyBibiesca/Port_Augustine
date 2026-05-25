@@ -77,7 +77,6 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
                 Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
             }
 
-            // CONSUME TIME HERE
             if (timeConsumable != null && TimeSystem.Instance != null)
             {
                 Debug.Log(">>> CALLING ConsumeTime() <<<");
@@ -135,7 +134,6 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     {
         yield return new WaitForSeconds(animationTimer);
         ChangePlayerPosition(player);
-        // Remove: confiner.m_BoundingShape2D = mapBoundary; this was a redundant swap without InvalidatePathCache()
         Debug.Log("Entering " + mapBoundary);
     }
 
@@ -156,7 +154,6 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     private void SwapConfiner()
     {
         var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
-        // swap your confiner collider here
         confiner.m_BoundingShape2D = mapBoundary;
         confiner.InvalidatePathCache(); // important after swapping!
     }
