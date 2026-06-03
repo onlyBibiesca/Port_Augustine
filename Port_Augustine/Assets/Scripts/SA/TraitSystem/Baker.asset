@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Baker
   m_EditorClassIdentifier: 
-  traitName: 
+  traitName: Baker
   description: 
   icon: {fileID: 0}
-  originPreviewSprite: {fileID: 0}
+  originPreviewSprite: {fileID: 21300000, guid: 513f71c499b0b8349a4477e929ab11c5, type: 3}
   category: 0
   uniqueCategory: 0
   workIncomeMultiplier: 1
