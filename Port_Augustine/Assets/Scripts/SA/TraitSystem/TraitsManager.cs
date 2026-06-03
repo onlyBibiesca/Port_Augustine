@@ -5,16 +5,23 @@ using UnityEngine;
 public class TraitsManager : MonoBehaviour
 {
     public static TraitsManager Instance;
+    public System.Action OnTraitsChanged;
 
-    [Header("Current Traits")]
-    public List<TraitSO> activeTraits = new List<TraitSO>();
+    [SerializeField]
+    private List<TraitSO> activeTraits = new();
 
-    void Awake()
+    public IReadOnlyList<TraitSO> ActiveTraits => activeTraits;
+
+    private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
 
     public bool HasTrait(TraitSO trait)
@@ -24,19 +31,37 @@ public class TraitsManager : MonoBehaviour
 
     public void AddTrait(TraitSO trait)
     {
-        if (!activeTraits.Contains(trait))
-        {
-            activeTraits.Add(trait);
-            Debug.Log($"Trait gained: {trait.traitName}");
-        }
+        if (trait == null) return;
+        if (HasTrait(trait)) return;
+
+        if (trait.uniqueCategory)
+            RemoveTraitsOfCategory(trait.category);
+
+        activeTraits.Add(trait);
+
+        Debug.Log($"Trait Added: {trait.traitName}");
+
+        foreach (var granted in trait.grantedTraits)
+            AddTrait(granted);
+
+        OnTraitsChanged?.Invoke();
     }
 
     public void RemoveTrait(TraitSO trait)
     {
-        if (activeTraits.Contains(trait))
-        {
-            activeTraits.Remove(trait);
-            Debug.Log($"Trait removed: {trait.traitName}");
-        }
+        if (trait == null)
+            return;
+
+        activeTraits.Remove(trait);
+    }
+
+    public void RemoveTraitsOfCategory(TraitCategory category)
+    {
+        activeTraits.RemoveAll(t => t.category == category);
+    }
+
+    public List<TraitSO> GetTraitsOfCategory(TraitCategory category)
+    {
+        return activeTraits.FindAll(t => t.category == category);
     }
 }

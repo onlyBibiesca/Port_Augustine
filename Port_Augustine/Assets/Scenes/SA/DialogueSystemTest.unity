@@ -915,7 +915,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptUI: {fileID: 0}
 --- !u!114 &1039294466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,8 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045436e24ab12d543b2d2f03328c61d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleStartingTraits:
-  - {fileID: 11400000, guid: 511edb968a2694b4da7fd565f717ce60, type: 2}
+  possibleStartingTraits: []
   traitsToGive: 2
 --- !u!4 &1112168243
 Transform:
@@ -1882,7 +1880,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptUI: {fileID: 0}
 --- !u!114 &1431686954
 MonoBehaviour:
   m_ObjectHideFlags: 0

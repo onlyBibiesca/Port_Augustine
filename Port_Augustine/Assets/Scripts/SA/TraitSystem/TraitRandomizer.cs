@@ -5,31 +5,48 @@ using UnityEngine;
 
 public class TraitRandomizer : MonoBehaviour
 {
-    public List<TraitSO> possibleStartingTraits;
-    public int traitsToGive = 2;
+    public List<TraitSO> originPool;
+    public List<TraitSO> randomTraitPool;
 
-    void Start()
+    public int randomTraitCount = 2;
+
+    private void Start()
     {
-        GenerateTraits();
+        GenerateOrigin();
+        GenerateRandomTraits();
     }
 
-    void GenerateTraits()
+    void GenerateOrigin()
+    {
+        if (originPool.Count == 0)
+            return;
+
+        int index = UnityEngine.Random.Range(0, originPool.Count);
+
+        TraitSO chosenOrigin = originPool[index];
+
+        TraitsManager.Instance.AddTrait(chosenOrigin);
+
+        Debug.Log($"Origin Chosen: {chosenOrigin.traitName}");
+    }
+
+    void GenerateRandomTraits()
     {
         List<TraitSO> pool =
-            new List<TraitSO>(possibleStartingTraits);
+            new List<TraitSO>(randomTraitPool);
 
-        for (int i = 0; i < traitsToGive; i++)
+        for (int i = 0; i < randomTraitCount; i++)
         {
             if (pool.Count == 0)
-                return;
+                break;
 
-            int randomIndex = UnityEngine.Random.Range(0, pool.Count);
+            int index = UnityEngine.Random.Range(0, pool.Count);
 
-            TraitSO selectedTrait = pool[randomIndex];
+            TraitSO chosenTrait = pool[index];
 
-            TraitsManager.Instance.AddTrait(selectedTrait);
+            TraitsManager.Instance.AddTrait(chosenTrait);
 
-            pool.RemoveAt(randomIndex);
+            pool.RemoveAt(index);
         }
     }
 }

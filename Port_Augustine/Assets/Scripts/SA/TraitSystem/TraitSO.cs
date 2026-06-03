@@ -15,14 +15,30 @@ public enum TraitCategory
 [CreateAssetMenu(fileName = "New Trait", menuName = "Traits/Trait")]
 public class TraitSO : ScriptableObject
 {
-    [Header("Info")]
+    [Header("Basic Info")]
     public string traitName;
 
     [TextArea]
     public string description;
 
+    public Sprite icon;
+
+    [Header("Testing")]
+    public Sprite originPreviewSprite;
+
+    [Header("Category")]
     public TraitCategory category;
 
-    [Header("Future")]
-    public bool affectsGameplay;
+    [Header("Trait Rules")]
+    public bool uniqueCategory = false;
+
+    [Header("Future Gameplay")]
+    public float workIncomeMultiplier = 1f;
+
+    [Header("Future World Setup")]
+    public string startingBuildingID;
+
+    [Header("Optional")]
+    public List<TraitSO> grantedTraits = new();
+
 }

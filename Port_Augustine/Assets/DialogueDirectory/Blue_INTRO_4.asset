@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Blue INTRO_4
+  m_Name: Blue_INTRO_4
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogueName: INTRO_BLUE_4
   lines:
   - speakerName: Gregory House
-    text: Hmm.... Retardation
+    text: Retarded
     hasChoices: 0
     choices: []
-    characterPortrait: {fileID: 21300000, guid: d760f447bf9ce094a9b99aee5193b491, type: 3}
+    characterPortrait: {fileID: 21300000, guid: 194e6aac964351547ace9c9571a9c232, type: 3}
+  consumesTime: 1
+  hoursToConsume: 1
+  minutesToConsume: 0
