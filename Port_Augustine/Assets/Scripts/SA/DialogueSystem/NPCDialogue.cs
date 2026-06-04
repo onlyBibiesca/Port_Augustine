@@ -8,10 +8,17 @@ public class NPC_Dialogue : MonoBehaviour
     public DialogueDirectory dialogueDirectory;
     public List<string> dialogueSequence = new List<string>();
 
+    [Header("Dialogue UI")]
+    [SerializeField] GameObject interactUI;
+
     [Header("Debug")]
     public bool showDebugMessages = true;
 
     private int currentDialogueIndex = 0;
+
+    private GameObject player;
+
+    private InteractableObject nearbyInteractable;
 
     void Start()
     {
@@ -23,6 +30,31 @@ public class NPC_Dialogue : MonoBehaviour
         if (dialogueSequence.Count == 0)
         {
             Debug.LogWarning($"No dialogue sequence assigned to {gameObject.name}!");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+            InteractableObject interactable = collision.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                nearbyInteractable = interactable;
+                if (interactUI != null)
+                    interactUI.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
+        {
+            nearbyInteractable = null;
+            if (interactUI != null)
+                interactUI.SetActive(false);
         }
     }
 
