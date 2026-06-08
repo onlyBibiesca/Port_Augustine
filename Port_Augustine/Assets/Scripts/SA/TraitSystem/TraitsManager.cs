@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;   
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TraitsManager : MonoBehaviour
@@ -14,14 +14,13 @@ public class TraitsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
     }
 
     public bool HasTrait(TraitSO trait)
@@ -49,15 +48,16 @@ public class TraitsManager : MonoBehaviour
 
     public void RemoveTrait(TraitSO trait)
     {
-        if (trait == null)
-            return;
+        if (trait == null) return;
 
         activeTraits.Remove(trait);
+        OnTraitsChanged?.Invoke();
     }
 
     public void RemoveTraitsOfCategory(TraitCategory category)
     {
         activeTraits.RemoveAll(t => t.category == category);
+        OnTraitsChanged?.Invoke();
     }
 
     public List<TraitSO> GetTraitsOfCategory(TraitCategory category)

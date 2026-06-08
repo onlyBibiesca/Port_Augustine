@@ -27,7 +27,7 @@ public class TraitRandomizer : MonoBehaviour
 
         TraitsManager.Instance.AddTrait(chosenOrigin);
 
-        Debug.Log($"Origin Chosen: {chosenOrigin.traitName}");
+        Debug.Log($"Origin Chosen: {chosenOrigin.traitName} | ID: {chosenOrigin.GetInstanceID()}");
     }
 
     void GenerateRandomTraits()
