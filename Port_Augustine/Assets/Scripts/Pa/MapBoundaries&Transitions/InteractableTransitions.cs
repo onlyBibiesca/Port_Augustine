@@ -27,9 +27,11 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     [SerializeField] int animationTimer; //how long does the animation last
     CinemachineConfiner confiner;
 
-    [Header("Time Consumption Module")]
+    [Header("Consumables Modular")]
     [SerializeField] TimeConsumable timeConsumable;
+    [SerializeField] StatConsumable statConsumable;
 
+    [Header("Virtual Camera")]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Transform playerTransform;
 
@@ -92,6 +94,18 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
                 Debug.LogError("TimeSystem not found in scene!");
             }
 
+            if (player != null && statConsumable != null)
+            {
+                if (PlayerStats.Instance != null)
+                {
+                    PlayerStats.Instance.ConsumeStat(statConsumable);
+                }
+                else
+                {
+                    Debug.LogError("PlayerStats not found in scene!");
+                }
+            }
+
             Debug.Log("========== INTERACT END ==========");
 
             StartCoroutine(DelayedAction(player));
@@ -100,7 +114,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
         }
         else
         {
-            Debug.LogWarning("player or mapTransition is null!");
+            Debug.LogWarning("player or mapTransition or stat consumable is null!");
         }
 
     }

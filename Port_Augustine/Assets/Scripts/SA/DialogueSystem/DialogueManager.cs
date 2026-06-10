@@ -420,7 +420,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Consume stats when dialogue ends (NEW!)
+        // Consume stats when dialogue ends
         if (currentDialogue != null && currentDialogue.statConsumable != null)
         {
             if (PlayerStats.Instance != null)
