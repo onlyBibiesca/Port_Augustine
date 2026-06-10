@@ -46,4 +46,7 @@ public class Dialogue : ScriptableObject
     public bool consumesTime = true;
     public int hoursToConsume = 1;
     public int minutesToConsume = 0;
+
+    [Header("Stat Consumption")]
+    public StatConsumable statConsumable;
 }
