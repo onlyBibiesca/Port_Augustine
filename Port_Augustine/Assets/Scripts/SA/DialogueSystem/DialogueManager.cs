@@ -6,6 +6,7 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
+    private string currentNPCName = "Unknown";
 
     [Header("UI References")]
     public GameObject dialoguePanel;
@@ -37,6 +38,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typewriterCoroutine;
     private bool isTyping = false;
     private string fullText = "";
+
+
 
     public bool IsDialogueActive { get; private set; }
 
@@ -99,12 +102,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null)
+    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null, string npcName = "Unknown")
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
 
         IsDialogueActive = true;
         currentDialogue = dialogue;
+        currentNPCName = npcName;
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
         waitingForChoice = false;
@@ -117,6 +121,11 @@ public class DialogueManager : MonoBehaviour
         if (choicePanel != null)
         {
             choicePanel.SetActive(false);
+        }
+
+        if (RelationshipManager.Instance != null)
+        {
+            RelationshipManager.Instance.ShowRelationshipSlider(npcName);
         }
 
         DisplayCurrentLine();
@@ -379,6 +388,13 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log($"Choice selected: {choice.choiceText}");
 
+        // APPLY RELATIONSHIP CHANGE
+        if (choice.relationshipChange != 0 && RelationshipManager.Instance != null)
+        {
+            RelationshipManager.Instance.ChangeRelationship(currentNPCName, choice.relationshipChange);
+            Debug.Log($"{currentNPCName}: Relationship {(choice.relationshipChange > 0 ? "increased" : "decreased")} by {Mathf.Abs(choice.relationshipChange)}");
+        }
+
         // Hide choices
         if (choicePanel != null)
             choicePanel.SetActive(false);
@@ -450,6 +466,11 @@ public class DialogueManager : MonoBehaviour
 
         if (portraitContainer != null)
             portraitContainer.SetActive(false);
+
+        if (RelationshipManager.Instance != null)
+        {
+            RelationshipManager.Instance.HideRelationshipSlider();
+        }
 
         currentDialogue = null;
         waitingForChoice = false;

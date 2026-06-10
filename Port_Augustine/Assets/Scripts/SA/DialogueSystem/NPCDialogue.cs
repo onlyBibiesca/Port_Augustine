@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NPC_Dialogue : MonoBehaviour
 {
+    [Header("NPC Identity")]
+    public string npcName = "NPC";
+
     [Header("Dialogue Setup")]
     public DialogueDirectory dialogueDirectory;
     public List<string> dialogueSequence = new List<string>();
@@ -109,7 +112,7 @@ public class NPC_Dialogue : MonoBehaviour
             if (showDebugMessages)
                 Debug.Log($"Playing dialogue: {dialogueName}");
 
-            DialogueManager.Instance.StartDialogue(dialogue, OnDialogueFinished);
+            DialogueManager.Instance.StartDialogue(dialogue, OnDialogueFinished, npcName);
         }
         else
         {

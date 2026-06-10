@@ -20,16 +20,19 @@ MonoBehaviour:
     choices:
     - choiceText: My name is Lisa Cuddy, House. You know me.
       nextDialogue: {fileID: 11400000, guid: 722383a7df4b7164c94e9697b2bd9f3d, type: 2}
+      relationshipChange: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 1
     - choiceText: I would rather not say to some old crippled man.
       nextDialogue: {fileID: 11400000, guid: a79b7afbc25ba504285dc56747e896de, type: 2}
+      relationshipChange: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 1
     - choiceText: Huh?
       nextDialogue: {fileID: 11400000, guid: 99ed63860cdc5f74e891315901bf2b5b, type: 2}
+      relationshipChange: 30
       requiredTrait: {fileID: 11400000, guid: 511edb968a2694b4da7fd565f717ce60, type: 2}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 1

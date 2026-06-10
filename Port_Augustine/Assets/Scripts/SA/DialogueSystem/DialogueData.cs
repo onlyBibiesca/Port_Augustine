@@ -10,6 +10,10 @@ public class Dialogue_Choice
     public string choiceText;
     public Dialogue nextDialogue; // The dialogue to play if this choice is selected
 
+    [Header("Relationship Change")]
+    [Range(-100, 100)]
+    public int relationshipChange = 0;
+
     [Header("Trait Requirements")]
     public TraitSO requiredTrait;
 

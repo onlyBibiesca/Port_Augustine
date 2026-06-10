@@ -16,8 +16,14 @@ MonoBehaviour:
   lines:
   - speakerName: Gregory House
     text: Retarded
-    hasChoices: 0
-    choices: []
+    hasChoices: 1
+    choices:
+    - choiceText: My husban usually takes me for a spin
+      nextDialogue: {fileID: 11400000, guid: d49eafb7a64b28347aedbb077c559cea, type: 2}
+      relationshipChange: 39
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
     characterPortrait: {fileID: 21300000, guid: 194e6aac964351547ace9c9571a9c232, type: 3}
   consumesTime: 1
   hoursToConsume: 1
