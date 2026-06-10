@@ -37,3 +37,4 @@ MonoBehaviour:
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0
+  statConsumable: {fileID: 0}

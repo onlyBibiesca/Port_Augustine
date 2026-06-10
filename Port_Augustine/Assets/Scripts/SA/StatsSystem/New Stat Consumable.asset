@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: New Stat Consumable
   m_EditorClassIdentifier: 
   affectsStats: 1
-  hungerChange: 0
-  energyChange: 0
+  hungerChange: -89
+  energyChange: -66
   happinessChange: 0
-  consumableName: 
+  consumableName: Interact NPC
   description: 
