@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,13 +13,14 @@ public class TraitsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
         {
             Destroy(gameObject);
-            return;
         }
-
-        Instance = this;
     }
 
     public bool HasTrait(TraitSO trait)
@@ -48,7 +48,8 @@ public class TraitsManager : MonoBehaviour
 
     public void RemoveTrait(TraitSO trait)
     {
-        if (trait == null) return;
+        if (trait == null)
+            return;
 
         activeTraits.Remove(trait);
         OnTraitsChanged?.Invoke();
@@ -63,5 +64,17 @@ public class TraitsManager : MonoBehaviour
     public List<TraitSO> GetTraitsOfCategory(TraitCategory category)
     {
         return activeTraits.FindAll(t => t.category == category);
+    }
+
+    public int GetMovementTimeModifier()
+    {
+        int modifier = 0;
+
+        foreach (var trait in activeTraits)
+        {
+            modifier += trait.movementTimeModifier;
+        }
+
+        return modifier;
     }
 }

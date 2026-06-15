@@ -16,8 +16,9 @@ MonoBehaviour:
   description: AKU BUDOY
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
-  category: 5
+  category: 3
   uniqueCategory: 0
+  movementTimeModifier: 0
   workIncomeMultiplier: 1
   startingBuildingID: 
   grantedTraits: []

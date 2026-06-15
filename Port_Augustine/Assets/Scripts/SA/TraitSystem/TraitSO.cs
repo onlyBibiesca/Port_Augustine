@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public enum TraitCategory
 {
-    Random,
+    
     Origin,
     Relationship,
     Job,
-    Lifestyle,
     Personality
 }
 
@@ -32,6 +30,9 @@ public class TraitSO : ScriptableObject
     [Header("Trait Rules")]
     public bool uniqueCategory = false;
 
+    [Header("Time Modifiers")]
+    public int movementTimeModifier = 0;
+
     [Header("Future Gameplay")]
     public float workIncomeMultiplier = 1f;
 
@@ -40,5 +41,4 @@ public class TraitSO : ScriptableObject
 
     [Header("Optional")]
     public List<TraitSO> grantedTraits = new();
-
 }

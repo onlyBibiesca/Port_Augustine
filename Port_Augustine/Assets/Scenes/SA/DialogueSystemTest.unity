@@ -3725,7 +3725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptUI: {fileID: 0}
 --- !u!1001 &425664103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4349,7 +4348,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptUI: {fileID: 0}
 --- !u!114 &623641126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9560,6 +9558,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 371dd96b8db26964ca35b5fd014f1036, type: 2}
   randomTraitPool:
   - {fileID: 11400000, guid: 511edb968a2694b4da7fd565f717ce60, type: 2}
+  - {fileID: 11400000, guid: 0fbdd6b4b627c92408ddbee7f2e6c9d5, type: 2}
   randomTraitCount: 2
 --- !u!4 &1112168243
 Transform:
@@ -9760,7 +9759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826880875608439947, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4857716964590883357, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: m_Size.x
@@ -10263,7 +10262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2826880875608439947, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4857716964590883357, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: m_Size.x
@@ -32624,7 +32623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptUI: {fileID: 0}
 --- !u!114 &2019845591
 MonoBehaviour:
   m_ObjectHideFlags: 0

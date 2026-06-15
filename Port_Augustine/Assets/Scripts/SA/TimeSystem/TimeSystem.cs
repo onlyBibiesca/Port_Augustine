@@ -96,10 +96,18 @@ public class TimeSystem : MonoBehaviour
             return;
         }
 
-        AddTime(consumer.HoursToConsume, consumer.MinutesToConsume);
+        int hours = consumer.HoursToConsume;
+        int minutes = consumer.MinutesToConsume;
+
+        if (TraitsManager.Instance != null)
+        {
+            hours += TraitsManager.Instance.GetMovementTimeModifier();
+        }
+
+        AddTime(hours, minutes);
 
         if (showDebugMessages)
-            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {consumer.HoursToConsume}h {consumer.MinutesToConsume}m");
+            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {hours}h {minutes}m");
     }
 
     public void SetTime(int hour, int minute)
