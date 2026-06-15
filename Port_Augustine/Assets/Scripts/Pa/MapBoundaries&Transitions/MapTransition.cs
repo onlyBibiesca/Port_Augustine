@@ -16,8 +16,8 @@ public class MapTransition : MonoBehaviour
     [SerializeField] PolygonCollider2D mapBoundary;
     [SerializeField] Direction direction;
 
-    //[Header("Next Confiner waypoint")]
-    //[SerializeField] Transform teleportPosition;
+    [Header("Next Confiner waypoint")]
+    [SerializeField] Transform teleportPosition;
 
     [Header("Position Increment")]
     [SerializeField] float distancePos; //increment position of player after teleporting to avoid landing on another collider

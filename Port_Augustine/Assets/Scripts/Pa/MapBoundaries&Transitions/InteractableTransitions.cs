@@ -94,7 +94,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
                 Debug.LogError("TimeSystem not found in scene!");
             }
 
-            if (player != null && statConsumable != null)
+            if (PlayerStats.Instance != null && statConsumable != null)
             {
                 if (PlayerStats.Instance != null)
                 {
@@ -107,6 +107,8 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
             }
 
             Debug.Log("========== INTERACT END ==========");
+
+            
 
             StartCoroutine(DelayedAction(player));
             transitionAnim.Play();
