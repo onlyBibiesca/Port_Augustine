@@ -1,28 +1,33 @@
 using System;
-
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
 
-    [Header("Current Stats")]
+    [Header("Stat Settings")]
+    [Range(0, 100)]
     public int hunger = 50;
+
+    [Range(0, 100)]
     public int energy = 80;
+
+    [Range(0, 100)]
     public int happiness = 70;
 
-    [Header("Base Stat Limits")]
+    [Header("Stat Limits")]
+    [Range(0, 100)]
     public int minStat = 0;
 
-    public int baseMaxHunger = 100;
-    public int baseMaxEnergy = 100;
-    public int baseMaxHappiness = 100;
+    [Range(0, 100)]
+    public int maxStat = 100;
 
     [Header("UI References")]
-    public Slider hungerSlider;
-    public Slider energySlider;
-    public Slider happinessSlider;
+    public UnityEngine.UI.Slider hungerSlider;
+    public UnityEngine.UI.Slider energySlider;
+    public UnityEngine.UI.Slider happinessSlider;
 
     [Header("Debug")]
     public bool showDebugMessages = true;
@@ -31,43 +36,7 @@ public class PlayerStats : MonoBehaviour
     public event Action<int> OnEnergyChanged;
     public event Action<int> OnHappinessChanged;
 
-    public int MaxHunger
-    {
-        get
-        {
-            if (TraitsManager.Instance == null)
-                return baseMaxHunger;
-
-            return baseMaxHunger +
-                   TraitsManager.Instance.GetMaxHungerModifier();
-        }
-    }
-
-    public int MaxEnergy
-    {
-        get
-        {
-            if (TraitsManager.Instance == null)
-                return baseMaxEnergy;
-
-            return baseMaxEnergy +
-                   TraitsManager.Instance.GetMaxEnergyModifier();
-        }
-    }
-
-    public int MaxHappiness
-    {
-        get
-        {
-            if (TraitsManager.Instance == null)
-                return baseMaxHappiness;
-
-            return baseMaxHappiness +
-                   TraitsManager.Instance.GetMaxHappinessModifier();
-        }
-    }
-
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -80,34 +49,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
-        if (TraitsManager.Instance != null)
-        {
-            TraitsManager.Instance.OnTraitsChanged += RefreshStatLimits;
-        }
-
-        RefreshStatLimits();
-    }
-
-    private void OnDestroy()
-    {
-        if (TraitsManager.Instance != null)
-        {
-            TraitsManager.Instance.OnTraitsChanged -= RefreshStatLimits;
-        }
-    }
-
-    private void RefreshStatLimits()
-    {
-        hunger = Mathf.Clamp(hunger, minStat, MaxHunger);
-        energy = Mathf.Clamp(energy, minStat, MaxEnergy);
-        happiness = Mathf.Clamp(happiness, minStat, MaxHappiness);
-
         UpdateStatsDisplay();
     }
 
-    // Modular stat consumption method
+    // Modular stat consumption method - works with any IStatConsumer
     public void ConsumeStat(IStatConsumer consumer)
     {
         if (consumer == null)
@@ -120,35 +67,38 @@ public class PlayerStats : MonoBehaviour
         {
             if (showDebugMessages)
                 Debug.Log($"{consumer.GetConsumerName()} does not affect stats.");
-
             return;
         }
 
         if (showDebugMessages)
             Debug.Log($"=== {consumer.GetConsumerName()} Stat Changes ===");
 
+        // Apply hunger change
         if (consumer.HungerChange != 0)
+        {
             ChangeHunger(consumer.HungerChange);
+        }
 
+        // Apply energy change
         if (consumer.EnergyChange != 0)
+        {
             ChangeEnergy(consumer.EnergyChange);
+        }
 
+        // Apply happiness change
         if (consumer.HappinessChange != 0)
+        {
             ChangeHappiness(consumer.HappinessChange);
+        }
 
         if (showDebugMessages)
-            Debug.Log($"{consumer.GetConsumerName()} applied stat changes");
+            Debug.Log($" {consumer.GetConsumerName()} applied stat changes");
     }
 
     public void ChangeHunger(int amount)
     {
-        hunger = Mathf.Clamp(
-            hunger + amount,
-            minStat,
-            MaxHunger);
-
+        hunger = Mathf.Clamp(hunger + amount, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnHungerChanged?.Invoke(hunger);
 
         if (showDebugMessages)
@@ -157,13 +107,8 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeEnergy(int amount)
     {
-        energy = Mathf.Clamp(
-            energy + amount,
-            minStat,
-            MaxEnergy);
-
+        energy = Mathf.Clamp(energy + amount, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnEnergyChanged?.Invoke(energy);
 
         if (showDebugMessages)
@@ -172,13 +117,8 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeHappiness(int amount)
     {
-        happiness = Mathf.Clamp(
-            happiness + amount,
-            minStat,
-            MaxHappiness);
-
+        happiness = Mathf.Clamp(happiness + amount, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnHappinessChanged?.Invoke(happiness);
 
         if (showDebugMessages)
@@ -187,73 +127,58 @@ public class PlayerStats : MonoBehaviour
 
     public void SetHunger(int value)
     {
-        hunger = Mathf.Clamp(
-            value,
-            minStat,
-            MaxHunger);
-
+        hunger = Mathf.Clamp(value, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnHungerChanged?.Invoke(hunger);
     }
 
     public void SetEnergy(int value)
     {
-        energy = Mathf.Clamp(
-            value,
-            minStat,
-            MaxEnergy);
-
+        energy = Mathf.Clamp(value, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnEnergyChanged?.Invoke(energy);
     }
 
     public void SetHappiness(int value)
     {
-        happiness = Mathf.Clamp(
-            value,
-            minStat,
-            MaxHappiness);
-
+        happiness = Mathf.Clamp(value, minStat, maxStat);
         UpdateStatsDisplay();
-
         OnHappinessChanged?.Invoke(happiness);
     }
 
-    private void UpdateStatsDisplay()
+    void UpdateStatsDisplay()
     {
         if (hungerSlider != null)
         {
             hungerSlider.minValue = minStat;
-            hungerSlider.maxValue = MaxHunger;
+            hungerSlider.maxValue = maxStat;
             hungerSlider.value = hunger;
         }
 
         if (energySlider != null)
         {
             energySlider.minValue = minStat;
-            energySlider.maxValue = MaxEnergy;
+            energySlider.maxValue = maxStat;
             energySlider.value = energy;
         }
 
         if (happinessSlider != null)
         {
             happinessSlider.minValue = minStat;
-            happinessSlider.maxValue = MaxHappiness;
+            happinessSlider.maxValue = maxStat;
             happinessSlider.value = happiness;
         }
     }
 
+    // Get all stats as a formatted string
     public string GetFormattedStats()
     {
-        return $"Hunger: {hunger}/{MaxHunger} | Energy: {energy}/{MaxEnergy} | Happiness: {happiness}/{MaxHappiness}";
+        return $"Hunger: {hunger} | Energy: {energy} | Happiness: {happiness}";
     }
 
+    // Check if player is in critical condition
     public bool IsCritical()
     {
-        return hunger <= 10 ||
-               energy <= 10 ||
-               happiness <= 10;
+        return hunger <= 10 || energy <= 10 || happiness <= 10;
     }
 }

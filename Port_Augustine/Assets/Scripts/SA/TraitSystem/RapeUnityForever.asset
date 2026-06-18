@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
-  m_Name: Energetic
+  m_Name: RapeUnityForever
   m_EditorClassIdentifier: 
-  traitName: Energetic
-  description: 
+  traitName: RapeUnity
+  description: Kill
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
-  category: 0
-  uniqueCategory: 1
+  category: 3
+  uniqueCategory: 0
   movementTimeModifier: 0
   workIncomeMultiplier: 1
   startingBuildingID: 
   grantedTraits: []
-  maxHungerModifier: 0
-  maxEnergyModifier: 20
-  maxHappinessModifier: 0

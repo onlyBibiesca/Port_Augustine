@@ -77,40 +77,4 @@ public class TraitsManager : MonoBehaviour
 
         return modifier;
     }
-
-    public int GetMaxEnergyModifier()
-    {
-        int total = 0;
-
-        foreach (var trait in activeTraits)
-        {
-            total += trait.maxEnergyModifier;
-        }
-
-        return total;
-    }
-
-    public int GetMaxHungerModifier()
-    {
-        int total = 0;
-
-        foreach (var trait in activeTraits)
-        {
-            total += trait.maxHungerModifier;
-        }
-
-        return total;
-    }
-
-    public int GetMaxHappinessModifier()
-    {
-        int total = 0;
-
-        foreach (var trait in activeTraits)
-        {
-            total += trait.maxHappinessModifier;
-        }
-
-        return total;
-    }
 }
