@@ -33005,7 +33005,7 @@ PrefabInstance:
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: mapBoundary
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 860379126}
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: virtualCamera
       value: 
