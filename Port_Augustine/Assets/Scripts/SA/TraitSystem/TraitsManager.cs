@@ -44,6 +44,7 @@ public class TraitsManager : MonoBehaviour
             AddTrait(granted);
 
         OnTraitsChanged?.Invoke();
+        PlayerStats.Instance.DebugStats();
     }
 
     public void RemoveTrait(TraitSO trait)

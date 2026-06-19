@@ -24,6 +24,8 @@ public class PlayerStats : MonoBehaviour
     [Range(0, 100)]
     public int maxStat = 100;
 
+    private int BaseEnergyMax => 100;
+
     [Header("UI References")]
     public UnityEngine.UI.Slider hungerSlider;
     public UnityEngine.UI.Slider energySlider;
@@ -107,7 +109,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeEnergy(int amount)
     {
-        energy = Mathf.Clamp(energy + amount, minStat, maxStat);
+        energy = Mathf.Clamp(energy + amount, minStat, GetMaxEnergy());
         UpdateStatsDisplay();
         OnEnergyChanged?.Invoke(energy);
 
@@ -134,7 +136,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetEnergy(int value)
     {
-        energy = Mathf.Clamp(value, minStat, maxStat);
+        energy = Mathf.Clamp(value, minStat, GetMaxEnergy());
         UpdateStatsDisplay();
         OnEnergyChanged?.Invoke(energy);
     }
@@ -158,7 +160,7 @@ public class PlayerStats : MonoBehaviour
         if (energySlider != null)
         {
             energySlider.minValue = minStat;
-            energySlider.maxValue = maxStat;
+            energySlider.maxValue = GetMaxEnergy();
             energySlider.value = energy;
         }
 
@@ -180,5 +182,25 @@ public class PlayerStats : MonoBehaviour
     public bool IsCritical()
     {
         return hunger <= 10 || energy <= 10 || happiness <= 10;
+    }
+
+    public int GetMaxEnergy()
+    {
+        int bonus = 0;
+
+        if (TraitsManager.Instance != null)
+        {
+            foreach (var trait in TraitsManager.Instance.ActiveTraits)
+            {
+                bonus += trait.energyMaxBonus;
+            }
+        }
+
+        return BaseEnergyMax + bonus;
+    }
+
+    public void DebugStats()
+    {
+        Debug.Log($"Hunger: {hunger}/{maxStat} | Energy: {energy}/{GetMaxEnergy()} | Happiness: {happiness}/{maxStat}");
     }
 }
