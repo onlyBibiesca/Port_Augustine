@@ -41,7 +41,7 @@ public class DialogueLine
 }
 
 [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue System/Dialogue")]
-public class Dialogue : ScriptableObject
+public class Dialogue : ScriptableObject, ITimeConsumer
 {
     public string dialogueName;
     public DialogueLine[] lines;
@@ -53,4 +53,10 @@ public class Dialogue : ScriptableObject
 
     [Header("Stat Consumption")]
     public StatConsumable statConsumable;
+
+    // ITimeConsumer implementation
+    public bool ConsumesTime => consumesTime;
+    public int HoursToConsume => hoursToConsume;
+    public int MinutesToConsume => minutesToConsume;
+    public string GetConsumerName() => dialogueName;
 }

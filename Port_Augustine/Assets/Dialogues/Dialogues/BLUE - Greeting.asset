@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BLUE - Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueName: BLUE_1
+  lines:
+  - speakerName: House
+    text: Hello Player! It is nice to meet you on Day 1.
+    hasChoices: 1
+    choices:
+    - choiceText: Hello House! You seem like a nice person.
+      nextDialogue: {fileID: 11400000, guid: 3006be19351a8a14993a54967a93c005, type: 2}
+      relationshipChange: -95
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Hello House! You seem like a person to flirt with midgets
+      nextDialogue: {fileID: 11400000, guid: 051430441e486ab4bb434eea64157248, type: 2}
+      relationshipChange: 80
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 0}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

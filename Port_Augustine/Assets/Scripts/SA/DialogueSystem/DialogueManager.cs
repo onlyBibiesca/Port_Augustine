@@ -393,6 +393,8 @@ public class DialogueManager : MonoBehaviour
         {
             RelationshipManager.Instance.ChangeRelationship(currentNPCName, choice.relationshipChange);
             Debug.Log($"{currentNPCName}: Relationship {(choice.relationshipChange > 0 ? "increased" : "decreased")} by {Mathf.Abs(choice.relationshipChange)}");
+
+            RelationshipManager.Instance.ShowRelationshipSlider(currentNPCName);
         }
 
         // Hide choices
@@ -404,7 +406,7 @@ public class DialogueManager : MonoBehaviour
         // If the choice leads to another dialogue, play it
         if (choice.nextDialogue != null)
         {
-            StartDialogue(choice.nextDialogue, onDialogueComplete);
+            StartDialogue(choice.nextDialogue, onDialogueComplete, currentNPCName);
         }
         else
         {
@@ -427,7 +429,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (TimeSystem.Instance != null)
             {
-                TimeSystem.Instance.ConsumeTime(currentDialogue as ITimeConsumer);
+                TimeSystem.Instance.ConsumeTime(currentDialogue);
                 Debug.Log($"Dialogue consumed {currentDialogue.hoursToConsume}h {currentDialogue.minutesToConsume}m");
             }
             else

@@ -91,6 +91,10 @@ public class RelationshipManager : MonoBehaviour
             relationshipSlider.minValue = minRelationship;
             relationshipSlider.maxValue = maxRelationship;
             relationshipSlider.value = relationshipValue;
+
+            Canvas.ForceUpdateCanvases();
+
+            Debug.Log($"Slider updated to: {relationshipSlider.value}");
         }
 
         if (relationshipLabel != null)

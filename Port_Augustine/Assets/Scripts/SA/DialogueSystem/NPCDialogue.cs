@@ -7,9 +7,14 @@ public class NPC_Dialogue : MonoBehaviour
     [Header("NPC Identity")]
     public string npcName = "NPC";
 
-    [Header("Dialogue Setup")]
-    public DialogueDirectory dialogueDirectory;
-    public List<string> dialogueSequence = new List<string>();
+    [Header("Dialogue Setup - By Day")]
+    [SerializeField] private List<DialogueDirectoryByDay> dialoguesByDay = new List<DialogueDirectoryByDay>();
+
+    [SerializeField] private List<string> dialogueSequence = new List<string>();
+
+    [Header("Fallback Settings")]
+    public bool useFallbackOnMissingDay = true;
+    public int fallbackDay = 1;
 
     [Header("Dialogue UI")]
     [SerializeField] GameObject interactUI;
@@ -25,16 +30,13 @@ public class NPC_Dialogue : MonoBehaviour
 
     void Start()
     {
-        if (dialogueDirectory == null)
-        {
-            Debug.LogError($"No Dialogue Directory assigned to {gameObject.name}!");
-        }
+        if (string.IsNullOrEmpty(npcName))
+            Debug.LogError($"NPCDialogue on {gameObject.name} has no NPC name assigned!");
 
-        if (dialogueSequence.Count == 0)
-        {
-            Debug.LogWarning($"No dialogue sequence assigned to {gameObject.name}!");
-        }
+        if (dialoguesByDay.Count == 0)
+            Debug.LogWarning($"NPCDialogue on {gameObject.name} has no dialogue directories assigned!");
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -74,9 +76,12 @@ public class NPC_Dialogue : MonoBehaviour
         if (showDebugMessages)
             Debug.Log($"NPC {gameObject.name} interacted!");
 
-        if (dialogueDirectory == null)
+        // Get the correct dialogue directory for the current day
+        DialogueDirectory currentDirectory = GetDialogueDirectoryForCurrentDay();
+
+        if (currentDirectory == null)
         {
-            Debug.LogError("No dialogue directory assigned!");
+            Debug.LogError($"No dialogue directory found for {gameObject.name} on Day {TimeSystem.Instance.currentDay}!");
             return;
         }
 
@@ -92,10 +97,10 @@ public class NPC_Dialogue : MonoBehaviour
             return;
         }
 
-        PlayCurrentDialogue();
+        PlayCurrentDialogue(currentDirectory);
     }
 
-    void PlayCurrentDialogue()
+    void PlayCurrentDialogue(DialogueDirectory currentDirectory)
     {
         if (currentDialogueIndex >= dialogueSequence.Count)
         {
@@ -105,18 +110,18 @@ public class NPC_Dialogue : MonoBehaviour
         }
 
         string dialogueName = dialogueSequence[currentDialogueIndex];
-        Dialogue dialogue = dialogueDirectory.GetDialogueByName(dialogueName);
+        Dialogue dialogue = currentDirectory.GetDialogueByName(dialogueName);
 
         if (dialogue != null)
         {
             if (showDebugMessages)
-                Debug.Log($"Playing dialogue: {dialogueName}");
+                Debug.Log($"Playing dialogue: {dialogueName} (Day {TimeSystem.Instance.currentDay})");
 
             DialogueManager.Instance.StartDialogue(dialogue, OnDialogueFinished, npcName);
         }
         else
         {
-            Debug.LogError($"Dialogue '{dialogueName}' not found in directory!");
+            Debug.LogError($"Dialogue '{dialogueName}' not found in directory for Day {TimeSystem.Instance.currentDay}!");
         }
     }
 
@@ -132,6 +137,62 @@ public class NPC_Dialogue : MonoBehaviour
     {
         currentDialogueIndex = 0;
         Debug.Log("Dialogue sequence reset");
+    }
+
+    // Get the correct dialogue directory for the current day
+    DialogueDirectory GetDialogueDirectoryForCurrentDay()
+    {
+        int currentDay = TimeSystem.Instance.currentDay;
+
+        // Look for exact day match
+        foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+        {
+            if (dayDir.day == currentDay && dayDir.directory != null)
+            {
+                if (showDebugMessages)
+                    Debug.Log($"Using dialogue directory for Day {currentDay}");
+                return dayDir.directory;
+            }
+        }
+
+        // If no exact match and fallback is enabled
+        if (useFallbackOnMissingDay)
+        {
+            foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+            {
+                if (dayDir.day == fallbackDay && dayDir.directory != null)
+                {
+                    if (showDebugMessages)
+                        Debug.Log($"No directory for Day {currentDay}. Using fallback Day {fallbackDay}");
+                    return dayDir.directory;
+                }
+            }
+        }
+
+        // No directory found
+        if (showDebugMessages)
+            Debug.LogError($"No dialogue directory available for {gameObject.name} on Day {currentDay}");
+        return null;
+    }
+
+    // Helper method to get current day's directory
+    public DialogueDirectory GetCurrentDayDirectory()
+    {
+        return GetDialogueDirectoryForCurrentDay();
+    }
+
+    // Get all available days for this NPC
+    public int[] GetAvailableDays()
+    {
+        List<int> days = new List<int>();
+        foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+        {
+            if (dayDir.directory != null && !days.Contains(dayDir.day))
+            {
+                days.Add(dayDir.day);
+            }
+        }
+        return days.ToArray();
     }
 }
 

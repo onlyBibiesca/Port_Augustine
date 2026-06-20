@@ -107,7 +107,7 @@ public class TimeSystem : MonoBehaviour
         AddTime(hours, minutes);
 
         if (showDebugMessages)
-            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {hours}h {minutes}m");
+            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {hours}h {minutes}m");  
     }
 
     public void SetTime(int hour, int minute)
