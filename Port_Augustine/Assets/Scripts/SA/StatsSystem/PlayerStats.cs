@@ -25,6 +25,8 @@ public class PlayerStats : MonoBehaviour
     public int maxStat = 100;
 
     private int BaseEnergyMax => 100;
+    private int BaseHungerMax => 100;
+    private int BaseHappinessMax => 100;
 
     [Header("UI References")]
     public UnityEngine.UI.Slider hungerSlider;
@@ -99,7 +101,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeHunger(int amount)
     {
-        hunger = Mathf.Clamp(hunger + amount, minStat, maxStat);
+        hunger = Mathf.Clamp(hunger + amount, minStat, GetMaxHunger());
         UpdateStatsDisplay();
         OnHungerChanged?.Invoke(hunger);
 
@@ -119,7 +121,7 @@ public class PlayerStats : MonoBehaviour
 
     public void ChangeHappiness(int amount)
     {
-        happiness = Mathf.Clamp(happiness + amount, minStat, maxStat);
+        happiness = Mathf.Clamp(happiness + amount, minStat, GetMaxHappiness());
         UpdateStatsDisplay();
         OnHappinessChanged?.Invoke(happiness);
 
@@ -129,7 +131,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetHunger(int value)
     {
-        hunger = Mathf.Clamp(value, minStat, maxStat);
+        hunger = Mathf.Clamp(value, minStat, GetMaxHunger());
         UpdateStatsDisplay();
         OnHungerChanged?.Invoke(hunger);
     }
@@ -143,7 +145,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetHappiness(int value)
     {
-        happiness = Mathf.Clamp(value, minStat, maxStat);
+        happiness = Mathf.Clamp(value, minStat, GetMaxHappiness());
         UpdateStatsDisplay();
         OnHappinessChanged?.Invoke(happiness);
     }
@@ -153,7 +155,7 @@ public class PlayerStats : MonoBehaviour
         if (hungerSlider != null)
         {
             hungerSlider.minValue = minStat;
-            hungerSlider.maxValue = maxStat;
+            hungerSlider.maxValue = GetMaxHunger();
             hungerSlider.value = hunger;
         }
 
@@ -167,7 +169,7 @@ public class PlayerStats : MonoBehaviour
         if (happinessSlider != null)
         {
             happinessSlider.minValue = minStat;
-            happinessSlider.maxValue = maxStat;
+            happinessSlider.maxValue = GetMaxHappiness();
             happinessSlider.value = happiness;
         }
     }
@@ -199,8 +201,39 @@ public class PlayerStats : MonoBehaviour
         return BaseEnergyMax + bonus;
     }
 
+    public int GetMaxHappiness()
+    {
+        int bonus = 0;
+
+        if (TraitsManager.Instance != null)
+        {
+            foreach (var trait in TraitsManager.Instance.ActiveTraits)
+            {
+                bonus += trait.happinessMaxBonus;
+            }
+        }
+
+        return BaseHappinessMax + bonus;
+    }
+
+    public int GetMaxHunger()
+    {
+        int bonus = 0;
+
+        if (TraitsManager.Instance != null)
+        {
+            foreach (var trait in TraitsManager.Instance.ActiveTraits)
+            {
+                bonus += trait.hungerMaxBonus;
+            }
+        }
+
+        return BaseHungerMax + bonus;
+    }
+
+
     public void DebugStats()
     {
-        Debug.Log($"Hunger: {hunger}/{maxStat} | Energy: {energy}/{GetMaxEnergy()} | Happiness: {happiness}/{maxStat}");
+        Debug.Log($"Hunger: {hunger}/{GetMaxHunger()} | Energy: {energy}/{GetMaxEnergy()} | Happiness: {happiness}/{GetMaxHappiness()}");
     }
 }

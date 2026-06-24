@@ -43,8 +43,8 @@ public class TraitSO : ScriptableObject
     public List<TraitSO> grantedTraits = new();
 
     [Header("Stat Modifiers")]
-    public int maxHungerModifier = 0;
+    public int hungerMaxBonus = 0;
     public int energyMaxBonus = 0;
-    public int maxHappinessModifier = 0;
+    public int happinessMaxBonus = 0;
         
 }
