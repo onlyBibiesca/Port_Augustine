@@ -1828,6 +1828,7 @@ MonoBehaviour:
   minEnergyRecovery: 10
   allowOversleep: 1
   oversleepBonus: 10
+  statConsumable: {fileID: 11400000, guid: 00830609253bebb48bc3a46f1e9dd800, type: 2}
   showDebugMessages: 1
 --- !u!1 &134547228
 GameObject:
@@ -3618,7 +3619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c6e41361c2841488ee3f294755cc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questInventoryController: {fileID: 0}
 --- !u!95 &425564034
 Animator:
   serializedVersion: 5
@@ -4002,6 +4002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!1001 &425664103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4637,6 +4638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!114 &623641126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34768,6 +34770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!114 &2019845591
 MonoBehaviour:
   m_ObjectHideFlags: 0

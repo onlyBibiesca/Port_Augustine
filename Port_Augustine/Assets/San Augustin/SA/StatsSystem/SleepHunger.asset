@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38850fd5053da9c4f8c310b0d465da01, type: 3}
-  m_Name: Hotdog
+  m_Script: {fileID: 11500000, guid: 6710224ae36c17e4a92944218ff7c0dc, type: 3}
+  m_Name: SleepHunger
   m_EditorClassIdentifier: 
-  itemName: Hotdog
-  statChanges:
-  - stat: 2
-    amount: 10
+  affectsStats: 1
+  hungerChange: -30
+  energyChange: 0
+  happinessChange: 0
+  consumableName: SleepHunger
+  description: 

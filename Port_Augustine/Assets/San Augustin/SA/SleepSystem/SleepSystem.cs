@@ -30,6 +30,9 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     [Range(0, 50)]
     public int oversleepBonus = 10; // Extra energy per hour over default
 
+    [Header("Stat Consumable")]
+    [SerializeField] StatConsumable statConsumable;
+
     [Header("Debug")]
     public bool showDebugMessages = true;
 
@@ -62,6 +65,18 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
         SleepSystem.Instance.GoToSleep();
         SleepSystem.Instance.WakeUpAtDefaultTime();
+
+        if (PlayerStats.Instance != null && statConsumable != null)
+        {
+            if (PlayerStats.Instance != null)
+            {
+                PlayerStats.Instance.ConsumeStat(statConsumable);
+            }
+            else
+            {
+                Debug.LogError("PlayerStats not found in scene!");
+            }
+        }
     }
 
     // Player goes to sleep at current time
@@ -111,6 +126,7 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         // Calculate sleep duration
         int sleepDurationHours = 0;
         int sleepDurationMinutes = 0;
+        int daysSlept = 0;
 
         // Account for sleeping across midnight
         if (wakeUpHour >= sleepStartHour)
@@ -118,12 +134,14 @@ public class SleepSystem : MonoBehaviour, InteractableObject
             // Same day sleep (shouldn't happen in normal use)
             sleepDurationHours = wakeUpHour - sleepStartHour;
             sleepDurationMinutes = wakeUpMinute - sleepStartMinute;
+            daysSlept = 0;
         }
         else
         {
-            // Overnight sleep
+            // Overnight sleep - woke up on next day
             sleepDurationHours = (24 - sleepStartHour) + wakeUpHour;
             sleepDurationMinutes = wakeUpMinute - sleepStartMinute;
+            daysSlept = 1;
         }
 
         // Handle negative minutes
@@ -147,6 +165,13 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
         // Advance time to wake up time
         TimeSystem.Instance.SetTime(wakeUpHour, wakeUpMinute);
+
+        if (daysSlept > 0)
+        {
+            TimeSystem.Instance.SetDay(TimeSystem.Instance.currentDay + daysSlept);
+            if (showDebugMessages)
+                Debug.Log($"Advanced to Day {TimeSystem.Instance.currentDay}");
+        }
 
         // Reset sleep state
         isSleeping = false;
