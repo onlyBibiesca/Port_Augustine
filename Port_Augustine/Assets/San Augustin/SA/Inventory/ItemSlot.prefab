@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7fe64849d220d7a438a65106bb6afbc3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 957c0ff229c474444ad546c01f70b506, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -97,6 +97,10 @@ MonoBehaviour:
   itemImage: {fileID: 7605004502611018401}
   selectedShader: {fileID: 3956793288916931393}
   thisItemSelected: 0
+  itemDescription: 
+  itemDescriptionImage: {fileID: 0}
+  itemDescriptionNameText: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
 --- !u!1 &3956793288916931393
 GameObject:
   m_ObjectHideFlags: 0
