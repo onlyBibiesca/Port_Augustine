@@ -18,6 +18,7 @@ public class NPC_Dialogue : MonoBehaviour
 
     [Header("Dialogue UI")]
     [SerializeField] GameObject interactUI;
+    [SerializeField] AudioSource buttonSound;
 
     [Header("Debug")]
     public bool showDebugMessages = true;
@@ -27,6 +28,7 @@ public class NPC_Dialogue : MonoBehaviour
     private GameObject player;
 
     private InteractableObject nearbyInteractable;
+
 
     void Start()
     {
@@ -65,6 +67,7 @@ public class NPC_Dialogue : MonoBehaviour
 
     public void OnInteract()
     {
+        buttonSound.Play();
         // Block interaction if dialogue is already active
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
         {

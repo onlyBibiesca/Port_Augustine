@@ -15,6 +15,9 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
 
+    [Header("Sounds")]
+    [SerializeField] AudioSource buttonSound;
+
     [Header("Go to Confiner")]
     [SerializeField] PolygonCollider2D mapBoundary;
     [SerializeField] Direction direction;
@@ -51,7 +54,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
-
+        buttonSound.Play();
         Debug.Log("========== INTERACT CALLED ==========");
         Debug.Log($"Player is null? {player == null}");
         Debug.Log($"MapBoundary is null? {mapBoundary == null}");

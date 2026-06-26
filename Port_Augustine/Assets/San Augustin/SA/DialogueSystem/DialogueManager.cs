@@ -483,7 +483,7 @@ public class DialogueManager : MonoBehaviour
 
         if (playerUI != null)
         {
-            playerUI.SetActive(false);
+            playerUI.SetActive(true);
         }
 
         currentDialogue = null;

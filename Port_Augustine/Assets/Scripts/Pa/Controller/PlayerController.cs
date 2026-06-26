@@ -8,9 +8,6 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private GameObject InventoryScreen;
-    [SerializeField] private GameObject debugScreen;
-    [SerializeField] private GameObject questScreen;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject sureButton;
     [SerializeField] public Animator _Animator;
@@ -77,62 +74,6 @@ public class PlayerMovement : MonoBehaviour
             _Animator.SetBool("IsMovingUp", false);
             _Animator.SetBool("IsMovingDown", false);
             _Animator.SetBool("StandingStill", true);
-        }
-    }
-
-    public void OnInventory(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            bool isActive = InventoryScreen.activeSelf;
-            InventoryScreen.SetActive(!isActive);
-            Time.timeScale = isActive ? 1 : 0;
-            isInventoryClick = !isActive;
-
-            Debug.Log(isActive ? "Closed Inventory" : "Opened Inventory");
-        }
-    }
-
-    public void PauseScreen (InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            bool isActive = pauseScreen.activeSelf;
-            pauseScreen.SetActive(!isActive);
-            isPausePressed = !isActive;
-
-            
-            if (!isActive)
-            {
-                // Pause menu is being closed
-                sureButton.SetActive(false);
-            }
-            Debug.Log(isActive ? "Closed Pause Screen" : "Opened Pause Screen");
-        }
-    
-    }
-
-    public void OnDebug(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            bool isActive = debugScreen.activeSelf;
-            debugScreen.SetActive(!isActive);
-            isDebugClick = !isActive;
-
-            Debug.Log(isActive ? "Closed Debug Screen" : "Opened Debug Screen");
-        }
-    }
-
-    public void OnQuest(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            bool isActive = questScreen.activeSelf;
-            questScreen.SetActive(!isActive);
-            isQuestClick = !isActive;
-
-            Debug.Log(isActive ? "Closed Quest Screen" : "Opened Quest Screen");
         }
     }
 
