@@ -13,6 +13,7 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TMP_Text speakerNameText;
     public TMPro.TMP_Text dialogueText;
     public UnityEngine.UI.Button nextButton;
+    public GameObject playerUI;
 
     [Header("Portrait References")]
     public GameObject portraitContainer;
@@ -59,6 +60,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         IsDialogueActive = false;
+
 
         if (dialoguePanel != null)
         {
@@ -112,6 +114,11 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
         waitingForChoice = false;
+
+        if (playerUI != null)
+        {
+            playerUI.SetActive(false);
+        }
 
         if (dialoguePanel != null)
         {
@@ -472,6 +479,11 @@ public class DialogueManager : MonoBehaviour
         if (RelationshipManager.Instance != null)
         {
             RelationshipManager.Instance.HideRelationshipSlider();
+        }
+
+        if (playerUI != null)
+        {
+            playerUI.SetActive(false);
         }
 
         currentDialogue = null;

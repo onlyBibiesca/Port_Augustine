@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Carlos - Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueName: Greeting
+  lines:
+  - speakerName: Carlos
+    text: Tol! How is you my skibbiditol?
+    hasChoices: 1
+    choices:
+    - choiceText: Stop being so skibbidi.
+      nextDialogue: {fileID: 0}
+      relationshipChange: -21
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Saks lang tol. Mag-ingat sila sayo ah
+      nextDialogue: {fileID: 11400000, guid: 87290d314de0adc4baece5b730bb9669, type: 2}
+      relationshipChange: 18
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: dea869fd9f19ea74298234eade456399, type: 3}
+  consumesTime: 1
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

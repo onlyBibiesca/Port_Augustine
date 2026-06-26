@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Angeline - Greeting
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  dialogueName: Greeting
+  lines:
+  - speakerName: Angeline
+    text: Hello Ms. AJ! This is the progress of our build!
+    hasChoices: 1
+    choices:
+    - choiceText: You call this progress?
+      nextDialogue: {fileID: 11400000, guid: 825ee3ddef8dcf843827d908a6030514, type: 2}
+      relationshipChange: -20
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Nice progress!
+      nextDialogue: {fileID: 11400000, guid: a1441de7ed5005841a3f47cccc1eea06, type: 2}
+      relationshipChange: 20
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: caf8402b6d51a4a43bfd8bb7c39c5012, type: 3}
+  consumesTime: 1
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

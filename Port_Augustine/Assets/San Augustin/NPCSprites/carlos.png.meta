@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2dec64b6e5202246bb67d56ae951593
+guid: e9aa7c4bc8094ef4f807144ccba98206
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 26
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 0
+    resizeAlgorithm: 1
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
@@ -110,253 +110,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_0
+      name: carlos_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 96
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f87df6c4a31c58f45a97cfe8af451459
-      internalID: -1742952326
+      spriteID: 269c46e25d197b94093af4b5aad881a9
+      internalID: 228090365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_1
+      name: carlos_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 15
         y: 96
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 273898d655d91524b990cd017df7da3a
-      internalID: -1845233985
+      spriteID: 6d878f5210493b043ad0122618a3038f
+      internalID: 2009118769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_2
+      name: carlos_2
       rect:
         serializedVersion: 2
-        x: 31
+        x: 30
         y: 96
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a15d245784c4aee4e955548c8158c594
-      internalID: -1369416380
+      spriteID: 4f7e5435e46d3cf44b4585922ddf279c
+      internalID: 1429219660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_3
+      name: carlos_3
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 64
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34946883612c2ee43beab5a4a45fcad1
-      internalID: -1170287620
+      spriteID: d9beae462bb0d0a42868dbb45a3a1a69
+      internalID: -115716148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_4
+      name: carlos_4
       rect:
         serializedVersion: 2
-        x: 16
+        x: 15
         y: 64
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b4f806c09f8faa4fb29a209c26a9db2
-      internalID: 1117980562
+      spriteID: b218b87f6cc106b46a1d60f6b4fa9a62
+      internalID: 1656501532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_5
+      name: carlos_5
       rect:
         serializedVersion: 2
-        x: 31
+        x: 30
         y: 64
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56b4b89b92a40f64ebd21df652c3b8b0
-      internalID: 1626641275
+      spriteID: e04b8b11ece22ce488296489dffbd379
+      internalID: -1307355731
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_6
+      name: carlos_6
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 32
-        width: 12
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cb06bef14bcff64c9fbe16dfb70f63f
-      internalID: 685029311
+      spriteID: eb54524ae635ab34196f810da60ef6dc
+      internalID: 831060623
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_7
+      name: carlos_7
       rect:
         serializedVersion: 2
-        x: 17
+        x: 15
         y: 32
-        width: 14
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb90790126d1d754bab700f1feb0c013
-      internalID: 1055173201
+      spriteID: b4d948a12cf6f794ba63fbf954bc0a36
+      internalID: 798987871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_8
+      name: carlos_8
       rect:
         serializedVersion: 2
-        x: 32
+        x: 30
         y: 32
-        width: 13
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ae0d91576f3020468df8557f560b792
-      internalID: -747824120
+      spriteID: 3af758001b911954fa52fd31f0d191fa
+      internalID: 838977426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_9
+      name: carlos_9
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 12
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35f2100a2a898e840919ecac565784f9
-      internalID: -156761368
+      spriteID: b01beb3dc1c3a0c40a24d0fdfdc1a57f
+      internalID: 1229910708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_10
+      name: carlos_10
       rect:
         serializedVersion: 2
-        x: 16
+        x: 15
         y: 0
-        width: 14
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36b70194645bc49469cddcc7faec6aac
-      internalID: -330148560
+      spriteID: d8e02068ed885264998dc4e676e35007
+      internalID: -1795875443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BoyWalkSpriteSheet_11
+      name: carlos_11
       rect:
         serializedVersion: 2
-        x: 31
+        x: 30
         y: 0
-        width: 14
-        height: 29
+        width: 15
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f496c7a82f30b4c49aa8d128c8937169
-      internalID: 494553864
+      spriteID: dc0ca698648a8aa418c7b601c697506b
+      internalID: 2114925334
       vertices: []
       indices: 
       edges: []
@@ -372,18 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BoyWalkSpriteSheet_0: -1742952326
-      BoyWalkSpriteSheet_1: -1845233985
-      BoyWalkSpriteSheet_10: -330148560
-      BoyWalkSpriteSheet_11: 494553864
-      BoyWalkSpriteSheet_2: -1369416380
-      BoyWalkSpriteSheet_3: -1170287620
-      BoyWalkSpriteSheet_4: 1117980562
-      BoyWalkSpriteSheet_5: 1626641275
-      BoyWalkSpriteSheet_6: 685029311
-      BoyWalkSpriteSheet_7: 1055173201
-      BoyWalkSpriteSheet_8: -747824120
-      BoyWalkSpriteSheet_9: -156761368
+      carlos_0: 228090365
+      carlos_1: 2009118769
+      carlos_10: -1795875443
+      carlos_11: 2114925334
+      carlos_2: 1429219660
+      carlos_3: -115716148
+      carlos_4: 1656501532
+      carlos_5: -1307355731
+      carlos_6: 831060623
+      carlos_7: 798987871
+      carlos_8: 838977426
+      carlos_9: 1229910708
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

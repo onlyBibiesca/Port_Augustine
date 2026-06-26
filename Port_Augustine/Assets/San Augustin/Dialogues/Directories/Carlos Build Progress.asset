@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd78cb970c6db374bbe3b8fb013119da, type: 3}
+  m_Name: Carlos Build Progress
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 62ef69cec6df9224a95697d5d0efd690, type: 2}
+  - {fileID: 11400000, guid: 87290d314de0adc4baece5b730bb9669, type: 2}
+  - {fileID: 11400000, guid: 3bd8cbddda8690e4590c610de60e2410, type: 2}
