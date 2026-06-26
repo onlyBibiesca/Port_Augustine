@@ -362,7 +362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 310851177}
   rawImage: {fileID: 29717971}
-  nextSceneName: SampleScene
+  nextSceneName: DialogueSystemTest
 --- !u!4 &128701233
 Transform:
   m_ObjectHideFlags: 0
