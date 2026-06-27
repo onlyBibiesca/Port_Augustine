@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: David - Greeting
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
-  dialogueName: David
+  dialogueName: Greeting
   lines:
   - speakerName: David
     text: Welcome to San Augustin!

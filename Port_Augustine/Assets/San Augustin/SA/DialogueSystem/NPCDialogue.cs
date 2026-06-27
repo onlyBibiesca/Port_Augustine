@@ -16,6 +16,13 @@ public class NPC_Dialogue : MonoBehaviour
     public bool useFallbackOnMissingDay = true;
     public int fallbackDay = 1;
 
+    [Header("Event System")]
+    public List<NPCEvent> availableEvents = new List<NPCEvent>();
+
+    private NPCEvent currentEvent = null;
+    private string currentEventKey = "";
+    private Vector3 originalPosition;
+
     [Header("Dialogue UI")]
     [SerializeField] GameObject interactUI;
     [SerializeField] AudioSource buttonSound;
@@ -32,6 +39,9 @@ public class NPC_Dialogue : MonoBehaviour
 
     void Start()
     {
+        originalPosition = transform.position;
+        CheckForAvailableEvents();
+
         if (string.IsNullOrEmpty(npcName))
             Debug.LogError($"NPCDialogue on {gameObject.name} has no NPC name assigned!");
 
@@ -65,6 +75,35 @@ public class NPC_Dialogue : MonoBehaviour
         }
     }
 
+    void CheckForAvailableEvents()
+    {
+        if (RelationshipManager.Instance == null || NPCEventManager.Instance == null)
+            return;
+
+        int currentRelationship = RelationshipManager.Instance.GetRelationship(npcName);
+        NPCEvent availableEvent = NPCEventManager.Instance.GetAvailableEvent(npcName, currentRelationship, availableEvents);
+
+        if (availableEvent != null)
+        {
+            currentEvent = availableEvent;
+            currentEventKey = $"{npcName}_{availableEvent.eventName}";
+
+            // Move NPC to event location
+            if (availableEvent.eventLocation != null)
+            {
+                transform.position = availableEvent.eventLocation.position;
+            }
+
+            // Show exclamation mark
+            NPCEventIndicator indicator = GetComponent<NPCEventIndicator>();
+            if (indicator != null)
+                indicator.ShowEventIndicator();
+
+            Debug.Log($"Event available: {currentEvent.eventName}");
+        }
+    }
+
+
     public void OnInteract()
     {
         buttonSound.Play();
@@ -76,11 +115,24 @@ public class NPC_Dialogue : MonoBehaviour
             return;
         }
 
+
         if (showDebugMessages)
             Debug.Log($"NPC {gameObject.name} interacted!");
 
         // Get the correct dialogue directory for the current day
         DialogueDirectory currentDirectory = GetDialogueDirectoryForCurrentDay();
+
+        // If event is available, play event dialogue instead
+        if (currentEvent != null)
+        {
+            NPCEventManager.Instance.StartEventTracking(currentEventKey);
+            DialogueManager.Instance.StartDialogue(null, OnEventFinished, npcName, currentEvent);
+        }
+        else
+        {
+            // Normal dialogue
+            PlayCurrentDialogue(currentDirectory);
+        }
 
         if (currentDirectory == null)
         {
@@ -101,6 +153,40 @@ public class NPC_Dialogue : MonoBehaviour
         }
 
         PlayCurrentDialogue(currentDirectory);
+    }
+
+    void OnEventFinished()
+    {
+        bool eventSuccess = NPCEventManager.Instance.IsEventSuccessful(currentEventKey);
+
+        // Apply outcome
+        if (eventSuccess)
+        {
+            Debug.Log("Event successful!");
+            if (currentEvent.successDialogue != null)
+                DialogueManager.Instance.StartDialogue(currentEvent.successDialogue, null, npcName);
+
+            RelationshipManager.Instance.ChangeRelationship(npcName, currentEvent.successRelationshipBonus);
+        }
+        else
+        {
+            Debug.Log("Event failed!");
+            if (currentEvent.failureDialogue != null)
+                DialogueManager.Instance.StartDialogue(currentEvent.failureDialogue, null, npcName);
+
+            RelationshipManager.Instance.ChangeRelationship(npcName, currentEvent.failureRelationshipPenalty);
+        }
+
+        NPCEventManager.Instance.CompleteEvent(currentEventKey, eventSuccess);
+        currentEvent = null;
+
+        // Return NPC to original position
+        transform.position = originalPosition;
+
+        // Hide indicator
+        NPCEventIndicator indicator = GetComponent<NPCEventIndicator>();
+        if (indicator != null)
+            indicator.HideEventIndicator();
     }
 
     void PlayCurrentDialogue(DialogueDirectory currentDirectory)

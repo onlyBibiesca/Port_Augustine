@@ -40,6 +40,12 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private string fullText = "";
 
+    private NPCEvent currentEvent = null;
+    private string currentEventKey = "";
+
+    public bool IsInEvent() => currentEvent != null;
+    public string GetCurrentEventKey() => currentEventKey;
+
 
 
     public bool IsDialogueActive { get; private set; }
@@ -104,7 +110,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null, string npcName = "Unknown")
+    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null, string npcName = "Unknown", NPCEvent evt = null)
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
 
@@ -114,6 +120,18 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
         waitingForChoice = false;
+
+        if (evt != null)
+        {
+            currentEvent = evt;
+            currentEventKey = $"{npcName}_{evt.eventName}";
+            // Play event dialogue directory
+            // ... handle event dialogue playback
+        }
+        else
+        {
+            currentEvent = null;
+        }
 
         if (playerUI != null)
         {
@@ -410,7 +428,15 @@ public class DialogueManager : MonoBehaviour
 
         waitingForChoice = false;
 
-        // If the choice leads to another dialogue, play it
+        // TRACK EVENT CHOICE
+        if (DialogueManager.Instance.IsInEvent())
+        {
+            string eventKey = DialogueManager.Instance.GetCurrentEventKey();
+            NPCEventManager.Instance.RecordEventChoice(eventKey, choice.choiceType);
+            Debug.Log($"Event choice recorded: {choice.choiceType}");
+        }
+
+            // If the choice leads to another dialogue, play it
         if (choice.nextDialogue != null)
         {
             StartDialogue(choice.nextDialogue, onDialogueComplete, currentNPCName);
