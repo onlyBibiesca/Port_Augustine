@@ -587,6 +587,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
+      propertyPath: wallet
+      value: 
+      objectReference: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
+    - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: interactUI
       value: 
       objectReference: {fileID: 2129891211}
@@ -598,6 +602,10 @@ PrefabInstance:
       propertyPath: mapBoundary
       value: 
       objectReference: {fileID: 1144745487}
+    - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
+      propertyPath: commutePrice
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: virtualCamera
       value: 
@@ -3303,6 +3311,14 @@ PrefabInstance:
       propertyPath: walletText
       value: 
       objectReference: {fileID: 1247267373}
+    - target: {fileID: 1169705412745373276, guid: 3cb03a9ea90870a43825483358db3f96, type: 3}
+      propertyPath: statConsumable
+      value: 
+      objectReference: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
+    - target: {fileID: 1169705412745373276, guid: 3cb03a9ea90870a43825483358db3f96, type: 3}
+      propertyPath: timeConsumable
+      value: 
+      objectReference: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
     - target: {fileID: 2001985582356212365, guid: 3cb03a9ea90870a43825483358db3f96, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -21293,6 +21309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!1001 &425664103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22602,7 +22619,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 170, y: 402.706}
-  m_SizeDelta: {x: 160, y: 86.589}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599480729
 MonoBehaviour:
@@ -22618,6 +22635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Chicken
   quantity: 1
+  itemSO: {fileID: 11400000, guid: 909c3c5975a3d734ba1c2791a0bd3ad4, type: 2}
+  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   sprite: {fileID: 21300000, guid: 8a01cd2ece0a04e4082f0bc8ef0ca433, type: 3}
   itemDescription: THANK YOU FOR THE PROTEIN SIR
 --- !u!114 &599480730
@@ -22786,6 +22805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!114 &623641126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31181,7 +31201,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -230, y: 402.706}
-  m_SizeDelta: {x: 160, y: 86.589}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358631881
 MonoBehaviour:
@@ -31197,6 +31217,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Burger
   quantity: 1
+  itemSO: {fileID: 11400000, guid: 3ba2cdad57abf5349aabc3c5f884cf39, type: 2}
+  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   sprite: {fileID: 21300000, guid: a79471f036e2ed24ab13fca244c099df, type: 3}
   itemDescription: A juicy burge... yes
 --- !u!114 &1358631882
@@ -51936,6 +51958,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
+      propertyPath: wallet
+      value: 
+      objectReference: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
+    - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: interactUI
       value: 
       objectReference: {fileID: 1805237349}
@@ -51947,6 +51973,10 @@ PrefabInstance:
       propertyPath: mapBoundary
       value: 
       objectReference: {fileID: 1604503711}
+    - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
+      propertyPath: commutePrice
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8501661219185503500, guid: 23eab33e1fec28c42bfd15d3b0e10902, type: 3}
       propertyPath: virtualCamera
       value: 
@@ -55248,6 +55278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e730c4babb85d7944b7e01f9464f52bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  promptUI: {fileID: 0}
 --- !u!114 &2019845591
 MonoBehaviour:
   m_ObjectHideFlags: 0

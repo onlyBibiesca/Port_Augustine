@@ -6,6 +6,7 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] GameObject targetObject;
 
+
     public void ToggleActiveState()
     {
         if (targetObject != null)

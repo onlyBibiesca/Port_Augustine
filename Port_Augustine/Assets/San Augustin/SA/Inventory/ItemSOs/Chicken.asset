@@ -16,3 +16,4 @@ MonoBehaviour:
   ChangeHunger: 20
   ChangeEnergy: -10
   ChangeHappiness: 0
+  itemPrice: 50

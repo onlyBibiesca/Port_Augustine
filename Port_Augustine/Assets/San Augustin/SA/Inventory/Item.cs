@@ -12,6 +12,13 @@ public class Item : MonoBehaviour
     private int quantity;
 
     [SerializeField]
+    private ItemSO itemSO;
+
+    [SerializeField]
+    private Wallet wallet;
+    //player wallet
+
+    [SerializeField]
     private Sprite sprite;
 
     [TextArea]
@@ -30,8 +37,16 @@ public class Item : MonoBehaviour
     public void PickUpItem()
     {
        
-
-        InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
+        if(wallet.money >= itemSO.itemPrice)
+        {
+            wallet.money -= itemSO.itemPrice;
+            InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
+        }
+        else
+        {
+            Debug.Log("Insufficient Funds!");
+        }
+        
 
         
     }

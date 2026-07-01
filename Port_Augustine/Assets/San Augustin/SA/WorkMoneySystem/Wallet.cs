@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Wallet", menuName = "PlayerWallet")]
 public class Wallet : ScriptableObject
 {
-    public float money;
-    public float defaultValue;
+    public int money;
+    public int defaultValue;
 
     public void PrintMessage()
     {

@@ -14,6 +14,10 @@ public class ItemSO : ScriptableObject
     public int ChangeEnergy = 0;
     public int ChangeHappiness = 0;
 
+    [Header("Money Pricing")]
+    [SerializeField]public int itemPrice;
+    //leaving it blank is free, putting in value requires player's wallet
+
     public void UseItem()
     {
         if (PlayerStats.Instance == null)

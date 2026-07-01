@@ -30,6 +30,10 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     [SerializeField] int animationTimer; //how long does the animation last
     CinemachineConfiner confiner;
 
+    [Header("Commute Price")]
+    [SerializeField] int commutePrice;
+    [SerializeField] Wallet wallet;
+
     [Header("Consumables Modular")]
     [SerializeField] TimeConsumable timeConsumable;
     [SerializeField] StatConsumable statConsumable;
@@ -59,68 +63,76 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
         Debug.Log($"Player is null? {player == null}");
         Debug.Log($"MapBoundary is null? {mapBoundary == null}");
 
-        if (player != null && mapBoundary != null)
+        if (wallet.money >= commutePrice)
         {
-
-
-            // DETAILED TIME CONSUMPTION DEBUGGING
-            Debug.Log("--- TIME CONSUMPTION CHECK ---");
-            Debug.Log($"timeConsumable is null? {timeConsumable == null}");
-
-            if (timeConsumable != null)
+            wallet.money -= commutePrice;
+            if (player != null && mapBoundary != null)
             {
-                Debug.Log($"TimeConsumable Name: {timeConsumable.consumableName}");
-                Debug.Log($"Consumes Time: {timeConsumable.consumesTime}");
-                Debug.Log($"Hours: {timeConsumable.hoursToConsume}");
-                Debug.Log($"Minutes: {timeConsumable.minutesToConsume}");
-            }
+                // DETAILED TIME CONSUMPTION DEBUGGING
+                Debug.Log("--- TIME CONSUMPTION CHECK ---");
+                Debug.Log($"timeConsumable is null? {timeConsumable == null}");
 
-            Debug.Log($"TimeSystem.Instance is null? {TimeSystem.Instance == null}");
-
-            if (TimeSystem.Instance != null)
-            {
-                Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
-            }
-
-            if (timeConsumable != null && TimeSystem.Instance != null)
-            {
-                Debug.Log(">>> CALLING ConsumeTime() <<<");
-                TimeSystem.Instance.ConsumeTime(timeConsumable);
-                Debug.Log($"Current time AFTER: {TimeSystem.Instance.GetFormattedTime()}");
-            }
-            else if (timeConsumable == null)
-            {
-                Debug.LogWarning("No TimeConsumable assigned to this transition!");
-            }
-            else if (TimeSystem.Instance == null)
-            {
-                Debug.LogError("TimeSystem not found in scene!");
-            }
-
-            if (PlayerStats.Instance != null && statConsumable != null)
-            {
-                if (PlayerStats.Instance != null)
+                if (timeConsumable != null)
                 {
-                    PlayerStats.Instance.ConsumeStat(statConsumable);
+                    Debug.Log($"TimeConsumable Name: {timeConsumable.consumableName}");
+                    Debug.Log($"Consumes Time: {timeConsumable.consumesTime}");
+                    Debug.Log($"Hours: {timeConsumable.hoursToConsume}");
+                    Debug.Log($"Minutes: {timeConsumable.minutesToConsume}");
                 }
-                else
+
+                Debug.Log($"TimeSystem.Instance is null? {TimeSystem.Instance == null}");
+
+                if (TimeSystem.Instance != null)
                 {
-                    Debug.LogError("PlayerStats not found in scene!");
+                    Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
                 }
+
+                if (timeConsumable != null && TimeSystem.Instance != null)
+                {
+                    Debug.Log(">>> CALLING ConsumeTime() <<<");
+                    TimeSystem.Instance.ConsumeTime(timeConsumable);
+                    Debug.Log($"Current time AFTER: {TimeSystem.Instance.GetFormattedTime()}");
+                }
+                else if (timeConsumable == null)
+                {
+                    Debug.LogWarning("No TimeConsumable assigned to this transition!");
+                }
+                else if (TimeSystem.Instance == null)
+                {
+                    Debug.LogError("TimeSystem not found in scene!");
+                }
+
+                if (PlayerStats.Instance != null && statConsumable != null)
+                {
+                    if (PlayerStats.Instance != null)
+                    {
+                        PlayerStats.Instance.ConsumeStat(statConsumable);
+                    }
+                    else
+                    {
+                        Debug.LogError("PlayerStats not found in scene!");
+                    }
+                }
+
+                Debug.Log("========== INTERACT END ==========");
+
+
+
+                StartCoroutine(DelayedAction(player));
+                transitionAnim.Play();
+                Debug.Log("Waiting animation to be done for " + animationTimer);
             }
-
-            Debug.Log("========== INTERACT END ==========");
-
-            
-
-            StartCoroutine(DelayedAction(player));
-            transitionAnim.Play();
-            Debug.Log("Waiting animation to be done for " + animationTimer);
+            else
+            {
+                Debug.LogWarning("player or mapTransition or stat consumable is null!");
+            }
         }
         else
         {
-            Debug.LogWarning("player or mapTransition or stat consumable is null!");
+            Debug.Log("Insuffecient funds");
         }
+
+        
 
     }
 
