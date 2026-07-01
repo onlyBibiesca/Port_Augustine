@@ -7,6 +7,8 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     public ItemSlot[] itemSlot;
+    public ItemSO[] itemSOs;
+    public ItemSlot selectedSlot;
 
     private void Awake()
     {
@@ -17,7 +19,17 @@ public class InventoryManager : MonoBehaviour
     }
 
 
+    public void  UseItem(string itemName)
+    {
+        for (int i = 0; i < itemSOs.Length; i++)
+        {
+            if (itemSOs[i].name == itemName)
+            {
+                itemSOs[i].UseItem();
+            }
+        }
 
+    }
 
     public void AddItem(string itemName, int quantity, Sprite itemSprite, string itemDescription)
     {
@@ -39,5 +51,17 @@ public class InventoryManager : MonoBehaviour
             itemSlot[i].selectedShader.SetActive(false);
             itemSlot[i].thisItemSelected = false;
         }
+    }
+
+    public void UseSelectedItem()
+    {
+        if (selectedSlot == null)
+            return;
+
+        UseItem(selectedSlot.itemName);
+
+        selectedSlot.EmptySlot();
+
+        selectedSlot = null;
     }
 }

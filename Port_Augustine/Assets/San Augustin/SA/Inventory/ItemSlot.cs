@@ -12,6 +12,7 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public string itemName;
     public int quantity;
     public Sprite itemSprite;
+    public Sprite emptySprite;
     public bool isFull;
 
     // ITEM SLOT //
@@ -55,11 +56,38 @@ public class ItemSlot : MonoBehaviour, IPointerClickHandler
     public void OnLeftClick()
     {
         inventoryManager.DeselectAllSlots();
+
         selectedShader.SetActive(true);
         thisItemSelected = true;
+
+        inventoryManager.selectedSlot = this;
+
         itemDescriptionNameText.text = itemName;
         itemDescriptionText.text = itemDescription;
-        itemDescriptionImage.sprite = itemSprite;
+
+        if (itemSprite != null)
+            itemDescriptionImage.sprite = itemSprite;
+        else
+            itemDescriptionImage.sprite = emptySprite;
+    }
+
+    public void EmptySlot()
+    {
+        itemName = "";
+        quantity = 0;
+        itemSprite = null;
+        itemDescription = "";
+
+        isFull = false;
+        thisItemSelected = false;
+
+        selectedShader.SetActive(false);
+
+        itemImage.sprite = emptySprite;
+
+        itemDescriptionNameText.text = "";
+        itemDescriptionText.text = "";
+        itemDescriptionImage.sprite = emptySprite;
     }
 }
 
