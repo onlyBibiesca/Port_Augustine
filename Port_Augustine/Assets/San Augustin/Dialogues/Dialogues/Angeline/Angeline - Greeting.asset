@@ -9,29 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Angeline - Greeting
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  m_EditorClassIdentifier: 
   dialogueName: Greeting
   lines:
-  - speakerName: Angeline
-    text: Hello Ms. AJ! This is the progress of our build!
+  - speakerName: ???
+    text: Hey newcomer!
     hasChoices: 1
     choices:
-    - choiceText: You call this progress?
-      nextDialogue: {fileID: 11400000, guid: 825ee3ddef8dcf843827d908a6030514, type: 2}
-      relationshipChange: -20
+    - choiceText: Yo! What's your name?
+      nextDialogue: {fileID: 11400000, guid: a1441de7ed5005841a3f47cccc1eea06, type: 2}
+      relationshipChange: 5
+      choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    - choiceText: Nice progress!
-      nextDialogue: {fileID: 11400000, guid: a1441de7ed5005841a3f47cccc1eea06, type: 2}
-      relationshipChange: 20
+    - choiceText: I do not have time for you.
+      nextDialogue: {fileID: 11400000, guid: 3215851a770c0044297729af10ffd629, type: 2}
+      relationshipChange: -5
+      choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
     characterPortrait: {fileID: 21300000, guid: caf8402b6d51a4a43bfd8bb7c39c5012, type: 3}
-  consumesTime: 1
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

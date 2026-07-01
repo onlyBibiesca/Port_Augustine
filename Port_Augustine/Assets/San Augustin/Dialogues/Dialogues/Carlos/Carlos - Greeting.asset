@@ -9,29 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Carlos - Greeting
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue
   dialogueName: Greeting
   lines:
   - speakerName: Carlos
-    text: Tol! How is you my skibbiditol?
+    text: Uy pre! Bumalik ka na pala
     hasChoices: 1
     choices:
-    - choiceText: Stop being so skibbidi.
-      nextDialogue: {fileID: 0}
-      relationshipChange: -21
+    - choiceText: Oo tol, ikot ikot lang ako ah. Laro tayo mamaya!
+      nextDialogue: {fileID: 11400000, guid: 87290d314de0adc4baece5b730bb9669, type: 2}
+      relationshipChange: 5
+      choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    - choiceText: Saks lang tol. Mag-ingat sila sayo ah
-      nextDialogue: {fileID: 11400000, guid: 87290d314de0adc4baece5b730bb9669, type: 2}
-      relationshipChange: 18
+    - choiceText: Teka lang pre, ingay e
+      nextDialogue: {fileID: 11400000, guid: 3bd8cbddda8690e4590c610de60e2410, type: 2}
+      relationshipChange: -5
+      choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
     characterPortrait: {fileID: 21300000, guid: dea869fd9f19ea74298234eade456399, type: 3}
-  consumesTime: 1
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

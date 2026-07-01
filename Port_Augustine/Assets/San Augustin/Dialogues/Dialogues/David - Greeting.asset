@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: David - Greeting
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue
+  m_EditorClassIdentifier: 
   dialogueName: Greeting
   lines:
   - speakerName: David
-    text: Welcome to San Augustin!
+    text: Welcome sa aking malupit na apartment idol! Ikot ikot ka, oh eto bente
     hasChoices: 0
     choices: []
     characterPortrait: {fileID: 21300000, guid: 941c7fecaba5bea43ac59a3a2079dac1, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0
-  statConsumable: {fileID: 0}
+  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
