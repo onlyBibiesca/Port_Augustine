@@ -59,18 +59,39 @@ public class RelationshipManager : MonoBehaviour
     // Change relationship for an NPC
     public void ChangeRelationship(string npcName, int amount)
     {
+        int finalAmount = amount;
+
+        // Apply trait modifier only to positive gains
+        if (amount > 0 && TraitsManager.Instance != null)
+        {
+            finalAmount += TraitsManager.Instance.GetRelationshipModifier();
+
+            // Prevent positive gains from becoming negative
+            finalAmount = Mathf.Max(0, finalAmount);
+        }
+
         int currentRelationship = GetRelationship(npcName);
-        int newRelationship = Mathf.Clamp(currentRelationship + amount, minRelationship, maxRelationship);
+
+        int newRelationship = Mathf.Clamp(
+            currentRelationship + finalAmount,
+            minRelationship,
+            maxRelationship
+        );
 
         npcRelationships[npcName] = newRelationship;
 
         if (showDebugMessages)
-            Debug.Log($"{npcName}: Relationship changed by {amount}. Current: {newRelationship}");
+        {
+            Debug.Log(
+                $"{npcName}: Relationship changed by {finalAmount} " +
+                $"(Base: {amount}, Trait Modifier: {finalAmount - amount}) " +
+                $"Current: {newRelationship}"
+            );
+        }
 
         OnRelationshipChanged?.Invoke(npcName, newRelationship);
         UpdateRelationshipDisplay(npcName, newRelationship);
     }
-
     // Set relationship directly
     public void SetRelationship(string npcName, int value)
     {

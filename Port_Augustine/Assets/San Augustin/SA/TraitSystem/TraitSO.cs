@@ -46,5 +46,8 @@ public class TraitSO : ScriptableObject
     public int hungerMaxBonus = 0;
     public int energyMaxBonus = 0;
     public int happinessMaxBonus = 0;
-        
+
+    [Header("Relationship Modifiers")]
+    public int relationshipGainModifier = 0;
+
 }

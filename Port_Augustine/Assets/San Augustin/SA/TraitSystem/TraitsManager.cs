@@ -78,4 +78,16 @@ public class TraitsManager : MonoBehaviour
 
         return modifier;
     }
+
+    public int GetRelationshipModifier()
+    {
+        int modifier = 0;
+
+        foreach (var trait in activeTraits)
+        {
+            modifier += trait.relationshipGainModifier;
+        }
+
+        return modifier;
+    }
 }
