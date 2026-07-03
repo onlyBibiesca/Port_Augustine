@@ -27,6 +27,9 @@ public class Item : MonoBehaviour
 
     private InventoryManager inventoryManager;
 
+    [SerializeField] private bool canOnlyBeCollectedOnce = false;
+    private bool hasBeenCollected = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,18 +39,20 @@ public class Item : MonoBehaviour
 
     public void PickUpItem()
     {
-       
-        if(wallet.money >= itemSO.itemPrice)
-        {
-            wallet.money -= itemSO.itemPrice;
-            InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
-        }
-        else
-        {
-            Debug.Log("Insufficient Funds!");
-        }
-        
+        if (canOnlyBeCollectedOnce && hasBeenCollected)
+            return;
 
-        
+        InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
+
+        if (canOnlyBeCollectedOnce)
+        {
+            hasBeenCollected = true;
+
+            // Gray out the button
+            GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+
+            // Prevent further clicks
+            GetComponent<UnityEngine.UI.Button>().interactable = false;
+        }
     }
 }
