@@ -3,17 +3,32 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WorkSystem : MonoBehaviour
+public class WorkSystem : MonoBehaviour, InteractableObject
 {
-    [Header("Work UI")]
-    [SerializeField] GameObject workButton;
-    [SerializeField] private TextMeshProUGUI walletText;
+
+    private GameObject player;
+
+    private InteractableObject nearbyInteractable;
+
+    [Header("InteractUI")]
+    [SerializeField] GameObject interactUI;
+    [SerializeField] AudioSource buttonSound;
+
+    [Header("Work")]
+    [SerializeField] GameObject jobUI;
+    [SerializeField] public string jobName;
+    [SerializeField] int salary;
+    [SerializeField] string hourlyRate;
 
     [Header("Wallet")]
     public Wallet wallet;
+    [SerializeField] private TextMeshProUGUI walletText;
 
-    [Header("Work")]
-    [SerializeField] int salary;
+    [Header("Text")]
+    public TMPro.TMP_Text salaryDisplayText;
+    public TMPro.TMP_Text energyDisplayText;
+    public TMPro.TMP_Text hungerDisplayText;
+    public TMPro.TMP_Text jobDisplayText;
 
     [Header("Consumables")]
     [SerializeField] StatConsumable statConsumable;
@@ -21,13 +36,23 @@ public class WorkSystem : MonoBehaviour
 
     private void Start()
     {
-        workButton.SetActive(false);
+        jobUI.SetActive(false);
         wallet.money = wallet.defaultValue;
     }
 
     private void Update()
     {
         DisplayMoney();
+        UpdateDisplay();
+
+    }
+
+    void UpdateDisplay()
+    {
+        jobDisplayText.text = jobName;
+        energyDisplayText.text = $"{statConsumable.energyChange}";
+        hungerDisplayText.text = $"{statConsumable.hungerChange}";
+        salaryDisplayText.text = $"{salary}" + "/" + $"{hourlyRate}";
     }
 
     public void AddMoney()
@@ -76,6 +101,14 @@ public class WorkSystem : MonoBehaviour
         }
     }
 
+    public void Interact()
+    {
+        buttonSound.Play();
+        jobUI.SetActive(true);
+
+    }
+
+
     public void DisplayMoney()
     {
         walletText.text = $"{wallet.money}";
@@ -86,15 +119,24 @@ public class WorkSystem : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            workButton.SetActive(true);
+            player = collision.gameObject;
+            InteractableObject interactable = collision.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                nearbyInteractable = interactable;
+                if (interactUI != null)
+                    interactUI.SetActive(true);
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
         {
-            workButton.SetActive(false);
+            nearbyInteractable = null;
+            if (interactUI != null)
+                interactUI.SetActive(false);
         }
     }
 
