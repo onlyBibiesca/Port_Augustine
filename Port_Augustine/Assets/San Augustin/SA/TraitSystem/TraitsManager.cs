@@ -90,4 +90,16 @@ public class TraitsManager : MonoBehaviour
 
         return modifier;
     }
+
+    public int GetWakeUpHourModifier()
+    {
+        int modifier = 0;
+
+        foreach (var trait in activeTraits)
+        {
+            modifier += trait.wakeUpHourModifier;
+        }
+
+        return modifier;
+    }
 }

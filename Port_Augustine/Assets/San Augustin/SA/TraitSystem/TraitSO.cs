@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum TraitCategory
 {
-    
     Origin,
     Relationship,
     Job,
@@ -33,6 +32,18 @@ public class TraitSO : ScriptableObject
     [Header("Time Modifiers")]
     public int movementTimeModifier = 0;
 
+    // NEW
+    [Tooltip("Negative wakes up earlier, positive wakes up later.")]
+    public int wakeUpHourModifier = 0;
+
+    [Header("Relationship Modifiers")]
+    public int relationshipGainModifier = 0;
+
+    [Header("Stat Modifiers")]
+    public int hungerMaxBonus = 0;
+    public int energyMaxBonus = 0;
+    public int happinessMaxBonus = 0;
+
     [Header("Future Gameplay")]
     public float workIncomeMultiplier = 1f;
 
@@ -41,13 +52,4 @@ public class TraitSO : ScriptableObject
 
     [Header("Optional")]
     public List<TraitSO> grantedTraits = new();
-
-    [Header("Stat Modifiers")]
-    public int hungerMaxBonus = 0;
-    public int energyMaxBonus = 0;
-    public int happinessMaxBonus = 0;
-
-    [Header("Relationship Modifiers")]
-    public int relationshipGainModifier = 0;
-
 }

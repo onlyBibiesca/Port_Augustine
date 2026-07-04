@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TimeSystem : MonoBehaviour
 {
     public static TimeSystem Instance;
@@ -37,6 +36,18 @@ public class TimeSystem : MonoBehaviour
 
     void Start()
     {
+        // Apply wake-up time modifier from traits
+        if (TraitsManager.Instance != null)
+        {
+            currentHour += TraitsManager.Instance.GetWakeUpHourModifier();
+            currentHour = Mathf.Clamp(currentHour, 0, 23);
+
+            if (showDebugMessages)
+            {
+                Debug.Log($"Wake-up modifier applied. Starting hour: {currentHour}");
+            }
+        }
+
         UpdateTimeDisplay();
     }
 
@@ -99,7 +110,7 @@ public class TimeSystem : MonoBehaviour
         AddTime(hours, minutes);
 
         if (showDebugMessages)
-            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {hours}h {minutes}m");  
+            Debug.Log($"✓ {consumer.GetConsumerName()} consumed {hours}h {minutes}m");
     }
 
     public void SetTime(int hour, int minute)
@@ -135,7 +146,6 @@ public class TimeSystem : MonoBehaviour
     {
         if (use24HourFormat)
         {
-            //return $"Day {currentDay} - {currentHour:00}:{currentMinute:00}";
             return $"{currentHour:00}:{currentMinute:00}";
         }
         else
@@ -153,7 +163,6 @@ public class TimeSystem : MonoBehaviour
             if (displayHour == 0)
                 displayHour = 12;
 
-            //return $"Day {currentDay} - {displayHour}:{currentMinute:00} {period}";
             return $"{displayHour}:{currentMinute:00} {period}";
         }
     }

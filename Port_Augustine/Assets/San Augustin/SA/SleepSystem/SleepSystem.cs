@@ -105,7 +105,21 @@ public class SleepSystem : MonoBehaviour, InteractableObject
             return;
         }
 
-        WakeUp(defaultWakeUpHour, defaultWakeUpMinute);
+        int wakeHour = defaultWakeUpHour;
+
+        if (TraitsManager.Instance != null)
+        {
+            wakeHour += TraitsManager.Instance.GetWakeUpHourModifier();
+        }
+
+        wakeHour = Mathf.Clamp(wakeHour, 0, 23);
+
+        if (showDebugMessages)
+        {
+            Debug.Log($"Wake-up modifier applied. Waking at {wakeHour:00}:{defaultWakeUpMinute:00}");
+        }
+
+        WakeUp(wakeHour, defaultWakeUpMinute);
     }
 
     // Player wakes up at custom time
