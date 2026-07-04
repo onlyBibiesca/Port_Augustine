@@ -2254,6 +2254,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 465991009}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 21
 --- !u!82 &93218859
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6108,6 +6109,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 408338290}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &214837239
 GameObject:
   m_ObjectHideFlags: 0
@@ -25096,6 +25098,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 516010618}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: minimumEnergy
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: useFallbackOnMissingDay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: dialoguesByDay.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -25126,7 +25136,7 @@ PrefabInstance:
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: dialoguesByDay.Array.data[1].directory
       value: 
-      objectReference: {fileID: 11400000, guid: 5ec452013dc30ac4ca61be7f40e0749d, type: 2}
+      objectReference: {fileID: 11400000, guid: f2e2dd44e5f7c1f45a6c8bf3cbec152b, type: 2}
     - target: {fileID: 7797019814532325217, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_BodyType
       value: 2
@@ -33054,6 +33064,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 1172464853}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &824702628
 GameObject:
   m_ObjectHideFlags: 0
@@ -33363,6 +33374,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 491887013}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &838137085
 GameObject:
   m_ObjectHideFlags: 0
@@ -36288,7 +36300,7 @@ RectTransform:
   m_Father: {fileID: 8902727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36374,6 +36386,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 0}
   statConsumable: {fileID: 0}
   timeConsumable: {fileID: 0}
+  minimumEnergy: 0
 --- !u!61 &1000243761
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36622,6 +36635,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 1264776865}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &1025965568
 GameObject:
   m_ObjectHideFlags: 0
@@ -44368,6 +44382,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 153137478}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!4 &1255909405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8656436834910863028, guid: 47423429705ab8846a6f61f7d81d5210, type: 3}
@@ -46846,7 +46861,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1365667456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47364,6 +47379,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 232659380}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &1385399216
 GameObject:
   m_ObjectHideFlags: 0
@@ -48196,6 +48212,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 196340001}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &1440875557
 GameObject:
   m_ObjectHideFlags: 0
@@ -66731,6 +66748,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 1841863488}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &1619011329
 GameObject:
   m_ObjectHideFlags: 0
@@ -66827,6 +66845,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 1164380040}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 21
 --- !u!82 &1619432968
 AudioSource:
   m_ObjectHideFlags: 0
@@ -76574,13 +76593,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc50b3dfb3c45804a8e63a2300da08e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morningColor: {r: 1, g: 0.95, b: 0.85, a: 0.15}
+  morningColor: {r: 1, g: 0.8047418, b: 0.4292453, a: 0.03529412}
   morningIntensity: 0.15
   afternoonColor: {r: 1, g: 1, b: 1, a: 0}
   afternoonIntensity: 0
-  eveningColor: {r: 1, g: 0.39370078, b: 0, a: 0.2}
+  eveningColor: {r: 1, g: 0.39370078, b: 0, a: 0.05490196}
   eveningIntensity: 0.2
-  nightColor: {r: 0.0495283, g: 0.20145214, b: 0.5, a: 0.4}
+  nightColor: {r: 0.012459958, g: 0.13303514, b: 0.3773585, a: 0.4}
   nightIntensity: 0.4
   filterImage: {fileID: 1884314473}
   timeOfDayLabel: {fileID: 0}
@@ -76789,6 +76808,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 2017879242}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &1970372840
 GameObject:
   m_ObjectHideFlags: 0
@@ -81326,6 +81346,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 1358891389}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 0
 --- !u!1 &2139313329
 GameObject:
   m_ObjectHideFlags: 0
@@ -81630,6 +81651,7 @@ MonoBehaviour:
   jobDisplayText: {fileID: 3443773}
   statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
   timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
+  minimumEnergy: 21
 --- !u!114 &1177599762927341071
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,6 +29,9 @@ public class NPC_Dialogue : MonoBehaviour
 
     [Header("Debug")]
     public bool showDebugMessages = true;
+    [SerializeField] int minimumEnergy;
+
+    private PlayerStats playerStats;
 
     private int currentDialogueIndex = 0;
     private int firstInteractionDay = -1; // Track first day NPC was interacted with (real game day)
@@ -109,62 +112,70 @@ public class NPC_Dialogue : MonoBehaviour
 
     public void OnInteract()
     {
-        buttonSound.Play();
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
+        if(PlayerStats.Instance.energy >= minimumEnergy)
         {
-            if (showDebugMessages)
-                Debug.Log($"Cannot interact with {gameObject.name} - dialogue already active!");
-            return;
-        }
-
-        int currentGameDay = TimeSystem.Instance.currentDay;
-
-        // Track first interaction day (real game day)
-        if (firstInteractionDay == -1)
-        {
-            firstInteractionDay = currentGameDay;
-            lastInteractionDay = currentGameDay;
-            currentProgressionDay = fallbackDay; // Start with fallback day (Day 1)
-            if (showDebugMessages)
-                Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}. Starting with progression day {currentProgressionDay}");
-        }
-        else
-        {
-            // Check if a new day has passed since last interaction
-            if (currentGameDay > lastInteractionDay)
+            buttonSound.Play();
+            if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
             {
-                currentProgressionDay++;
                 if (showDebugMessages)
-                    Debug.Log($" New day detected! Progression day advanced to {currentProgressionDay}");
+                    Debug.Log($"Cannot interact with {gameObject.name} - dialogue already active!");
+                return;
             }
-            lastInteractionDay = currentGameDay;
+
+            int currentGameDay = TimeSystem.Instance.currentDay;
+
+            // Track first interaction day (real game day)
+            if (firstInteractionDay == -1)
+            {
+                firstInteractionDay = currentGameDay;
+                lastInteractionDay = currentGameDay;
+                currentProgressionDay = fallbackDay; // Start with fallback day (Day 1)
+                if (showDebugMessages)
+                    Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}. Starting with progression day {currentProgressionDay}");
+            }
+            else
+            {
+                // Check if a new day has passed since last interaction
+                if (currentGameDay > lastInteractionDay)
+                {
+                    currentProgressionDay++;
+                    if (showDebugMessages)
+                        Debug.Log($" New day detected! Progression day advanced to {currentProgressionDay}");
+                }
+                lastInteractionDay = currentGameDay;
+            }
+
+            if (showDebugMessages)
+                Debug.Log($"NPC {gameObject.name} interacted! Using progression day {currentProgressionDay}");
+
+            // Get the correct dialogue directory based on progression
+            DialogueDirectory currentDirectory = GetDialogueDirectoryForDay(currentProgressionDay);
+
+            if (currentDirectory == null)
+            {
+                Debug.LogError($"No dialogue directory found for {gameObject.name}!");
+                return;
+            }
+
+            if (dialogueSequence.Count == 0)
+            {
+                Debug.LogError("No dialogue sequence assigned!");
+                return;
+            }
+
+            if (DialogueManager.Instance == null)
+            {
+                Debug.LogError("DialogueManager not found in scene!");
+                return;
+            }
+
+            PlayCurrentDialogue(currentDirectory);
         }
-
-        if (showDebugMessages)
-            Debug.Log($"NPC {gameObject.name} interacted! Using progression day {currentProgressionDay}");
-
-        // Get the correct dialogue directory based on progression
-        DialogueDirectory currentDirectory = GetDialogueDirectoryForDay(currentProgressionDay);
-
-        if (currentDirectory == null)
+        else if(PlayerStats.Instance.energy < minimumEnergy)
         {
-            Debug.LogError($"No dialogue directory found for {gameObject.name}!");
-            return;
+            Debug.Log("Not enough energy");
         }
-
-        if (dialogueSequence.Count == 0)
-        {
-            Debug.LogError("No dialogue sequence assigned!");
-            return;
-        }
-
-        if (DialogueManager.Instance == null)
-        {
-            Debug.LogError("DialogueManager not found in scene!");
-            return;
-        }
-
-        PlayCurrentDialogue(currentDirectory);
+        
     }
 
     void OnEventFinished()

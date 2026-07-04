@@ -34,6 +34,10 @@ public class WorkSystem : MonoBehaviour, InteractableObject
     [SerializeField] StatConsumable statConsumable;
     [SerializeField] TimeConsumable timeConsumable;
 
+    [SerializeField] public int minimumEnergy;
+
+    private PlayerStats playerStats;
+
     private void Start()
     {
         jobUI.SetActive(false);
@@ -57,54 +61,72 @@ public class WorkSystem : MonoBehaviour, InteractableObject
 
     public void AddMoney()
     {
-        wallet.money = salary + wallet.money;
-        Debug.Log("Salary of  " + salary + " has been added to your wallet");
-        if (PlayerStats.Instance != null && statConsumable != null)
+        if(PlayerStats.Instance.energy >= minimumEnergy)
         {
-            if (PlayerStats.Instance != null)
+            wallet.money = salary + wallet.money;
+            Debug.Log("Salary of  " + salary + " has been added to your wallet");
+            if (PlayerStats.Instance != null && statConsumable != null)
             {
-                PlayerStats.Instance.ConsumeStat(statConsumable);
+                if (PlayerStats.Instance != null)
+                {
+                    PlayerStats.Instance.ConsumeStat(statConsumable);
+                }
+                else
+                {
+                    Debug.LogError("PlayerStats not found in scene!");
+                }
             }
-            else
+            if (timeConsumable != null)
             {
-                Debug.LogError("PlayerStats not found in scene!");
+                Debug.Log($"TimeConsumable Name: {timeConsumable.consumableName}");
+                Debug.Log($"Consumes Time: {timeConsumable.consumesTime}");
+                Debug.Log($"Hours: {timeConsumable.hoursToConsume}");
+                Debug.Log($"Minutes: {timeConsumable.minutesToConsume}");
+            }
+
+            Debug.Log($"TimeSystem.Instance is null? {TimeSystem.Instance == null}");
+
+            if (TimeSystem.Instance != null)
+            {
+                Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
+            }
+
+            if (timeConsumable != null && TimeSystem.Instance != null)
+            {
+                Debug.Log(">>> CALLING ConsumeTime() <<<");
+                TimeSystem.Instance.ConsumeTime(timeConsumable);
+                Debug.Log($"Current time AFTER: {TimeSystem.Instance.GetFormattedTime()}");
+            }
+            else if (timeConsumable == null)
+            {
+                Debug.LogWarning("No TimeConsumable assigned to this transition!");
+            }
+            else if (TimeSystem.Instance == null)
+            {
+                Debug.LogError("TimeSystem not found in scene!");
             }
         }
-        if (timeConsumable != null)
-        {
-            Debug.Log($"TimeConsumable Name: {timeConsumable.consumableName}");
-            Debug.Log($"Consumes Time: {timeConsumable.consumesTime}");
-            Debug.Log($"Hours: {timeConsumable.hoursToConsume}");
-            Debug.Log($"Minutes: {timeConsumable.minutesToConsume}");
-        }
 
-        Debug.Log($"TimeSystem.Instance is null? {TimeSystem.Instance == null}");
-
-        if (TimeSystem.Instance != null)
+        else
         {
-            Debug.Log($"Current time BEFORE: {TimeSystem.Instance.GetFormattedTime()}");
+            Debug.Log("Not enough energy");
         }
-
-        if (timeConsumable != null && TimeSystem.Instance != null)
-        {
-            Debug.Log(">>> CALLING ConsumeTime() <<<");
-            TimeSystem.Instance.ConsumeTime(timeConsumable);
-            Debug.Log($"Current time AFTER: {TimeSystem.Instance.GetFormattedTime()}");
-        }
-        else if (timeConsumable == null)
-        {
-            Debug.LogWarning("No TimeConsumable assigned to this transition!");
-        }
-        else if (TimeSystem.Instance == null)
-        {
-            Debug.LogError("TimeSystem not found in scene!");
-        }
+        
     }
 
     public void Interact()
     {
-        buttonSound.Play();
-        jobUI.SetActive(true);
+        if (PlayerStats.Instance.energy >= minimumEnergy)
+        {
+            buttonSound.Play();
+            jobUI.SetActive(true);
+        }
+
+        else if(PlayerStats.Instance.energy < minimumEnergy)
+        {
+            Debug.Log("Not enough energy");
+        }
+
 
     }
 
