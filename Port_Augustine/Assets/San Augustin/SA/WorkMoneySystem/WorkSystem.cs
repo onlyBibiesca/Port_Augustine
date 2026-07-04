@@ -116,16 +116,8 @@ public class WorkSystem : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
-        if (PlayerStats.Instance.energy >= minimumEnergy)
-        {
             buttonSound.Play();
             jobUI.SetActive(true);
-        }
-
-        else if(PlayerStats.Instance.energy < minimumEnergy)
-        {
-            Debug.Log("Not enough energy");
-        }
 
 
     }
