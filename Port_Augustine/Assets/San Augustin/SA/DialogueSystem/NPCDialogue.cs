@@ -31,6 +31,9 @@ public class NPC_Dialogue : MonoBehaviour
     public bool showDebugMessages = true;
 
     private int currentDialogueIndex = 0;
+    private int firstInteractionDay = -1; // Track first day NPC was interacted with (real game day)
+    private int lastInteractionDay = -1; // Track the last day we interacted
+    private int currentProgressionDay = 1; // Which day's dialogue set we're on (1, 2, 3, etc.)
 
     private GameObject player;
 
@@ -107,7 +110,6 @@ public class NPC_Dialogue : MonoBehaviour
     public void OnInteract()
     {
         buttonSound.Play();
-        // Block interaction if dialogue is already active
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
         {
             if (showDebugMessages)
@@ -115,28 +117,38 @@ public class NPC_Dialogue : MonoBehaviour
             return;
         }
 
+        int currentGameDay = TimeSystem.Instance.currentDay;
 
-        if (showDebugMessages)
-            Debug.Log($"NPC {gameObject.name} interacted!");
-
-        // Get the correct dialogue directory for the current day
-        DialogueDirectory currentDirectory = GetDialogueDirectoryForCurrentDay();
-
-        // If event is available, play event dialogue instead
-        if (currentEvent != null)
+        // Track first interaction day (real game day)
+        if (firstInteractionDay == -1)
         {
-            NPCEventManager.Instance.StartEventTracking(currentEventKey);
-            DialogueManager.Instance.StartDialogue(null, OnEventFinished, npcName, currentEvent);
+            firstInteractionDay = currentGameDay;
+            lastInteractionDay = currentGameDay;
+            currentProgressionDay = fallbackDay; // Start with fallback day (Day 1)
+            if (showDebugMessages)
+                Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}. Starting with progression day {currentProgressionDay}");
         }
         else
         {
-            // Normal dialogue
-            PlayCurrentDialogue(currentDirectory);
+            // Check if a new day has passed since last interaction
+            if (currentGameDay > lastInteractionDay)
+            {
+                currentProgressionDay++;
+                if (showDebugMessages)
+                    Debug.Log($" New day detected! Progression day advanced to {currentProgressionDay}");
+            }
+            lastInteractionDay = currentGameDay;
         }
+
+        if (showDebugMessages)
+            Debug.Log($"NPC {gameObject.name} interacted! Using progression day {currentProgressionDay}");
+
+        // Get the correct dialogue directory based on progression
+        DialogueDirectory currentDirectory = GetDialogueDirectoryForDay(currentProgressionDay);
 
         if (currentDirectory == null)
         {
-            Debug.LogError($"No dialogue directory found for {gameObject.name} on Day {TimeSystem.Instance.currentDay}!");
+            Debug.LogError($"No dialogue directory found for {gameObject.name}!");
             return;
         }
 
@@ -229,45 +241,58 @@ public class NPC_Dialogue : MonoBehaviour
     }
 
     // Get the correct dialogue directory for the current day
-    DialogueDirectory GetDialogueDirectoryForCurrentDay()
+    DialogueDirectory GetDialogueDirectoryForProgression()
     {
-        int currentDay = TimeSystem.Instance.currentDay;
-
-        // Look for exact day match
-        foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+        // ALWAYS start with fallback day on first interaction
+        if (firstInteractionDay == -1)
         {
-            if (dayDir.day == currentDay && dayDir.directory != null)
-            {
-                if (showDebugMessages)
-                    Debug.Log($"Using dialogue directory for Day {currentDay}");
-                return dayDir.directory;
-            }
+            if (showDebugMessages)
+                Debug.Log($"First interaction detected. Using fallback Day {fallbackDay}");
+            return GetDialogueDirectoryForDay(fallbackDay);
         }
 
-        // If no exact match and fallback is enabled
+        // After first interaction, use the tracked progression day
+        DialogueDirectory directory = GetDialogueDirectoryForDay(firstInteractionDay);
+
+        if (directory != null)
+        {
+            if (showDebugMessages)
+                Debug.Log($"Using dialogue directory from Day {firstInteractionDay}");
+            return directory;
+        }
+
+        // If tracked day directory doesn't exist, use fallback
         if (useFallbackOnMissingDay)
         {
-            foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+            directory = GetDialogueDirectoryForDay(fallbackDay);
+            if (directory != null)
             {
-                if (dayDir.day == fallbackDay && dayDir.directory != null)
-                {
-                    if (showDebugMessages)
-                        Debug.Log($"No directory for Day {currentDay}. Using fallback Day {fallbackDay}");
-                    return dayDir.directory;
-                }
+                if (showDebugMessages)
+                    Debug.Log($"Day {firstInteractionDay} directory not found. Using fallback Day {fallbackDay}");
+                return directory;
             }
         }
 
-        // No directory found
-        if (showDebugMessages)
-            Debug.LogError($"No dialogue directory available for {gameObject.name} on Day {currentDay}");
         return null;
     }
 
-    // Helper method to get current day's directory
-    public DialogueDirectory GetCurrentDayDirectory()
+    // Get the dialogue directory for a specific day
+    DialogueDirectory GetDialogueDirectoryForDay(int day)
     {
-        return GetDialogueDirectoryForCurrentDay();
+        foreach (DialogueDirectoryByDay dayDir in dialoguesByDay)
+        {
+            if (dayDir.day == day && dayDir.directory != null)
+            {
+                return dayDir.directory;
+            }
+        }
+        return null;
+    }
+
+    // Helper method to get current progression directory
+    public DialogueDirectory GetCurrentProgressionDirectory()
+    {
+        return GetDialogueDirectoryForProgression();
     }
 
     // Get all available days for this NPC
@@ -282,6 +307,12 @@ public class NPC_Dialogue : MonoBehaviour
             }
         }
         return days.ToArray();
+    }
+
+    // Get the day the NPC was first interacted with
+    public int GetFirstInteractionDay()
+    {
+        return firstInteractionDay;
     }
 }
 

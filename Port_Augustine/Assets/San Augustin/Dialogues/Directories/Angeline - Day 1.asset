@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd78cb970c6db374bbe3b8fb013119da, type: 3}
-  m_Name: Angeline Build Progress
+  m_Name: Angeline - Day 1
   m_EditorClassIdentifier: 
   dialogues:
   - {fileID: 11400000, guid: e2657ad70bed1b349b3049382f0d3313, type: 2}
   - {fileID: 11400000, guid: a1441de7ed5005841a3f47cccc1eea06, type: 2}
   - {fileID: 11400000, guid: 3215851a770c0044297729af10ffd629, type: 2}
-  - {fileID: 11400000, guid: c2951c958ddd97b40b411bbc07da6905, type: 2}
