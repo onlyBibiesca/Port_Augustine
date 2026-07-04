@@ -18,6 +18,12 @@ MonoBehaviour:
   originPreviewSprite: {fileID: 21300000, guid: 513f71c499b0b8349a4477e929ab11c5, type: 3}
   category: 0
   uniqueCategory: 0
+  movementTimeModifier: 0
+  wakeUpHourModifier: -2
+  relationshipGainModifier: 0
+  hungerMaxBonus: 0
+  energyMaxBonus: 0
+  happinessMaxBonus: 0
   workIncomeMultiplier: 1
   startingBuildingID: 
   grantedTraits: []
