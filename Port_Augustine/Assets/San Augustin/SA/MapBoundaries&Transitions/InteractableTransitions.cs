@@ -19,6 +19,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
 
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
+    [SerializeField] GameObject labelUI;
 
     [Header("Sounds")]
     [SerializeField] AudioSource buttonSound;
@@ -151,8 +152,12 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
             if (interactable != null)
             {
                 nearbyInteractable = interactable;
-                if (interactUI != null)
+                if (interactUI != null && labelUI != null)
+                {
                     interactUI.SetActive(true);
+                    labelUI.SetActive(true);
+                }
+
             }
         }
     }
@@ -163,8 +168,12 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
         if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
         {
             nearbyInteractable = null;
-            if (interactUI != null)
+            if (interactUI != null && labelUI != null)
+            {
                 interactUI.SetActive(false);
+                labelUI.SetActive(false );
+            }
+
         }
     }
 
