@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e146a4df0fba7b4ea48f78603d907c1, type: 3}
-  m_Name: Free Pandesal
+  m_Name: Chichiria Cracklin's
   m_EditorClassIdentifier: 
-  itemName: Free Pandesal
+  itemName: 
   ChangeHunger: 0
   ChangeEnergy: 0
   ChangeHappiness: 0

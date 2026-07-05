@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e146a4df0fba7b4ea48f78603d907c1, type: 3}
-  m_Name: Chicken
+  m_Name: BigCup
   m_EditorClassIdentifier: 
-  itemName: Chicken
-  ChangeHunger: 20
-  ChangeEnergy: 10
+  itemName: Big 'n Full Cup
+  ChangeHunger: 15
+  ChangeEnergy: 15
   ChangeHappiness: 0
-  itemPrice: 50
+  itemPrice: 0
