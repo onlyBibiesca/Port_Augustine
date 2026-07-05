@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e146a4df0fba7b4ea48f78603d907c1, type: 3}
-  m_Name: Bacon Burger Meal
+  m_Name: Megachug Bottle
   m_EditorClassIdentifier: 
-  itemName: Bacon Burger Meal
-  ChangeHunger: 40
-  ChangeEnergy: 25
+  itemName: Megachug Bottle
+  ChangeHunger: 0
+  ChangeEnergy: 0
   ChangeHappiness: 0
   itemPrice: 0
