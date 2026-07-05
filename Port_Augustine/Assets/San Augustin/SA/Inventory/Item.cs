@@ -41,6 +41,7 @@ public class Item : MonoBehaviour
     {
         if(wallet.money >= itemSO.itemPrice)
         {
+            wallet.money -= itemSO.itemPrice;
             if (canOnlyBeCollectedOnce && hasBeenCollected)
                 return;
 

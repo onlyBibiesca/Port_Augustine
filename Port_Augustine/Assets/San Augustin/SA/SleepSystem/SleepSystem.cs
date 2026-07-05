@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,12 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     [Range(1, 16)]
     public int defaultSleepDuration = 8; // How many hours is "full rest"
+
+    [Header("Midnight Teleport Settings")]
+    public Transform teleportTarget; // Where player appears at midnight
+    public bool enableMidnightTeleport = true;
+    [SerializeField] PolygonCollider2D mapBoundary;
+    [SerializeField] private Transform playerTransform;
 
     [Header("Energy Recovery")]
     [Range(0, 100)]
@@ -40,6 +47,8 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     private int sleepStartMinute = -1;
     private bool isSleeping = false;
 
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+
     void Awake()
     {
         if (Instance == null)
@@ -57,6 +66,7 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         if (interactUI != null)
             interactUI.SetActive(false);
     }
+
 
     public void Interact()
     {
@@ -77,6 +87,47 @@ public class SleepSystem : MonoBehaviour, InteractableObject
                 Debug.LogError("PlayerStats not found in scene!");
             }
         }
+    }
+
+    public void MidnightForceSleep()
+    {
+                if (teleportTarget == null)
+                {
+                    Debug.LogWarning("Teleport target not assigned!");
+                    return;
+                }
+
+                // Find player
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                if (player == null)
+                {
+                    Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
+                    return;
+                }
+
+                if (showDebugMessages)
+                    Debug.Log($"Midnight teleport! Moving player to {teleportTarget.name}");
+
+                // Teleport player
+                ChangePlayerPosition(player);
+
+    }
+    public void ChangePlayerPosition(GameObject player)
+    {
+            Vector3 delta = teleportTarget.position - player.transform.position; // delta BEFORE moving
+
+            player.transform.position = teleportTarget.position; // move player
+
+            virtualCamera.OnTargetObjectWarped(playerTransform, delta); // snap camera
+            SwapConfiner(); // swap confiner
+            return;
+    }
+
+    private void SwapConfiner()
+    {
+        var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
+        confiner.m_BoundingShape2D = mapBoundary;
+        confiner.InvalidatePathCache();
     }
 
     // Player goes to sleep at current time
@@ -184,7 +235,10 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         {
             TimeSystem.Instance.SetDay(TimeSystem.Instance.currentDay + daysSlept);
             if (showDebugMessages)
+            {
                 Debug.Log($"Advanced to Day {TimeSystem.Instance.currentDay}");
+            }
+            
         }
 
         // Reset sleep state
@@ -267,4 +321,6 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
         return $"Sleeping since {sleepStartHour:00}:{sleepStartMinute:00}. Default wake: {defaultWakeUpHour:00}:{defaultWakeUpMinute:00}";
     }
+
+    
 }

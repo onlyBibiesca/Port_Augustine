@@ -74,6 +74,8 @@ public class TimeSystem : MonoBehaviour
             currentDay++;
             OnDayChanged?.Invoke(currentDay);
 
+            SleepSystem.Instance.MidnightForceSleep();
+
             if (showDebugMessages)
                 Debug.Log($"New day! Day {currentDay}");
         }
@@ -131,7 +133,6 @@ public class TimeSystem : MonoBehaviour
         currentDay = Mathf.Max(1, day);
         OnDayChanged?.Invoke(currentDay);
 
-        // ADD THIS LINE:
         UpdateTimeDisplay();
 
         if (showDebugMessages)

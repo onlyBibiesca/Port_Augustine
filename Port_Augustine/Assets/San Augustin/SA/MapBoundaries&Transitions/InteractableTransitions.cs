@@ -193,7 +193,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     {
         var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
         confiner.m_BoundingShape2D = mapBoundary;
-        confiner.InvalidatePathCache(); // important after swapping!
+        confiner.InvalidatePathCache(); 
     }
 
 }
