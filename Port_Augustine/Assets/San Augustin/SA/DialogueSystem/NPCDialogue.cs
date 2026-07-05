@@ -154,6 +154,13 @@ public class NPC_Dialogue : MonoBehaviour
         {
             Debug.Log($"Event already active: {currentEvent.eventName}");
         }
+
+        if (QuestPanel.Instance != null)
+        {
+            QuestPanel.Instance.AddQuest(currentEventKey, availableEvent.eventName);
+            if (showDebugMessages)
+                Debug.Log($"Quest added to panel: {availableEvent.eventName}");
+        }
     }
 
 
@@ -274,6 +281,13 @@ public class NPC_Dialogue : MonoBehaviour
 
     void OnEventOutcomeFinished()
     {
+        // Remove quest from panel
+        if (QuestPanel.Instance != null && !string.IsNullOrEmpty(currentEventKey))
+        {
+            QuestPanel.Instance.RemoveQuest(currentEventKey);
+            if (showDebugMessages)
+                Debug.Log($"Quest removed from panel: {currentEventKey}");
+        }
 
         Debug.Log($" === OnEventOutcomeFinished called ===");
 
