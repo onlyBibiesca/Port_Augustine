@@ -413,12 +413,19 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log($"Choice selected: {choice.choiceText}");
 
-        // APPLY RELATIONSHIP CHANGE
+        // APPLY RELATIONSHIP CHANGE AND SHOW POPUP
         if (choice.relationshipChange != 0 && RelationshipManager.Instance != null)
         {
             RelationshipManager.Instance.ChangeRelationship(currentNPCName, choice.relationshipChange);
             Debug.Log($"{currentNPCName}: Relationship {(choice.relationshipChange > 0 ? "increased" : "decreased")} by {Mathf.Abs(choice.relationshipChange)}");
 
+            // SHOW POPUP FOR RELATIONSHIP CHANGE
+            if (RelationshipChangePopup.Instance != null)
+            {
+                RelationshipChangePopup.Instance.ShowRelationshipChangePopup(choice.relationshipChange);
+            }
+
+            // Update slider
             RelationshipManager.Instance.ShowRelationshipSlider(currentNPCName);
         }
 
@@ -428,15 +435,7 @@ public class DialogueManager : MonoBehaviour
 
         waitingForChoice = false;
 
-        // TRACK EVENT CHOICE
-        if (DialogueManager.Instance.IsInEvent())
-        {
-            string eventKey = DialogueManager.Instance.GetCurrentEventKey();
-            NPCEventManager.Instance.RecordEventChoice(eventKey, choice.choiceType);
-            Debug.Log($"Event choice recorded: {choice.choiceType}");
-        }
-
-            // If the choice leads to another dialogue, play it
+        // If the choice leads to another dialogue, play it
         if (choice.nextDialogue != null)
         {
             StartDialogue(choice.nextDialogue, onDialogueComplete, currentNPCName);

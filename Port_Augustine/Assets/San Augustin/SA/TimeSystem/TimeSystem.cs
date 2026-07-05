@@ -15,6 +15,7 @@ public class TimeSystem : MonoBehaviour
     [Header("Time Display")]
     public TMPro.TMP_Text timeDisplayText;
     public bool use24HourFormat = false;
+    public TMPro.TMP_Text dayDisplayText;
 
     [Header("Debug")]
     public bool showDebugMessages = true;
@@ -130,6 +131,9 @@ public class TimeSystem : MonoBehaviour
         currentDay = Mathf.Max(1, day);
         OnDayChanged?.Invoke(currentDay);
 
+        // ADD THIS LINE:
+        UpdateTimeDisplay();
+
         if (showDebugMessages)
             Debug.Log($"Day set to: {currentDay}");
     }
@@ -139,6 +143,10 @@ public class TimeSystem : MonoBehaviour
         if (timeDisplayText != null)
         {
             timeDisplayText.text = GetFormattedTime();
+        }
+        if (dayDisplayText != null)
+        {
+            dayDisplayText.text = $"Day {currentDay}";
         }
     }
 

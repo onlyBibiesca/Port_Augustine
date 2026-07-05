@@ -14,6 +14,9 @@ public class WorkSystem : MonoBehaviour, InteractableObject
     [SerializeField] GameObject interactUI;
     [SerializeField] AudioSource buttonSound;
 
+    [Header("Shop")]
+    [SerializeField] GameObject shopUI;
+
     [Header("Work")]
     [SerializeField] GameObject jobUI;
     [SerializeField] public string jobName;
@@ -116,9 +119,16 @@ public class WorkSystem : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
+        if(TimeSystem.Instance.currentHour >= 7) 
+        {
             buttonSound.Play();
             jobUI.SetActive(true);
-
+        }
+        else if (TimeSystem.Instance.currentHour >= 18)
+        {
+            shopUI.SetActive(true);
+            Debug.Log("It's too late to work");
+        }
 
     }
 

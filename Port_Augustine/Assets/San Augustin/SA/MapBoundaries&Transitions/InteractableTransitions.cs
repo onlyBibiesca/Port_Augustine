@@ -12,6 +12,11 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     private InteractableObject nearbyInteractable;
     private MapTransition mapTransition;
 
+    [Header("Sprite")]
+    [SerializeField] SpriteRenderer spriteRenderer;
+    public Color highlightColor = new Color(1f, 0.95f, 0.85f, 0.15f);
+    private Color defaultColor = new Color(255f, 255f, 255f, 255f);
+
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
 
@@ -140,6 +145,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            spriteRenderer.color = highlightColor;
             player = collision.gameObject;
             InteractableObject interactable = collision.GetComponent<InteractableObject>();
             if (interactable != null)
@@ -153,6 +159,7 @@ public class InteractableTransitions : MonoBehaviour, InteractableObject
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        spriteRenderer.color = defaultColor;
         if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
         {
             nearbyInteractable = null;
