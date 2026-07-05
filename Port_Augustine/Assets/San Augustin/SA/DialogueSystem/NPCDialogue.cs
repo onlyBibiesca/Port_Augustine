@@ -83,29 +83,76 @@ public class NPC_Dialogue : MonoBehaviour
 
     void CheckForAvailableEvents()
     {
-        if (RelationshipManager.Instance == null || NPCEventManager.Instance == null)
+
+        Debug.Log($"=== CheckForAvailableEvents called for {npcName} ===");
+
+        if (RelationshipManager.Instance == null)
+        {
+            Debug.LogError("RelationshipManager.Instance is NULL!");
             return;
+        }
+
+        if (NPCEventManager.Instance == null)
+        {
+            Debug.LogError("NPCEventManager.Instance is NULL!");
+            return;
+        }
 
         int currentRelationship = RelationshipManager.Instance.GetRelationship(npcName);
+        Debug.Log($"Current relationship for {npcName}: {currentRelationship}");
+        Debug.Log($"Available Events count: {availableEvents.Count}");
+
+        if (availableEvents.Count == 0)
+        {
+            Debug.Log($"No events configured for {npcName}");
+            return;
+        }
+
+        // Check each event
+        for (int i = 0; i < availableEvents.Count; i++)
+        {
+            NPCEvent evt = availableEvents[i];
+            Debug.Log($"  Event {i}: '{evt.eventName}' - Threshold: {evt.relationshipThreshold}");
+            Debug.Log($"    Relationship {currentRelationship} >= Threshold {evt.relationshipThreshold}? {currentRelationship >= evt.relationshipThreshold}");
+        }
+
         NPCEvent availableEvent = NPCEventManager.Instance.GetAvailableEvent(npcName, currentRelationship, availableEvents);
 
-        if (availableEvent != null)
+        if (availableEvent != null && currentEvent == null)
         {
+            Debug.Log($" Event available! Setting up: {availableEvent.eventName}");
+
             currentEvent = availableEvent;
             currentEventKey = $"{npcName}_{availableEvent.eventName}";
 
-            // Move NPC to event location
             if (availableEvent.eventLocation != null)
             {
                 transform.position = availableEvent.eventLocation.position;
+                Debug.Log($" NPC moved to event location: {availableEvent.eventLocation.name}");
+            }
+            else
+            {
+                Debug.LogError($" Event Location is NULL for {availableEvent.eventName}!");
             }
 
-            // Show exclamation mark
             NPCEventIndicator indicator = GetComponent<NPCEventIndicator>();
             if (indicator != null)
+            {
                 indicator.ShowEventIndicator();
-
-            Debug.Log($"Event available: {currentEvent.eventName}");
+                Debug.Log($" Exclamation mark shown!");
+            }
+            else
+            {
+                Debug.LogError($"NPCEventIndicator not found on {gameObject.name}!");
+            }
+        }
+        else if (availableEvent == null)
+        {
+            Debug.Log($"GetAvailableEvent returned NULL");
+        }
+        else if (currentEvent != null)
+        {
+            Debug.Log($"Event already active: {currentEvent.eventName}");
         }
     }
 
@@ -123,6 +170,30 @@ public class NPC_Dialogue : MonoBehaviour
             }
 
             int currentGameDay = TimeSystem.Instance.currentDay;
+
+            if (currentEvent != null)
+            {
+                if (showDebugMessages)
+                    Debug.Log($"Triggering event: {currentEvent.eventName}");
+
+                NPCEventManager.Instance.StartEventTracking(currentEventKey);
+
+                // Play event dialogue
+                if (currentEvent.eventDialogueDirectory != null && currentEvent.eventDialogueSequence.Count > 0)
+                {
+                    string firstEventDialogue = currentEvent.eventDialogueSequence[0];
+                    Dialogue eventDialogue = currentEvent.eventDialogueDirectory.GetDialogueByName(firstEventDialogue);
+
+                    if (eventDialogue != null)
+                    {
+                        DialogueManager.Instance.StartEventDialogue(eventDialogue, OnEventDialogueFinished, npcName, currentEventKey);
+                        return;
+                    }
+                }
+
+                Debug.LogWarning("Event dialogue not found!");
+                return;
+            }
 
             // Track first interaction day (real game day)
             if (firstInteractionDay == -1)
@@ -175,33 +246,43 @@ public class NPC_Dialogue : MonoBehaviour
         {
             Debug.Log("Not enough energy");
         }
-        
+
     }
 
-    void OnEventFinished()
+    void OnEventDialogueFinished()
     {
-        bool eventSuccess = NPCEventManager.Instance.IsEventSuccessful(currentEventKey);
+        Debug.Log($"Event dialogue finished");
 
-        // Apply outcome
+        bool eventSuccess = NPCEventManager.Instance.IsEventSuccessful(currentEventKey);
+        Debug.Log($"Event success? {eventSuccess}");
+
         if (eventSuccess)
         {
-            Debug.Log("Event successful!");
+            Debug.Log("Playing SUCCESS dialogue");
             if (currentEvent.successDialogue != null)
-                DialogueManager.Instance.StartDialogue(currentEvent.successDialogue, null, npcName);
-
-            RelationshipManager.Instance.ChangeRelationship(npcName, currentEvent.successRelationshipBonus);
+                DialogueManager.Instance.StartDialogue(currentEvent.successDialogue, OnEventOutcomeFinished, npcName);
         }
         else
         {
-            Debug.Log("Event failed!");
+            Debug.Log("Playing FAILURE dialogue");
             if (currentEvent.failureDialogue != null)
-                DialogueManager.Instance.StartDialogue(currentEvent.failureDialogue, null, npcName);
-
-            RelationshipManager.Instance.ChangeRelationship(npcName, currentEvent.failureRelationshipPenalty);
+                DialogueManager.Instance.StartDialogue(currentEvent.failureDialogue, OnEventOutcomeFinished, npcName);
         }
 
         NPCEventManager.Instance.CompleteEvent(currentEventKey, eventSuccess);
-        currentEvent = null;
+    }
+
+    void OnEventOutcomeFinished()
+    {
+
+        Debug.Log($" === OnEventOutcomeFinished called ===");
+
+        // Reset event tracking
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.isInEvent = false;
+            DialogueManager.Instance.currentEventKey = "";
+        }
 
         // Return NPC to original position
         transform.position = originalPosition;
@@ -210,6 +291,13 @@ public class NPC_Dialogue : MonoBehaviour
         NPCEventIndicator indicator = GetComponent<NPCEventIndicator>();
         if (indicator != null)
             indicator.HideEventIndicator();
+
+        // Clear event
+        currentEvent = null;
+        currentEventKey = "";
+
+        if (showDebugMessages)
+            Debug.Log($" Event completed. {npcName} returned to original position");
     }
 
     void PlayCurrentDialogue(DialogueDirectory currentDirectory)
@@ -239,10 +327,15 @@ public class NPC_Dialogue : MonoBehaviour
 
     void OnDialogueFinished()
     {
+        Debug.Log($" === OnDialogueFinished CALLED for {npcName} ===");
+
         if (showDebugMessages)
             Debug.Log($"Dialogue finished. Moving to next dialogue. Current index: {currentDialogueIndex}");
 
         currentDialogueIndex++;
+
+        // CHECK FOR AVAILABLE EVENTS AFTER DIALOGUE FINISHES
+        CheckForAvailableEvents();
     }
 
     public void ResetDialogueSequence()

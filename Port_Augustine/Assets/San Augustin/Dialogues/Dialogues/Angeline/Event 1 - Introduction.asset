@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
-  m_Name: Angeline - Greeting
+  m_Name: Event 1 - Introduction
   m_EditorClassIdentifier: 
-  dialogueName: Greeting
+  dialogueName: Introduction
   lines:
-  - speakerName: ???
-    text: Hey newcomer!
+  - speakerName: Angeline
+    text: Hey! You are at Palengke! Let's walk together while I shop!
     hasChoices: 1
     choices:
-    - choiceText: Yo! What's your name?
-      nextDialogue: {fileID: 11400000, guid: a1441de7ed5005841a3f47cccc1eea06, type: 2}
-      relationshipChange: 20
-      choiceType: 0
+    - choiceText: Sure! What's your hobby?
+      nextDialogue: {fileID: 11400000, guid: 88a9902b9e881fe4a97ba3ec1003409f, type: 2}
+      relationshipChange: 5
+      choiceType: 1
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    - choiceText: I do not have time for you.
-      nextDialogue: {fileID: 11400000, guid: 3215851a770c0044297729af10ffd629, type: 2}
+    - choiceText: I'm good. I got places to be.
+      nextDialogue: {fileID: 0}
       relationshipChange: -5
-      choiceType: 0
+      choiceType: -1
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0

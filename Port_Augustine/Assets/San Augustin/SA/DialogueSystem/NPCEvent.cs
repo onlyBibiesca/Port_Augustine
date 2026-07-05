@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class NPCEvent
 {
-    public int relationshipThreshold = 50; // Event triggers at this relationship level
+    public int relationshipThreshold = 15; // Event triggers at this relationship level
     public string eventName = "Special Event";
 
     [Header("Event Dialogue")]

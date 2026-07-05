@@ -40,13 +40,9 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private string fullText = "";
 
-    private NPCEvent currentEvent = null;
-    private string currentEventKey = "";
-
-    public bool IsInEvent() => currentEvent != null;
-    public string GetCurrentEventKey() => currentEventKey;
-
-
+    public bool isInEvent = false;
+    public NPCEvent currentEvent = null;
+    public string currentEventKey = "";
 
     public bool IsDialogueActive { get; private set; }
 
@@ -110,7 +106,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null, string npcName = "Unknown", NPCEvent evt = null)
+    public void StartDialogue(Dialogue dialogue, System.Action onComplete = null, string npcName = "Unknown")
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
 
@@ -120,23 +116,6 @@ public class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
         waitingForChoice = false;
-
-        if (evt != null)
-        {
-            currentEvent = evt;
-            currentEventKey = $"{npcName}_{evt.eventName}";
-            // Play event dialogue directory
-            // ... handle event dialogue playback
-        }
-        else
-        {
-            currentEvent = null;
-        }
-
-        if (playerUI != null)
-        {
-            playerUI.SetActive(false);
-        }
 
         if (dialoguePanel != null)
         {
@@ -155,6 +134,19 @@ public class DialogueManager : MonoBehaviour
 
         DisplayCurrentLine();
     }
+
+    // Add this overload for events:
+    public void StartEventDialogue(Dialogue dialogue, System.Action onComplete, string npcName, string eventKey)
+    {
+        isInEvent = true;
+        currentEventKey = eventKey;
+        Debug.Log($"Starting event dialogue with event key: {eventKey}");
+
+        StartDialogue(dialogue, onComplete, npcName);
+    }
+
+    public bool IsInEvent() => isInEvent;
+    public string GetCurrentEventKey() => currentEventKey;
 
     void DisplayCurrentLine()
     {
@@ -412,6 +404,13 @@ public class DialogueManager : MonoBehaviour
     void OnChoiceSelected(Dialogue_Choice choice)
     {
         Debug.Log($"Choice selected: {choice.choiceText}");
+
+        // RECORD EVENT CHOICE IF IN EVENT
+        if (isInEvent && NPCEventManager.Instance != null)
+        {
+            NPCEventManager.Instance.RecordEventChoice(currentEventKey, choice.choiceType);
+            Debug.Log($"Event choice recorded: {choice.choiceType}");
+        }
 
         // APPLY RELATIONSHIP CHANGE AND SHOW POPUP
         if (choice.relationshipChange != 0 && RelationshipManager.Instance != null)

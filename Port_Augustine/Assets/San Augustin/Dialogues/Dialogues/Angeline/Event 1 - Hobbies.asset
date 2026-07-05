@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event 1 - Hobbies
+  m_EditorClassIdentifier: 
+  dialogueName: Hobbies
+  lines:
+  - speakerName: Angeline
+    text: I like to style peoples' hair! There is something about recieving a satisfaction
+      from customers
+    hasChoices: 1
+    choices:
+    - choiceText: Other than that, what are your like, interests?
+      nextDialogue: {fileID: 11400000, guid: 123d8dc5709728342be0c0b1f2f8f466, type: 2}
+      relationshipChange: 5
+      choiceType: 1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 25af405dd4e2c11458c8e78c5a0dddc1, type: 3}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}
