@@ -66,8 +66,8 @@ public class WorkSystem : MonoBehaviour, InteractableObject
     {
         if(PlayerStats.Instance.energy >= minimumEnergy)
         {
-            wallet.money = salary + wallet.money;
-            Debug.Log("Salary of  " + salary + " has been added to your wallet");
+            wallet.AddMoney(salary);
+            Debug.Log("Salary of " + salary + " has been added to your wallet");
             if (PlayerStats.Instance != null && statConsumable != null)
             {
                 if (PlayerStats.Instance != null)

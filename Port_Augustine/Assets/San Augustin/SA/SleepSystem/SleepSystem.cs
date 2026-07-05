@@ -249,6 +249,8 @@ public class SleepSystem : MonoBehaviour, InteractableObject
             
         }
 
+        DailySummaryUI.Instance.ShowSummary();
+
         // Reset sleep state
         isSleeping = false;
         sleepStartHour = -1;

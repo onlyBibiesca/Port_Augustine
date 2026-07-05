@@ -91,6 +91,7 @@ public class RelationshipManager : MonoBehaviour
 
         OnRelationshipChanged?.Invoke(npcName, newRelationship);
         UpdateRelationshipDisplay(npcName, newRelationship);
+        DailySummaryManager.Instance?.RecordRelationshipChange(npcName, finalAmount);
     }
     // Set relationship directly
     public void SetRelationship(string npcName, int value)
