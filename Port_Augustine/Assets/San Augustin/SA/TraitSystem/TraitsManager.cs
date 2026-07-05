@@ -102,4 +102,20 @@ public class TraitsManager : MonoBehaviour
 
         return modifier;
     }
+
+    public string GetTraitList()
+    {
+        if (activeTraits.Count == 0)
+            return "No Traits";
+
+        string result = "";
+
+        foreach (TraitSO trait in activeTraits)
+        {
+            result += trait.traitName + "\n";
+        }
+
+        return result;
+    }
 }
+
