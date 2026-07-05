@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ShopSystem : MonoBehaviour, InteractableObject
+{
+    // Start is called before the first frame update
+    private GameObject player;
+
+    private InteractableObject nearbyInteractable;
+
+    [Header("InteractUI")]
+    [SerializeField] GameObject interactUI;
+    [SerializeField] AudioSource buttonSound;
+
+    [Header("Shop")]
+    [SerializeField] GameObject shopUI;
+
+    [Header("Wallet")]
+    public Wallet wallet;
+
+    public void Interact()
+    {
+        shopUI.SetActive(true);
+        buttonSound.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            player = collision.gameObject;
+            InteractableObject interactable = collision.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                nearbyInteractable = interactable;
+                if (interactUI != null)
+                    interactUI.SetActive(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
+        {
+            nearbyInteractable = null;
+            if (interactUI != null)
+                interactUI.SetActive(false);
+        }
+    }
+}

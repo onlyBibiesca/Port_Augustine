@@ -2509,9 +2509,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 175166240}
-  - component: {fileID: 175166241}
   - component: {fileID: 175166243}
   - component: {fileID: 175166242}
+  - component: {fileID: 175166244}
   m_Layer: 0
   m_Name: KwikSilver
   m_TagString: Untagged
@@ -2536,34 +2536,6 @@ Transform:
   - {fileID: 1856157011}
   m_Father: {fileID: 1514122280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &175166241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 175166239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b718d8fd9ba32c74ca6869958305d8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactUI: {fileID: 1856157010}
-  buttonSound: {fileID: 175166242}
-  shopUI: {fileID: 0}
-  jobUI: {fileID: 1251329733}
-  jobName: Palengke mga idol
-  salary: 20
-  hourlyRate: 1 hour
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
-  walletText: {fileID: 1247267373}
-  salaryDisplayText: {fileID: 0}
-  energyDisplayText: {fileID: 0}
-  hungerDisplayText: {fileID: 0}
-  jobDisplayText: {fileID: 0}
-  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
-  timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
-  minimumEnergy: 21
 --- !u!82 &175166242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2705,6 +2677,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2696228, y: 1.5473671}
   m_EdgeRadius: 0
+--- !u!114 &175166244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175166239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84756c7052ad9647b03b5d7e1a8606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 1856157010}
+  buttonSound: {fileID: 175166242}
+  shopUI: {fileID: 1251329733}
+  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &180289626
 GameObject:
   m_ObjectHideFlags: 0
@@ -20547,9 +20535,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 319196540}
-  - component: {fileID: 319196541}
   - component: {fileID: 319196543}
   - component: {fileID: 319196542}
+  - component: {fileID: 319196544}
   m_Layer: 0
   m_Name: CoffeeForMe
   m_TagString: Untagged
@@ -20574,34 +20562,6 @@ Transform:
   - {fileID: 300728599}
   m_Father: {fileID: 1514122280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &319196541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 319196539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b718d8fd9ba32c74ca6869958305d8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactUI: {fileID: 300728598}
-  buttonSound: {fileID: 319196542}
-  shopUI: {fileID: 1094284838}
-  jobUI: {fileID: 0}
-  jobName: Palengke mga idol
-  salary: 20
-  hourlyRate: 1 hour
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
-  walletText: {fileID: 1247267373}
-  salaryDisplayText: {fileID: 0}
-  energyDisplayText: {fileID: 0}
-  hungerDisplayText: {fileID: 0}
-  jobDisplayText: {fileID: 0}
-  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
-  timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
-  minimumEnergy: 21
 --- !u!82 &319196542
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20743,6 +20703,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2696228, y: 1.5473671}
   m_EdgeRadius: 0
+--- !u!114 &319196544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319196539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84756c7052ad9647b03b5d7e1a8606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 300728598}
+  buttonSound: {fileID: 319196542}
+  shopUI: {fileID: 1094284838}
+  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &320502629
 GameObject:
   m_ObjectHideFlags: 0
@@ -27216,9 +27192,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 916094758}
-  - component: {fileID: 916094761}
   - component: {fileID: 916094760}
   - component: {fileID: 916094759}
+  - component: {fileID: 916094761}
   m_Layer: 0
   m_Name: Siomai
   m_TagString: Untagged
@@ -27393,25 +27369,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 916094757}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b718d8fd9ba32c74ca6869958305d8f6, type: 3}
+  m_Script: {fileID: 11500000, guid: e84756c7052ad9647b03b5d7e1a8606e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactUI: {fileID: 115404293}
   buttonSound: {fileID: 916094759}
-  shopUI: {fileID: 0}
-  jobUI: {fileID: 1619722079}
-  jobName: Palengke mga idol
-  salary: 20
-  hourlyRate: 1 hour
+  shopUI: {fileID: 1619722079}
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
-  walletText: {fileID: 1247267373}
-  salaryDisplayText: {fileID: 0}
-  energyDisplayText: {fileID: 0}
-  hungerDisplayText: {fileID: 0}
-  jobDisplayText: {fileID: 0}
-  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
-  timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
-  minimumEnergy: 21
 --- !u!1 &922071217
 GameObject:
   m_ObjectHideFlags: 0
@@ -36140,7 +36104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9978cffb560ff0c419235b9dbd237853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Burger Meal
+  itemName: Megachug Bottle
   quantity: 1
   itemSO: {fileID: 11400000, guid: f1c244fcc65b8b4468c95f759fe65cee, type: 2}
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
@@ -38513,9 +38477,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537523386}
-  - component: {fileID: 1537523387}
   - component: {fileID: 1537523389}
   - component: {fileID: 1537523388}
+  - component: {fileID: 1537523390}
   m_Layer: 0
   m_Name: BigBee
   m_TagString: Untagged
@@ -38540,34 +38504,6 @@ Transform:
   - {fileID: 760787966}
   m_Father: {fileID: 1514122280}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1537523387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537523385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b718d8fd9ba32c74ca6869958305d8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactUI: {fileID: 760787965}
-  buttonSound: {fileID: 1537523388}
-  shopUI: {fileID: 0}
-  jobUI: {fileID: 774433855}
-  jobName: Palengke mga idol
-  salary: 20
-  hourlyRate: 1 hour
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
-  walletText: {fileID: 1247267373}
-  salaryDisplayText: {fileID: 0}
-  energyDisplayText: {fileID: 0}
-  hungerDisplayText: {fileID: 0}
-  jobDisplayText: {fileID: 0}
-  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}
-  timeConsumable: {fileID: 11400000, guid: f2ebf638a8bd950489abad6e78e5bda8, type: 2}
-  minimumEnergy: 21
 --- !u!82 &1537523388
 AudioSource:
   m_ObjectHideFlags: 0
@@ -38709,6 +38645,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.766304, y: 1.4976997}
   m_EdgeRadius: 0
+--- !u!114 &1537523390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537523385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84756c7052ad9647b03b5d7e1a8606e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactUI: {fileID: 760787965}
+  buttonSound: {fileID: 1537523388}
+  shopUI: {fileID: 774433855}
+  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &1540308641
 GameObject:
   m_ObjectHideFlags: 0
@@ -41487,7 +41439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9978cffb560ff0c419235b9dbd237853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Bacon Burger Meal
+  itemName: Multivitamin
   quantity: 1
   itemSO: {fileID: 11400000, guid: b435042e1ed41f7488cc9d8d71c9fe5a, type: 2}
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}

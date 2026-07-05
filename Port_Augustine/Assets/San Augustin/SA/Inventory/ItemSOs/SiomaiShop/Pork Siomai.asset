@@ -17,3 +17,6 @@ MonoBehaviour:
   ChangeEnergy: 10
   ChangeHappiness: 0
   itemPrice: 0
+  grantsTraits: 1
+  grantedTraits:
+  - {fileID: 11400000, guid: 027ea7867ff61214488a6a1918dda099, type: 2}

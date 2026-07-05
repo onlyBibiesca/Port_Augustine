@@ -15,8 +15,12 @@ public class ItemSO : ScriptableObject
     public int ChangeHappiness = 0;
 
     [Header("Money Pricing")]
-    [SerializeField]public int itemPrice;
+    [SerializeField] public int itemPrice;
     //leaving it blank is free, putting in value requires player's wallet
+
+    [Header("Trait Rewards")]
+    public bool grantsTraits = false;
+    public List<TraitSO> grantedTraits = new();
 
     public void UseItem()
     {
@@ -30,9 +34,18 @@ public class ItemSO : ScriptableObject
         PlayerStats.Instance.ChangeEnergy(ChangeEnergy);
         PlayerStats.Instance.ChangeHappiness(ChangeHappiness);
 
+        if (grantsTraits)
+        {
+
+            foreach (TraitSO trait in grantedTraits)
+            {
+                Debug.Log($"Granting: {trait}");
+                TraitsManager.Instance.AddTrait(trait);
+            }
+        }
+
         Debug.Log($"Used {itemName}");
         PlayerStats.Instance.DebugStats();
     }
 }
-
 
