@@ -143,7 +143,7 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         int daysSlept = 0;
 
         // Account for sleeping across midnight
-        if (wakeUpHour >= sleepStartHour)
+        if (wakeUpHour > sleepStartHour)
         {
             // Same day sleep (shouldn't happen in normal use)
             sleepDurationHours = wakeUpHour - sleepStartHour;

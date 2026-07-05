@@ -39,20 +39,27 @@ public class Item : MonoBehaviour
 
     public void PickUpItem()
     {
-        if (canOnlyBeCollectedOnce && hasBeenCollected)
-            return;
-
-        InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
-
-        if (canOnlyBeCollectedOnce)
+        if(wallet.money >= itemSO.itemPrice)
         {
-            hasBeenCollected = true;
+            if (canOnlyBeCollectedOnce && hasBeenCollected)
+                return;
 
-            // Gray out the button
-            GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+            InventoryManager.Instance.AddItem(itemName, quantity, sprite, itemDescription);
 
-            // Prevent further clicks
-            GetComponent<UnityEngine.UI.Button>().interactable = false;
+            if (canOnlyBeCollectedOnce)
+            {
+                hasBeenCollected = true;
+
+                // Gray out the button
+                GetComponent<UnityEngine.UI.Image>().color = Color.gray;
+
+                // Prevent further clicks
+                GetComponent<UnityEngine.UI.Button>().interactable = false;
+            }
+        }
+        else
+        {
+            Debug.Log("Not Enough money");
         }
     }
 }
