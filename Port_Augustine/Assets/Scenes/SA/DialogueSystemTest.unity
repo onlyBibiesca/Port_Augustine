@@ -1838,6 +1838,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1540308642}
+  - {fileID: 1370539412}
   m_Father: {fileID: 1326795405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &125874467
@@ -1901,12 +1902,17 @@ MonoBehaviour:
   defaultWakeUpHour: 8
   defaultWakeUpMinute: 0
   defaultSleepDuration: 8
+  teleportTarget: {fileID: 1370539412}
+  enableMidnightTeleport: 1
+  mapBoundary: {fileID: 1144745487}
+  playerTransform: {fileID: 425564042}
   maxEnergyRecovery: 100
   minEnergyRecovery: 10
   allowOversleep: 1
   oversleepBonus: 10
   statConsumable: {fileID: 11400000, guid: 00830609253bebb48bc3a46f1e9dd800, type: 2}
   showDebugMessages: 1
+  virtualCamera: {fileID: 0}
 --- !u!1 &134547228
 GameObject:
   m_ObjectHideFlags: 0
@@ -34001,7 +34007,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 2086784221}
   jobName: Kombini
-  salary: 80
+  salary: 100
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
@@ -36468,6 +36474,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1370539411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1370539412}
+  m_Layer: 0
+  m_Name: TeleportTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1370539412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370539411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.36, y: -2.46, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 125874466}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1377607931
 GameObject:
   m_ObjectHideFlags: 0
@@ -46213,7 +46250,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 7018454850278775182}
   jobName: G&J Bakery
-  salary: 100
+  salary: 10000
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}

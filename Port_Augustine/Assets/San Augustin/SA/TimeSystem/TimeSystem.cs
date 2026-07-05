@@ -73,15 +73,16 @@ public class TimeSystem : MonoBehaviour
             currentHour -= 24;
             currentDay++;
             OnDayChanged?.Invoke(currentDay);
-
             SleepSystem.Instance.MidnightForceSleep();
-
+            UpdateTimeDisplay();
             if (showDebugMessages)
                 Debug.Log($"New day! Day {currentDay}");
         }
 
         UpdateTimeDisplay();
+
         OnTimeChanged?.Invoke(currentHour, currentMinute);
+
 
         if (showDebugMessages)
             Debug.Log($"Current time: {GetFormattedTime()}");

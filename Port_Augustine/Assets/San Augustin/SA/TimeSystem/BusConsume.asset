@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BusConsume
   m_EditorClassIdentifier: 
   consumesTime: 1
-  hoursToConsume: 1
+  hoursToConsume: 12
   minutesToConsume: 0
   consumableName: Bus_Travel
   description: bussin

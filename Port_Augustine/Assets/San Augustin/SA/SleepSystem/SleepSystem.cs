@@ -61,6 +61,11 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         }
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void Start()
     {
         if (interactUI != null)
@@ -91,25 +96,28 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     public void MidnightForceSleep()
     {
-                if (teleportTarget == null)
-                {
-                    Debug.LogWarning("Teleport target not assigned!");
-                    return;
-                }
+        SleepSystem.Instance.GoToSleep();
+        SleepSystem.Instance.WakeUpAtDefaultTime();
+        if (teleportTarget == null)
+        {
+            Debug.LogWarning("Teleport target not assigned!");
+            return;
+        }
 
-                // Find player
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                if (player == null)
-                {
-                    Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
-                    return;
-                }
+        // Find player
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
+            return;
+        }
 
-                if (showDebugMessages)
-                    Debug.Log($"Midnight teleport! Moving player to {teleportTarget.name}");
+        if (showDebugMessages)
+            Debug.Log($"Midnight teleport! Moving player to {teleportTarget.name}");
 
-                // Teleport player
-                ChangePlayerPosition(player);
+        // Teleport player
+        ChangePlayerPosition(player);
+
 
     }
     public void ChangePlayerPosition(GameObject player)
