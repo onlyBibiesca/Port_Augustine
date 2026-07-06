@@ -241,7 +241,7 @@ public class NPC_Dialogue : MonoBehaviour
             // Show quest in quest panel
             if (QuestPanel.Instance != null)
             {
-                QuestPanel.Instance.AddQuest(currentEventKey, availableEvent.eventName);
+                QuestPanel.Instance.AddQuest(currentEventKey, availableEvent.eventName, availableEvent.eventDescription);
                 Debug.Log($"Quest added to panel");
             }
         }

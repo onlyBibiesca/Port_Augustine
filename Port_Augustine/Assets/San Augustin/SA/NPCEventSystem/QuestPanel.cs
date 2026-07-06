@@ -43,7 +43,7 @@ public class QuestPanel : MonoBehaviour
     }
 
     // Add quest to panel
-    public void AddQuest(string questKey, string questName)
+    public void AddQuest(string questKey, string questName, string questDescription)
     {
         if (activeQuests.ContainsKey(questKey))
         {
@@ -73,11 +73,21 @@ public class QuestPanel : MonoBehaviour
             questText.text = questName;
         }
 
-        // Store in dictionary
-        activeQuests[questKey] = questItem;
+        // Set quest description if there's a description component
+        Transform descriptionTransform = questItem.transform.Find("Description");
+        if (descriptionTransform != null)
+        {
+            TextMeshProUGUI questDescriptionText = descriptionTransform.GetComponent<TextMeshProUGUI>();
+            if (questText == null)
+            {
+                questText = questItem.GetComponentInChildren<TextMeshProUGUI>();
+            }
+            if (questDescriptionText != null)
+            {
+                questDescriptionText.text = questDescription;
+            }
+        }
 
-        if (showDebugMessages)
-            Debug.Log($" Quest added: {questName}");
     }
 
     // Remove quest from panel

@@ -8,6 +8,10 @@ public class NPCEvent
     public int relationshipThreshold = 15; // Event triggers at this relationship level
     public string eventName = "Special Event";
 
+    [Header("Description")]
+    [TextArea(2, 4)]
+    public string eventDescription;
+
     [Header("Event Dialogue")]
     public DialogueDirectory eventDialogueDirectory;
     public List<string> eventDialogueSequence = new List<string>();
