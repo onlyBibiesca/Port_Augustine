@@ -11,15 +11,15 @@ public class TimeOfDayFilter : MonoBehaviour
     public Color morningColor = new Color(1f, 0.95f, 0.85f, 0.15f); // Warm yellow tint
     public float morningIntensity = 0.15f;
 
-    [Header("Afternoon Settings (12:00 - 17:59)")]
+    [Header("Afternoon Settings (12:00 - 16:59)")]
     public Color afternoonColor = new Color(1f, 1f, 1f, 0f); // Neutral/no tint
     public float afternoonIntensity = 0f;
 
-    [Header("Evening Settings (18:00 - 20:59)")]
+    [Header("Evening Settings (17:00 - 18:59)")]
     public Color eveningColor = new Color(1f, 0.7f, 0.5f, 0.2f); // Orange/golden tint
     public float eveningIntensity = 0.2f;
 
-    [Header("Night Settings (21:00 - 5:59)")]
+    [Header("Night Settings (19:00 - 5:59)")]
     public Color nightColor = new Color(0.3f, 0.4f, 0.6f, 0.4f); // Blue tint
     public float nightIntensity = 0.4f;
 
@@ -106,9 +106,9 @@ public class TimeOfDayFilter : MonoBehaviour
     {
         if (hour >= 6 && hour < 12)
             return TimeOfDay.Morning;
-        else if (hour >= 12 && hour < 18)
+        else if (hour >= 12 && hour < 17)
             return TimeOfDay.Afternoon;
-        else if (hour >= 18 && hour < 21)
+        else if (hour >= 17 && hour < 18)
             return TimeOfDay.Evening;
         else
             return TimeOfDay.Night; // 21:00 - 05:59

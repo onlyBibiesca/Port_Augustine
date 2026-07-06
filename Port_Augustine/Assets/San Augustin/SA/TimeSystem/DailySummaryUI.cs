@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine;
 public class DailySummaryUI : MonoBehaviour
 {
     public static DailySummaryUI Instance;
+
+    public TimeSystem timeSystem;
 
     [Header("UI")]
     [SerializeField] private GameObject summaryPanel;
@@ -59,8 +62,15 @@ public class DailySummaryUI : MonoBehaviour
         summaryText.text = builder.ToString();
 
         summaryPanel.SetActive(true);
+       
 
         Time.timeScale = 0f;
+    }
+    public IEnumerator DoSomething()
+    {
+        Debug.Log("Midnight Teleport started");
+        yield return new WaitForSeconds(2f);
+        Debug.Log("Midnight Teleport finished");
     }
 
     public void CloseSummary()

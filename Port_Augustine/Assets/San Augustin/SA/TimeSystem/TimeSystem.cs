@@ -7,6 +7,8 @@ public class TimeSystem : MonoBehaviour
 {
     public static TimeSystem Instance;
 
+    public DailySummaryUI dailySummaryUI;
+
     [Header("Time Settings")]
     public int currentHour = 8;
     public int currentMinute = 0;
@@ -22,7 +24,7 @@ public class TimeSystem : MonoBehaviour
 
     public event Action<int, int> OnTimeChanged;
     public event Action<int> OnDayChanged;
-
+   
     void Awake()
     {
         if (Instance == null)
@@ -73,8 +75,6 @@ public class TimeSystem : MonoBehaviour
             currentHour -= 24;
             currentDay++;
             OnDayChanged?.Invoke(currentDay);
-            SleepSystem.Instance.MidnightForceSleep();
-            UpdateTimeDisplay();
             if (showDebugMessages)
                 Debug.Log($"New day! Day {currentDay}");
         }
@@ -140,7 +140,7 @@ public class TimeSystem : MonoBehaviour
             Debug.Log($"Day set to: {currentDay}");
     }
 
-    void UpdateTimeDisplay()
+    public void UpdateTimeDisplay()
     {
         if (timeDisplayText != null)
         {
