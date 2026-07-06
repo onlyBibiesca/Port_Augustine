@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event_Success
+  m_EditorClassIdentifier: 
+  dialogueName: Event_Success
+  lines:
+  - speakerName: Angeline
+    text: "I\u2019ll probably head inside soon. I\u2019m just getting some fresh
+      air beforehand. You should head home and rest too, <player>. Have a good night\u2026"
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 0}
+  consumesTime: 1
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

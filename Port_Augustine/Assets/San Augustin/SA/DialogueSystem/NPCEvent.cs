@@ -22,4 +22,9 @@ public class NPCEvent
     [Header("Failure Outcome")]
     public Dialogue failureDialogue;
     public int failureRelationshipPenalty = -10;
-}   
+
+    [Header("Time Range (Optional)")]
+    public bool hasTimeRange = false; // Enable/disable time restriction
+    public int startHour = 10; // Event starts at this hour
+    public int endHour = 20; // Event ends at this hour
+}

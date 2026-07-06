@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event_2
+  m_EditorClassIdentifier: 
+  dialogueName: Event_2
+  lines:
+  - speakerName: Angeline
+    text: "Hopefully your day\u2019s been\u2026 better than mine, at least. If so,
+      that\u2019s good. If not\u2026 well, a shared sorrow and all that, right? Haha\u2026"
+    hasChoices: 1
+    choices:
+    - choiceText: When I saw you, it became a good day!
+      nextDialogue: {fileID: 11400000, guid: 7ee3a3a6ca82dea4daa99de40e7b8505, type: 2}
+      relationshipChange: 10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 0}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

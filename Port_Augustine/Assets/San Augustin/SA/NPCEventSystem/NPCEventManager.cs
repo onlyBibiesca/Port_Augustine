@@ -9,7 +9,7 @@ public class NPCEventManager : MonoBehaviour
     [Header("Debug")]
     public bool showDebugMessages = true;
 
-    private Dictionary<string, bool> completedEvents = new Dictionary<string, bool>();
+    public Dictionary<string, bool> completedEvents = new Dictionary<string, bool>();
     private Dictionary<string, int> eventScores = new Dictionary<string, int>();
 
     void Awake()
@@ -74,6 +74,11 @@ public class NPCEventManager : MonoBehaviour
 
         if (showDebugMessages)
             Debug.Log($"Choice recorded: {choiceType}. Event score: {eventScores[eventKey]}");
+    }
+
+    public bool IsEventCompleted(string eventKey)
+    {
+        return completedEvents.ContainsKey(eventKey) && completedEvents[eventKey];
     }
 
     // Determine if event is successful

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class NPC_Dialogue : MonoBehaviour
@@ -53,6 +54,23 @@ public class NPC_Dialogue : MonoBehaviour
 
         if (dialoguesByDay.Count == 0)
             Debug.LogWarning($"NPCDialogue on {gameObject.name} has no dialogue directories assigned!");
+
+        originalPosition = transform.position;
+
+        if (TimeSystem.Instance != null)
+        {
+            TimeSystem.Instance.OnTimeChanged += (hour, minute) => CheckForAvailableEvents();
+            Debug.Log($"{npcName} subscribed to time changes");
+        }
+    }
+
+    void OnDestroy()
+    {
+
+        if (TimeSystem.Instance != null)
+        {
+            TimeSystem.Instance.OnTimeChanged -= (hour, minute) => CheckForAvailableEvents();
+        }
     }
 
 
@@ -71,6 +89,40 @@ public class NPC_Dialogue : MonoBehaviour
         }
     }
 
+    public bool IsEventAvailableNow(NPCEvent evt)
+    {
+        // If event doesn't have time range, it's always available
+        if (!evt.hasTimeRange)
+        {
+            return true;
+        }
+
+        // Get current hour
+        int currentHour = TimeSystem.Instance.currentHour;
+
+        // Check if current time is within range
+        if (evt.startHour <= evt.endHour)
+        {
+            // Normal range (e.g., 10:00 - 20:00)
+            bool inRange = currentHour >= evt.startHour && currentHour < evt.endHour;
+
+            if (showDebugMessages)
+                Debug.Log($"Event {evt.eventName}: Current hour {currentHour}, Range {evt.startHour}-{evt.endHour}, In range? {inRange}");
+
+            return inRange;
+        }
+        else
+        {
+            // Overnight range (e.g., 20:00 - 08:00, wraps midnight)
+            bool inRange = currentHour >= evt.startHour || currentHour < evt.endHour;
+
+            if (showDebugMessages)
+                Debug.Log($"Event {evt.eventName}: Current hour {currentHour}, Overnight range {evt.startHour}-{evt.endHour}, In range? {inRange}");
+
+            return inRange;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<InteractableObject>() == nearbyInteractable)
@@ -83,83 +135,119 @@ public class NPC_Dialogue : MonoBehaviour
 
     void CheckForAvailableEvents()
     {
-
         Debug.Log($"=== CheckForAvailableEvents called for {npcName} ===");
 
-        if (RelationshipManager.Instance == null)
+        if (RelationshipManager.Instance == null || NPCEventManager.Instance == null)
         {
-            Debug.LogError("RelationshipManager.Instance is NULL!");
+            Debug.LogError("RelationshipManager or NPCEventManager is NULL!");
             return;
         }
 
-        if (NPCEventManager.Instance == null)
+        if (TimeSystem.Instance == null)
         {
-            Debug.LogError("NPCEventManager.Instance is NULL!");
+            Debug.LogError("TimeSystem.Instance is NULL!");
             return;
         }
 
         int currentRelationship = RelationshipManager.Instance.GetRelationship(npcName);
-        Debug.Log($"Current relationship for {npcName}: {currentRelationship}");
-        Debug.Log($"Available Events count: {availableEvents.Count}");
+        int currentHour = TimeSystem.Instance.currentHour;
+        Debug.Log($"Current hour: {currentHour}");
+        Debug.Log($"Current relationship: {currentRelationship}");
+        Debug.Log($"Available events count: {availableEvents.Count}");
 
-        if (availableEvents.Count == 0)
+        NPCEvent availableEvent = null;
+
+        foreach (NPCEvent evt in availableEvents)
         {
-            Debug.Log($"No events configured for {npcName}");
-            return;
-        }
+            Debug.Log($"\n--- Checking event: {evt.eventName} ---");
+            Debug.Log($"  Relationship threshold: {evt.relationshipThreshold}");
+            Debug.Log($"  Current relationship: {currentRelationship}");
+            Debug.Log($"  Meets threshold? {currentRelationship >= evt.relationshipThreshold}");
 
-        // Check each event
-        for (int i = 0; i < availableEvents.Count; i++)
-        {
-            NPCEvent evt = availableEvents[i];
-            Debug.Log($"  Event {i}: '{evt.eventName}' - Threshold: {evt.relationshipThreshold}");
-            Debug.Log($"    Relationship {currentRelationship} >= Threshold {evt.relationshipThreshold}? {currentRelationship >= evt.relationshipThreshold}");
-        }
+            if (currentRelationship >= evt.relationshipThreshold)
+            {
+                string eventKey = $"{npcName}_{evt.eventName}";
+                Debug.Log($"  Event key: {eventKey}");
 
-        NPCEvent availableEvent = NPCEventManager.Instance.GetAvailableEvent(npcName, currentRelationship, availableEvents);
+                // Check if completed
+                bool isCompleted = NPCEventManager.Instance.completedEvents.ContainsKey(eventKey) &&
+                                  NPCEventManager.Instance.completedEvents[eventKey];
+                Debug.Log($"  Already completed? {isCompleted}");
+
+                if (!isCompleted)
+                {
+                    // Check time range
+                    Debug.Log($"  Has time range? {evt.hasTimeRange}");
+
+                    if (evt.hasTimeRange)
+                    {
+                        Debug.Log($"  Event time range: {evt.startHour}:00 - {evt.endHour}:00");
+                        Debug.Log($"  Current hour: {currentHour}");
+
+                        bool inRange = false;
+                        if (evt.startHour <= evt.endHour)
+                        {
+                            inRange = currentHour >= evt.startHour && currentHour < evt.endHour;
+                            Debug.Log($"  Normal range check: {currentHour} >= {evt.startHour} && {currentHour} < {evt.endHour} = {inRange}");
+                        }
+                        else
+                        {
+                            inRange = currentHour >= evt.startHour || currentHour < evt.endHour;
+                            Debug.Log($"  Overnight range check: {currentHour} >= {evt.startHour} || {currentHour} < {evt.endHour} = {inRange}");
+                        }
+
+                        if (inRange)
+                        {
+                            Debug.Log($"  Event is within time range!");
+                            availableEvent = evt;
+                            break;
+                        }
+                        else
+                        {
+                            Debug.Log($"  Event is outside time range");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log($"  Event has no time restriction");
+                        availableEvent = evt;
+                        break;
+                    }
+                }
+            }
+        }
 
         if (availableEvent != null && currentEvent == null)
         {
-            Debug.Log($" Event available! Setting up: {availableEvent.eventName}");
-
+            Debug.Log($"\n Event available! Setting up: {availableEvent.eventName}");
             currentEvent = availableEvent;
             currentEventKey = $"{npcName}_{availableEvent.eventName}";
 
+            // Move NPC to event location
             if (availableEvent.eventLocation != null)
             {
                 transform.position = availableEvent.eventLocation.position;
-                Debug.Log($" NPC moved to event location: {availableEvent.eventLocation.name}");
-            }
-            else
-            {
-                Debug.LogError($" Event Location is NULL for {availableEvent.eventName}!");
+                Debug.Log($"NPC moved to event location");
             }
 
+            // Show exclamation mark
             NPCEventIndicator indicator = GetComponent<NPCEventIndicator>();
             if (indicator != null)
             {
                 indicator.ShowEventIndicator();
-                Debug.Log($" Exclamation mark shown!");
+                Debug.Log($"Exclamation mark shown");
             }
-            else
-            {
-                Debug.LogError($"NPCEventIndicator not found on {gameObject.name}!");
-            }
-        }
-        else if (availableEvent == null)
-        {
-            Debug.Log($"GetAvailableEvent returned NULL");
-        }
-        else if (currentEvent != null)
-        {
-            Debug.Log($"Event already active: {currentEvent.eventName}");
-        }
 
-        if (QuestPanel.Instance != null)
+            // Show quest in quest panel
+            if (QuestPanel.Instance != null)
+            {
+                QuestPanel.Instance.AddQuest(currentEventKey, availableEvent.eventName);
+                Debug.Log($"Quest added to panel");
+            }
+        }
+        else
         {
-            QuestPanel.Instance.AddQuest(currentEventKey, availableEvent.eventName);
-            if (showDebugMessages)
-                Debug.Log($"Quest added to panel: {availableEvent.eventName}");
+            Debug.Log($"No available event found or event already active");
         }
     }
 

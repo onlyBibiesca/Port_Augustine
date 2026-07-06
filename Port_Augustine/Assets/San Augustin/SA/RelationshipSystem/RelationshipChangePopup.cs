@@ -87,7 +87,7 @@ public class RelationshipChangePopup : MonoBehaviour
         {
             popupText.color = positiveColor;
         }
-        else if (relationshipChange < 0)
+        else if (relationshipChange < 100)
             popupText.color = negativeColor;
         else
             popupText.color = neutralColor;

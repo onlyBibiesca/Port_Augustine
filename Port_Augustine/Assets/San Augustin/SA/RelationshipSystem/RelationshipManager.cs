@@ -9,14 +9,14 @@ public class RelationshipManager : MonoBehaviour
     public static RelationshipManager Instance;
 
     [Header("Relationship Settings")]
-    [Range(-100, 100)]
+    [Range(0, 100)]
     public int defaultRelationship = 0;
 
     [Range(0, 100)]
     public int maxRelationship = 100;
 
-    [Range(-100, 0)]
-    public int minRelationship = -100;
+    [Range(0, 100)]
+    public int minRelationship = 0;
 
     [Header("UI References")]
     public UnityEngine.UI.Slider relationshipSlider;
