@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: Kombini
   m_EditorClassIdentifier: 
   traitName: Kombini
-  description: 
+  description: SIOPAO AT ALAK
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
   category: 0
   uniqueCategory: 0
   movementTimeModifier: 0
-  workIncomeMultiplier: 1
-  startingBuildingID: 
-  grantedTraits: []
+  wakeUpHourModifier: 0
+  relationshipGainModifier: 0
   hungerMaxBonus: 0
   energyMaxBonus: 0
   happinessMaxBonus: 0
+  workIncomeMultiplier: 1
+  startingBuildingID: 
+  grantedTraits: []
