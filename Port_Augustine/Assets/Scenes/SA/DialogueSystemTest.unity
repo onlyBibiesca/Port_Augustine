@@ -433,7 +433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pork Siomai  0 Pesos
+  m_text: Pork Siomai  50 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -679,7 +679,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chichria Craclklin's 0 Pesos
+  m_text: Chichria Craclklin's 20 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -2531,7 +2531,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Multivitamins\n 0 Pesos"
+  m_text: 'Multivitamins
+
+    300 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -3069,7 +3071,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Umbrella
 
-    0 Pesos'
+    300 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -3442,7 +3444,6 @@ MonoBehaviour:
   interactUI: {fileID: 1856157010}
   buttonSound: {fileID: 175166242}
   shopUI: {fileID: 1251329733}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &180289626
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,7 +4465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Big N' Full Cup 0 Pesos
+  m_text: Big N' Full Cup 60 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -34263,7 +34264,6 @@ MonoBehaviour:
   interactUI: {fileID: 300728598}
   buttonSound: {fileID: 319196542}
   shopUI: {fileID: 1094284838}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &319297085
 GameObject:
   m_ObjectHideFlags: 0
@@ -40537,7 +40537,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Dress cLOTHES
 
-    0 Pesos'
+    800 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -41418,7 +41418,7 @@ GameObject:
   - component: {fileID: 758768090}
   - component: {fileID: 758768089}
   m_Layer: 5
-  m_Name: Sati-Mate (1)
+  m_Name: Beauty Pack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41574,7 +41574,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &760610525
 Transform:
   m_ObjectHideFlags: 0
@@ -41607,7 +41607,6 @@ MonoBehaviour:
   interactUI: {fileID: 662683579}
   buttonSound: {fileID: 760610527}
   shopUI: {fileID: 1768694443}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!82 &760610527
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43008,7 +43007,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Cheesy Juicy Bacon Burger MEal  0 Pesos
+  m_text: Cheesy Juicy Bacon Burger MEal  190 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -43991,7 +43990,6 @@ MonoBehaviour:
   interactUI: {fileID: 115404293}
   buttonSound: {fileID: 916094759}
   shopUI: {fileID: 1619722079}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &918828314
 GameObject:
   m_ObjectHideFlags: 0
@@ -45165,7 +45163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Japanese Siomai        0 Pesos
+  m_text: Japanese Siomai        70 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -45549,7 +45547,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Kopimate
 
-    0 Pesos'
+    100 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -66318,7 +66316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1251329734
 RectTransform:
   m_ObjectHideFlags: 0
@@ -67658,7 +67656,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Beauty Pack
 
-    0 Pesos'
+    150 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -69517,7 +69515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Turon 0 Pesos
+  m_text: Turon 20 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -70991,7 +70989,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Juicy burger meal\n  0 Pesos"
+  m_text: 'Juicy burger meal
+
+    150 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -71895,7 +71895,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Megachug bottle\n  0 Pesos"
+  m_text: 'Megachug bottle
+
+    500 Pesos'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -72382,7 +72384,6 @@ MonoBehaviour:
   interactUI: {fileID: 760787965}
   buttonSound: {fileID: 1537523388}
   shopUI: {fileID: 774433855}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!1 &1540308641
 GameObject:
   m_ObjectHideFlags: 0
@@ -73135,7 +73136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Latte   0 Pesos
+  m_text: Latte   70 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -75690,7 +75691,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Restok Sneakers
 
-    0 pESOS'
+    500 pESOS'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -75980,7 +75981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1768694444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -76115,7 +76116,6 @@ MonoBehaviour:
   interactUI: {fileID: 231186826}
   buttonSound: {fileID: 1787985984}
   shopUI: {fileID: 1576747087}
-  wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
 --- !u!82 &1787985984
 AudioSource:
   m_ObjectHideFlags: 0
@@ -76408,7 +76408,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Multivitamins
 
-    0 pESOS'
+    200 pESOS'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -77265,7 +77265,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Siopao 0 Pesos
+  m_text: Siopao 50 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -79841,7 +79841,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Meaty Spaghetti w/ Chicky Meal  0 Pesos
+  m_text: Meaty Spaghetti w/ Chicky Meal  250 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -79975,7 +79975,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Frappuchino 0 Pesos
+  m_text: Frappuchino 90 Pesos
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
@@ -81396,7 +81396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sati-MATE \n0 Pesos"
+  m_text: "Sati-MATE \n150 Pesos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
   m_sharedMaterial: {fileID: 5171939867430380397, guid: d3e7c88eb655def43aa2cd8997bc90bf, type: 2}
