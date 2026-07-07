@@ -16,8 +16,7 @@ public class ShopSystem : MonoBehaviour, InteractableObject
     [Header("Shop")]
     [SerializeField] GameObject shopUI;
 
-    [Header("Wallet")]
-    public Wallet wallet;
+    
 
     public void Interact()
     {
