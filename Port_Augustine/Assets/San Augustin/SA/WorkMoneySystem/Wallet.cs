@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Wallet", menuName = "PlayerWallet")]
 public class Wallet : ScriptableObject
 {
-    public int money;
-    public int defaultValue;
+    public int money = 0;
+    public int defaultValue = 0;
 
     public void AddMoney(int amount)
     {
-        money += amount;
+        money = amount + money;
 
         DailySummaryManager.Instance?.RecordMoneyEarned(amount);
     }

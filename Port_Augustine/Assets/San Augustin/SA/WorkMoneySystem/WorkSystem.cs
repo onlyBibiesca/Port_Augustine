@@ -66,8 +66,8 @@ public class WorkSystem : MonoBehaviour, InteractableObject
     {
         if(PlayerStats.Instance.energy >= minimumEnergy && TimeSystem.Instance.currentHour >= 7 && TimeSystem.Instance.currentHour <= 18 )
         {
-            wallet.AddMoney(salary);
-            Debug.Log("Salary of " + salary + " has been added to your wallet");
+            wallet.money += salary;
+            Debug.LogWarning("Salary of " + salary + " has been added to your wallet");
             if (PlayerStats.Instance != null && statConsumable != null)
             {
                 if (PlayerStats.Instance != null)
