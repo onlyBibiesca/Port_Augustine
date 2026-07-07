@@ -22,4 +22,4 @@ MonoBehaviour:
   consumesTime: 1
   hoursToConsume: 0
   minutesToConsume: 20
-  statConsumable: {fileID: 0}
+  statConsumable: {fileID: 11400000, guid: aac7f35f899fb2e4db0081fa7b746508, type: 2}

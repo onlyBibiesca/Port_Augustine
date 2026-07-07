@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd78cb970c6db374bbe3b8fb013119da, type: 3}
   m_Name: Chatter_1
   m_EditorClassIdentifier: 
-  dialogues: []
+  dialogues:
+  - {fileID: 11400000, guid: f95a5c9971ba24e418506b2ec5884f87, type: 2}
+  - {fileID: 11400000, guid: deecab58198941349907d484f7fdca6d, type: 2}

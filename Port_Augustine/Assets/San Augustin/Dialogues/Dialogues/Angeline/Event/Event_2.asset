@@ -22,7 +22,7 @@ MonoBehaviour:
     - choiceText: When I saw you, it became a good day!
       nextDialogue: {fileID: 11400000, guid: 7ee3a3a6ca82dea4daa99de40e7b8505, type: 2}
       relationshipChange: 10
-      choiceType: 0
+      choiceType: 1
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0

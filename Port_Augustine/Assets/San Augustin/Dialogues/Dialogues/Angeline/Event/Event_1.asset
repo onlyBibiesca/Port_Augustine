@@ -16,7 +16,7 @@ MonoBehaviour:
   lines:
   - speakerName: Angeline
     text: "Ugh, we were so short staffed today\u2026 my legs feel like lead."
-    hasChoices: 1
+    hasChoices: 0
     choices: []
     characterPortrait: {fileID: 0}
   - speakerName: Angeline
