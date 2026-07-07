@@ -24,11 +24,10 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     [Range(1, 16)]
     public int defaultSleepDuration = 8; // How many hours is "full rest"
 
-    [Header("Midnight Teleport Settings")]
-    public Transform teleportTarget; // Where player appears at midnight
-    public bool enableMidnightTeleport = true;
-    [SerializeField] PolygonCollider2D mapBoundary;
-    [SerializeField] private Transform playerTransform;
+    [Header("Passed Out UI")]
+    [SerializeField] GameObject passedOutUI;
+    [SerializeField] private float showTime = 3f;
+    private Coroutine currentRoutine;
 
     [Header("Energy Recovery")]
     [Range(0, 100)]
@@ -67,13 +66,28 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     private void Update()
     {
-        
+
     }
 
     private void Start()
     {
         if (interactUI != null)
             interactUI.SetActive(false);
+    }
+
+    public void ShowTemporarily()
+    {
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+        currentRoutine = StartCoroutine(ShowAndHide());
+    }
+
+    private IEnumerator ShowAndHide()
+    {
+        passedOutUI.SetActive(true);
+        yield return new WaitForSeconds(showTime);
+        passedOutUI.SetActive(false);
+        currentRoutine = null;
     }
 
 
@@ -106,58 +120,14 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     {
         SleepSystem.Instance.GoToSleep();
         SleepSystem.Instance.WakeUpAtDefaultTime();
-        if (teleportTarget == null)
-        {
-            Debug.LogWarning("Teleport target not assigned!");
-            return;
-        }
 
-        // Find player
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-        {
-            Debug.LogWarning("Player not found! Make sure it has the 'Player' tag.");
-            return;
-        }
-
-        if (showDebugMessages)
-            Debug.Log($"Midnight teleport! Moving player to {teleportTarget.name}");
-
-        // Teleport player
-        ChangePlayerPosition(player);
+        ShowTemporarily();
 
         DailySummaryUI.Instance.ShowSummary();
 
 
     }
-    public void ChangePlayerPosition(GameObject player)
-    {
-        Debug.Log("ChangePlayerPosition START");
-
-        Vector3 delta = teleportTarget.position - player.transform.position;
-        Debug.Log($"Delta calculated: {delta}");
-
-        player.transform.position = teleportTarget.position;
-        Debug.Log($"Player moved to: {player.transform.position}");
-
-        virtualCamera.OnTargetObjectWarped(playerTransform, delta);
-        Debug.Log("Camera warped");
-
-        SwapConfiner();
-        Debug.Log("ChangePlayerPosition END");
-    }
-
-    private void SwapConfiner()
-    {
-        Debug.Log("SwapConfiner START");
-        var confiner = virtualCamera.GetComponent<CinemachineConfiner>();
-        Debug.Log($"Confiner found: {confiner != null}");
-        confiner.m_BoundingShape2D = mapBoundary;
-        confiner.InvalidatePathCache();
-        Debug.Log("SwapConfiner END");
-    }
-
-    // Player goes to sleep at current time
+    
     public void GoToSleep()
     {
         if (TimeSystem.Instance == null)
