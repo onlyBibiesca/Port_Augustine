@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DailySummaryUI : MonoBehaviour
 {
     public static DailySummaryUI Instance;
+    private PlayerInput playerInput;
+    private bool playerMovementEnabled = true;
 
     public TimeSystem timeSystem;
 
@@ -62,20 +65,54 @@ public class DailySummaryUI : MonoBehaviour
         summaryText.text = builder.ToString();
 
         summaryPanel.SetActive(true);
-       
 
-        Time.timeScale = 0f;
+
+        DisablePlayerMovement();
     }
 
     public void CloseSummary()
     {
         summaryPanel.SetActive(false);
 
-        Time.timeScale = 1f;
+        EnablePlayerMovement();
 
         DailySummaryManager.Instance.ResetDailyData();
     }
 
-    
-    
+    void FindPlayerInput()
+    {
+        if (playerInput == null)
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            if (playerInput == null)
+            {
+                Debug.LogWarning("PlayerInput component not found!");
+            }
+        }
+    }
+
+    void DisablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+            playerMovementEnabled = false;
+            Debug.Log("Player movement disabled");
+        }
+    }
+
+    void EnablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = true;
+            playerMovementEnabled = true;
+            Debug.Log("Player movement enabled");
+        }
+    }
+
+
+
 }
