@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Chatter_1
+  m_EditorClassIdentifier: 
+  dialogueName: Chatter_1
+  lines:
+  - speakerName: Carlos
+    text: I wonder if I should change the seat covers? It could be comfier.
+    hasChoices: 1
+    choices:
+    - choiceText: It could help.
+      nextDialogue: {fileID: 11400000, guid: 7888dac26a5e22345b75bedc664cd263, type: 2}
+      relationshipChange: 20
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 0}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}
