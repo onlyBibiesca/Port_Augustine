@@ -40428,7 +40428,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1272338874051592969}
+      - m_Target: {fileID: 940876482}
         m_TargetAssemblyTypeName: WorkSystem, Assembly-CSharp
         m_MethodName: AddMoney
         m_Mode: 1
@@ -70564,7 +70564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1272338874051592969}
+      - m_Target: {fileID: 1210766393}
         m_TargetAssemblyTypeName: WorkSystem, Assembly-CSharp
         m_MethodName: AddMoney
         m_Mode: 1
