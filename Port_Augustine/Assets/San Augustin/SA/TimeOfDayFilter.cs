@@ -7,6 +7,17 @@ public class TimeOfDayFilter : MonoBehaviour
 {
     public static TimeOfDayFilter Instance;
 
+    [Header("Ambient Sounds")]
+    public AudioSource ambientSource;
+
+    public AudioClip morningClip;
+    public AudioClip afternoonClip;
+    public AudioClip eveningClip;
+    public AudioClip nightClip;
+
+    [Header("Audio Settings")]
+    public float fadeDuration = 2f;
+
     [Header("Morning Settings (6:00 - 11:59)")]
     public Color morningColor = new Color(1f, 0.95f, 0.85f, 0.15f); // Warm yellow tint
     public float morningIntensity = 0.15f;
@@ -93,13 +104,69 @@ public class TimeOfDayFilter : MonoBehaviour
         targetFilterColor = GetColorForTimeOfDay(timeOfDay);
 
         if (!useSmoothing && filterImage != null)
-        {
             filterImage.color = targetFilterColor;
-        }
 
         UpdateTimeLabel(timeOfDay);
 
+        UpdateAmbientSound(timeOfDay);
+
         Debug.Log($"Time filter updated: {timeOfDay} ({hour:00}:{minute:00})");
+    }
+
+    void UpdateAmbientSound(TimeOfDay timeOfDay)
+    {
+        AudioClip targetClip = null;
+
+        switch (timeOfDay)
+        {
+            case TimeOfDay.Morning:
+                targetClip = morningClip;
+                break;
+
+            case TimeOfDay.Afternoon:
+                targetClip = afternoonClip;
+                break;
+
+            case TimeOfDay.Evening:
+                targetClip = eveningClip;
+                break;
+
+            case TimeOfDay.Night:
+                targetClip = nightClip;
+                break;
+        }
+
+        if (ambientSource.clip == targetClip)
+            return;
+
+        StopAllCoroutines();
+        StartCoroutine(FadeToClip(targetClip));
+    }
+
+    IEnumerator FadeToClip(AudioClip newClip)
+    {
+        // Fade out
+        while (ambientSource.volume > 0)
+        {
+            ambientSource.volume -= Time.deltaTime / fadeDuration;
+            yield return null;
+        }
+
+        ambientSource.Stop();
+
+        ambientSource.clip = newClip;
+
+        if (newClip != null)
+            ambientSource.Play();
+
+        // Fade in
+        while (ambientSource.volume < 1)
+        {
+            ambientSource.volume += Time.deltaTime / fadeDuration;
+            yield return null;
+        }
+
+        ambientSource.volume = 1;
     }
 
     TimeOfDay GetTimeOfDay(int hour)
