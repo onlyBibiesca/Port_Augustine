@@ -11,7 +11,7 @@ public class NPC_Dialogue : MonoBehaviour
     [Header("Dialogue Setup - By Day")]
     [SerializeField] private List<DialogueDirectoryByDay> dialoguesByDay = new List<DialogueDirectoryByDay>();
 
-    [SerializeField] private List<string> dialogueSequence = new List<string>();
+    [SerializeField] private List<DialogueSequenceItem> dialogueSequence = new List<DialogueSequenceItem>();
 
     [Header("Fallback Settings")]
     public bool useFallbackOnMissingDay = true;
@@ -43,7 +43,12 @@ public class NPC_Dialogue : MonoBehaviour
 
     private InteractableObject nearbyInteractable;
 
-
+    [System.Serializable]
+    public class DialogueSequenceItem
+    {
+        public int day = 1;
+        public string dialogueName = "";
+    }
     void Start()
     {
         originalPosition = transform.position;
@@ -254,9 +259,10 @@ public class NPC_Dialogue : MonoBehaviour
 
     public void OnInteract()
     {
-        if(PlayerStats.Instance.energy >= minimumEnergy)
+        if (PlayerStats.Instance.energy >= minimumEnergy)
         {
             buttonSound.Play();
+            // Block interaction if dialogue is already active
             if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
             {
                 if (showDebugMessages)
@@ -264,8 +270,7 @@ public class NPC_Dialogue : MonoBehaviour
                 return;
             }
 
-            int currentGameDay = TimeSystem.Instance.currentDay;
-
+            // IF EVENT IS AVAILABLE, TRIGGER IT INSTEAD
             if (currentEvent != null)
             {
                 if (showDebugMessages)
@@ -281,7 +286,7 @@ public class NPC_Dialogue : MonoBehaviour
 
                     if (eventDialogue != null)
                     {
-                        DialogueManager.Instance.StartEventDialogue(eventDialogue, OnEventDialogueFinished, npcName, currentEventKey);
+                        DialogueManager.Instance.StartDialogue(eventDialogue, OnEventDialogueFinished, npcName);
                         return;
                     }
                 }
@@ -290,12 +295,15 @@ public class NPC_Dialogue : MonoBehaviour
                 return;
             }
 
-            // Track first interaction day (real game day)
+            // NORMAL DIALOGUE INTERACTION
+            int currentGameDay = TimeSystem.Instance.currentDay;
+
+            // Track first interaction day
             if (firstInteractionDay == -1)
             {
                 firstInteractionDay = currentGameDay;
                 lastInteractionDay = currentGameDay;
-                currentProgressionDay = fallbackDay; // Start with fallback day (Day 1)
+                currentProgressionDay = fallbackDay;
                 if (showDebugMessages)
                     Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}. Starting with progression day {currentProgressionDay}");
             }
@@ -306,7 +314,7 @@ public class NPC_Dialogue : MonoBehaviour
                 {
                     currentProgressionDay++;
                     if (showDebugMessages)
-                        Debug.Log($" New day detected! Progression day advanced to {currentProgressionDay}");
+                        Debug.Log($"New day detected! Progression day advanced to {currentProgressionDay}");
                 }
                 lastInteractionDay = currentGameDay;
             }
@@ -314,15 +322,7 @@ public class NPC_Dialogue : MonoBehaviour
             if (showDebugMessages)
                 Debug.Log($"NPC {gameObject.name} interacted! Using progression day {currentProgressionDay}");
 
-            // Get the correct dialogue directory based on progression
-            DialogueDirectory currentDirectory = GetDialogueDirectoryForDay(currentProgressionDay);
-
-            if (currentDirectory == null)
-            {
-                Debug.LogError($"No dialogue directory found for {gameObject.name}!");
-                return;
-            }
-
+            // Validate dialogue sequence
             if (dialogueSequence.Count == 0)
             {
                 Debug.LogError("No dialogue sequence assigned!");
@@ -335,11 +335,9 @@ public class NPC_Dialogue : MonoBehaviour
                 return;
             }
 
-            PlayCurrentDialogue(currentDirectory);
-        }
-        else if(PlayerStats.Instance.energy < minimumEnergy)
-        {
-            Debug.Log("Not enough energy");
+            // PlayCurrentDialogue will get the correct directory based on the DialogueSequenceItem's day
+            PlayCurrentDialogue(null);
+
         }
 
     }
@@ -411,19 +409,31 @@ public class NPC_Dialogue : MonoBehaviour
             return;
         }
 
-        string dialogueName = dialogueSequence[currentDialogueIndex];
-        Dialogue dialogue = currentDirectory.GetDialogueByName(dialogueName);
+        // Get the dialogue sequence item with day info
+        DialogueSequenceItem sequenceItem = dialogueSequence[currentDialogueIndex];
+
+        // Get the correct directory for this dialogue's day
+        DialogueDirectory correctDirectory = GetDialogueDirectoryForDay(sequenceItem.day);
+
+        if (correctDirectory == null)
+        {
+            Debug.LogError($"No dialogue directory found for day {sequenceItem.day}!");
+            return;
+        }
+
+        // Get the dialogue
+        Dialogue dialogue = correctDirectory.GetDialogueByName(sequenceItem.dialogueName);
 
         if (dialogue != null)
         {
             if (showDebugMessages)
-                Debug.Log($"Playing dialogue: {dialogueName} (Day {TimeSystem.Instance.currentDay})");
+                Debug.Log($"Playing dialogue: {sequenceItem.dialogueName} (Day {sequenceItem.day})");
 
             DialogueManager.Instance.StartDialogue(dialogue, OnDialogueFinished, npcName);
         }
         else
         {
-            Debug.LogError($"Dialogue '{dialogueName}' not found in directory for Day {TimeSystem.Instance.currentDay}!");
+            Debug.LogError($"Dialogue '{sequenceItem.dialogueName}' not found in day {sequenceItem.day} directory!");
         }
     }
 
