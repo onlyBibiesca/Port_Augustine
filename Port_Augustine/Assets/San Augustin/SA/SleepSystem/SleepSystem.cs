@@ -13,6 +13,10 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
 
+    [Header("Room")]
+    [SerializeField] GameObject PlayerUI;
+    [SerializeField] GameObject homeUI;
+
     [Header("Sleep Settings")]
     public int defaultWakeUpHour = 8;
     public int defaultWakeUpMinute = 0;
@@ -75,7 +79,12 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
-        Debug.Log("========== INTERACT CALLED ==========");
+        homeUI.SetActive(true);
+        PlayerUI.SetActive(false);
+    }
+    public void SleepButton()
+    {
+        Debug.Log("========== Sleep Button CALLED ==========");
         Debug.Log($"Player is null? {player == null}");
 
         SleepSystem.Instance.GoToSleep();
@@ -93,7 +102,6 @@ public class SleepSystem : MonoBehaviour, InteractableObject
             }
         }
     }
-
     public void MidnightForceSleep()
     {
         SleepSystem.Instance.GoToSleep();
