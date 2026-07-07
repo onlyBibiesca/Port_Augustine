@@ -18,6 +18,8 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     [SerializeField] GameObject interactUI;
     [SerializeField] AudioSource buttonSound;
 
+
+
     [Header("Room")]
     [SerializeField] GameObject PlayerUI;
     [SerializeField] GameObject homeUI;
@@ -31,8 +33,10 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     [Header("Passed Out UI")]
     [SerializeField] GameObject passedOutUI;
+    [SerializeField] private float fadeDuration = 0.5f;
     [SerializeField] private float showTime = 3f;
     private Coroutine currentRoutine;
+    [SerializeField] private CanvasGroup canvasGroup;
 
     [Header("Energy Recovery")]
     [Range(0, 100)]
@@ -84,15 +88,40 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     {
         if (currentRoutine != null)
             StopCoroutine(currentRoutine);
+
         currentRoutine = StartCoroutine(ShowAndHide());
     }
 
     private IEnumerator ShowAndHide()
     {
         passedOutUI.SetActive(true);
+        // Start transparent
+        canvasGroup.alpha = 0f;
+        //S Fade in
+        yield return StartCoroutine(Fade(0f, 1f));
+
+        // Stay visible
+        yield return new WaitForSeconds(showTime);
+
+        // Fade out
+        yield return StartCoroutine(Fade(1f, 0f));
         yield return new WaitForSeconds(showTime);
         passedOutUI.SetActive(false);
         currentRoutine = null;
+    }
+
+    private IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / fadeDuration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = endAlpha;
     }
 
 
