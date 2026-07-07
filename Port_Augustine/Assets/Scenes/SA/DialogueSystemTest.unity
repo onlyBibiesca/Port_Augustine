@@ -65267,7 +65267,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 2086784221}
   jobName: Kombini
-  salary: 200
+  salary: 400
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
