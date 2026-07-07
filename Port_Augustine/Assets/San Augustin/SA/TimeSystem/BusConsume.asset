@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BusConsume
   m_EditorClassIdentifier: 
   consumesTime: 1
-  hoursToConsume: 5
+  hoursToConsume: 1
   minutesToConsume: 0
-  consumableName: Bus_Travel
+  consumableName: Commute
   description: bussin

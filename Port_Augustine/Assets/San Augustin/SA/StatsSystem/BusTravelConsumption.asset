@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affectsStats: 1
   hungerChange: 0
-  energyChange: -50
+  energyChange: -10
   happinessChange: 0
   consumableName: BusTravel
   description: Anything that is the usage of commute/bus will consume energy only

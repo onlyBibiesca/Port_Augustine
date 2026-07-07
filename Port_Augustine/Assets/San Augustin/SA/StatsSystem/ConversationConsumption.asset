@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affectsStats: 1
   hungerChange: -5
-  energyChange: -15
+  energyChange: -10
   happinessChange: 0
   consumableName: ConversationStatConsumption
   description: 

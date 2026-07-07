@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SleepHunger
   m_EditorClassIdentifier: 
   affectsStats: 1
-  hungerChange: -30
+  hungerChange: -20
   energyChange: 0
   happinessChange: 0
   consumableName: SleepHunger
