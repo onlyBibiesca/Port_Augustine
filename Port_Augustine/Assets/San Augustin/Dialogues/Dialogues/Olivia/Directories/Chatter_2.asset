@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd78cb970c6db374bbe3b8fb013119da, type: 3}
+  m_Name: Chatter_2
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 895425ee6bcc472409ceef4ae42d1896, type: 2}
+  - {fileID: 11400000, guid: 38901890048a7b348a144f6a641d670b, type: 2}
+  - {fileID: 11400000, guid: db444f01fb5d2144880c8129a32a41d9, type: 2}

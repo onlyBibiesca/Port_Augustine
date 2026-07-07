@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueName: Intro_1
   lines:
-  - speakerName: 
-    text: 
-    hasChoices: 0
+  - speakerName: ???
+    text: ...
+    hasChoices: 1
     choices:
-    - choiceText: 
-      nextDialogue: {fileID: 0}
+    - choiceText: Um... hello?
+      nextDialogue: {fileID: 11400000, guid: 93471a06158d742409ca9ff67918234d, type: 2}
       relationshipChange: 0
       choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    characterPortrait: {fileID: 0}
-  consumesTime: 1
+    characterPortrait: {fileID: 21300000, guid: f910b4775f540be448cc8b9e3323e7f3, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

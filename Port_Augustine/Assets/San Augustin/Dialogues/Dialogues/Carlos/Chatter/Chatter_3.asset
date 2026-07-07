@@ -16,7 +16,7 @@ MonoBehaviour:
   lines:
   - speakerName: Carlos
     text: Maybe I should get a new shifter as well..?
-    hasChoices: 0
+    hasChoices: 1
     choices:
     - choiceText: Car trouble?
       nextDialogue: {fileID: 11400000, guid: 9bc24e4b10c920d47a3a9dfa86d7ffdc, type: 2}

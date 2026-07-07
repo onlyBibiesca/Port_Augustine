@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event_1
+  m_EditorClassIdentifier: 
+  dialogueName: Event_1
+  lines:
+  - speakerName: Felix
+    text: <Felix is seen with a broom, sweeping the front of the store. Though, one
+      ear had a bluetooth earbud and Felix is bopping their head to some music.>
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 1d2aa1d1e2f857441a708979d26df255, type: 3}
+  - speakerName: Felix
+    text: "Heya. Welcome, if you\u2019re buying. Otherwise, what\u2019s up? Still
+      on my shift."
+    hasChoices: 1
+    choices:
+    - choiceText: You sure you're not skipping work?
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: -1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: You sure you're not skipping work?
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: -1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Just wanted to see you.
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 1d2aa1d1e2f857441a708979d26df255, type: 3}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

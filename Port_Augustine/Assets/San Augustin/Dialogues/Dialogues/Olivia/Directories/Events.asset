@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd78cb970c6db374bbe3b8fb013119da, type: 3}
+  m_Name: Events
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: 845804b7b849eee40910dbe3267818ac, type: 2}
+  - {fileID: 11400000, guid: a6d2362a294f1db4a9fa1d75df1a0093, type: 2}
+  - {fileID: 11400000, guid: 6db7336ec5ccd264bbb81d498d1c0383, type: 2}

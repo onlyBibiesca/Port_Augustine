@@ -12,8 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_2
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
+  dialogueName: Chatter_2
+  lines:
+  - speakerName: Kimmy
+    text: "\u201CJeez, this bag of mine\u2019s a frickin\u2019 graveyard of old receipts!
+      And crumbs\u2026 gotta clean it out again this week."
+    hasChoices: 1
+    choices:
+    - choiceText: Want any help?
+      nextDialogue: {fileID: 11400000, guid: 256d19c293582ae4da1051830434730c, type: 2}
+      relationshipChange: 20
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 92c5d7c2620fd554da9e6f490b81673f, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0

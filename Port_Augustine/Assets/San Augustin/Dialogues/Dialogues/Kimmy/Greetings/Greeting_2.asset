@@ -13,7 +13,20 @@ MonoBehaviour:
   m_Name: Greeting_2
   m_EditorClassIdentifier: 
   dialogueName: Greeting_2
-  lines: []
+  lines:
+  - speakerName: Kimmy
+    text: "Oop\u2014 you caught me at a bad time! Hold on, we\u2019re taking a point
+      of an objective. What\u2019s up?"
+    hasChoices: 0
+    choices:
+    - choiceText: I'll leave you to it, then.
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 92c5d7c2620fd554da9e6f490b81673f, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0

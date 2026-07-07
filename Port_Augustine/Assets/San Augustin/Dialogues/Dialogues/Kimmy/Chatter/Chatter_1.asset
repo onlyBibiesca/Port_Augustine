@@ -12,9 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_1
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
-  consumesTime: 1
+  dialogueName: Chatter_1
+  lines:
+  - speakerName: Kimmy
+    text: "...Didn\u2019t I just have the precision screwdriver on my hand? Where
+      the\u2026? Wha..?"
+    hasChoices: 1
+    choices:
+    - choiceText: Have you checked your back pocket?
+      nextDialogue: {fileID: 11400000, guid: d775c62d99e42214c822115405baf2c3, type: 2}
+      relationshipChange: 20
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 92c5d7c2620fd554da9e6f490b81673f, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

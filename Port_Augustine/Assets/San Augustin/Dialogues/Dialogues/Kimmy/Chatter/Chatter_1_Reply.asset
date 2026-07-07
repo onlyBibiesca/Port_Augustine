@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_1_Reply
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
-  consumesTime: 1
-  hoursToConsume: 1
-  minutesToConsume: 0
+  dialogueName: Chatter_1_Reply
+  lines:
+  - speakerName: Kimmy
+    text: Would you look at that! Thanks, homie!
+    hasChoices: 1
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: fbc06258b2e73ca4dbd8cc25d69b7541, type: 3}
+  consumesTime: 0
+  hoursToConsume: 0
+  minutesToConsume: 20
   statConsumable: {fileID: 0}

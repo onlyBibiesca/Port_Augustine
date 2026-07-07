@@ -13,7 +13,21 @@ MonoBehaviour:
   m_Name: Greeting_3
   m_EditorClassIdentifier: 
   dialogueName: Greeting_3
-  lines: []
+  lines:
+  - speakerName: Kimmy
+    text: "Ooh, perfect timing! Be honest, does this wire look right? Like, it should
+      be there, right? Oh\u2013 wait! Sorry, I shouldn\u2019t be asking you this,
+      haha!~"
+    hasChoices: 1
+    choices:
+    - choiceText: It's all good. Great to have more hands than less, right?
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: f910b4775f540be448cc8b9e3323e7f3, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0

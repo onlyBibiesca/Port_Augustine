@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: Greeting_1
   m_EditorClassIdentifier: 
   dialogueName: Greeting_1
-  lines: []
+  lines:
+  - speakerName: Kimmy
+    text: "Heya!~ Sorry, I was a bit spaced out for a sec, what\u2019s up?"
+    hasChoices: 1
+    choices:
+    - choiceText: Nothing, really. See ya later!
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: f910b4775f540be448cc8b9e3323e7f3, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0

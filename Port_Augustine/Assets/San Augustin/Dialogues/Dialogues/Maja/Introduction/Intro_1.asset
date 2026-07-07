@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueName: Intro_1
   lines:
-  - speakerName: 
-    text: 
-    hasChoices: 0
+  - speakerName: ???
+    text: <A person stands near the coffee shop, shyly looking around.>
+    hasChoices: 1
     choices:
-    - choiceText: 
-      nextDialogue: {fileID: 0}
-      relationshipChange: 0
+    - choiceText: Hello there.
+      nextDialogue: {fileID: 11400000, guid: 885f49d1e1185e44688c844f2b03da30, type: 2}
+      relationshipChange: 10
       choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    characterPortrait: {fileID: 0}
-  consumesTime: 1
+    characterPortrait: {fileID: 21300000, guid: c8caca9d50cfa474f8cf179dbbf5b9c8, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

@@ -13,8 +13,25 @@ MonoBehaviour:
   m_Name: Intro_1_Reply
   m_EditorClassIdentifier: 
   dialogueName: Intro_1_Reply
-  lines: []
-  consumesTime: 1
+  lines:
+  - speakerName: ???
+    text: <They seem lost in their thoughts.>
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: f910b4775f540be448cc8b9e3323e7f3, type: 3}
+  - speakerName: ???
+    text: Heehee... the next update to Trooper Tactics is soon...
+    hasChoices: 1
+    choices:
+    - choiceText: Can I help you?
+      nextDialogue: {fileID: 11400000, guid: da2682503f2bffe46a7b0aa650f3365b, type: 2}
+      relationshipChange: 20
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: fbc06258b2e73ca4dbd8cc25d69b7541, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

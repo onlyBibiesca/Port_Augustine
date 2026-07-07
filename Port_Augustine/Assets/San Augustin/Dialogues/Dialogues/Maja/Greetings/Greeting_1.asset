@@ -13,8 +13,20 @@ MonoBehaviour:
   m_Name: Greeting_1
   m_EditorClassIdentifier: 
   dialogueName: Greeting_1
-  lines: []
-  consumesTime: 1
+  lines:
+  - speakerName: Maja
+    text: "O-oh! Sorry, I didn\u2019t see you\u2026 there. H-hi..."
+    hasChoices: 1
+    choices:
+    - choiceText: Hi, Maja.
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: c8caca9d50cfa474f8cf179dbbf5b9c8, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

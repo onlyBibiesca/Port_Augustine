@@ -12,9 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_3
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
-  consumesTime: 1
+  dialogueName: Chatter_3
+  lines:
+  - speakerName: Kimmy
+    text: "If I can just\u2026 hm. If I can fix this darned thing\u2019s screen today\u2026
+      buyin\u2019 myself that new Indie RPG game."
+    hasChoices: 1
+    choices:
+    - choiceText: What's the game?
+      nextDialogue: {fileID: 11400000, guid: 82ab87d95678501429af46f6e3426557, type: 2}
+      relationshipChange: 20
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Spending your money on that again?
+      nextDialogue: {fileID: 11400000, guid: a021be30ab6f34048967cc5898412896, type: 2}
+      relationshipChange: -10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 92c5d7c2620fd554da9e6f490b81673f, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

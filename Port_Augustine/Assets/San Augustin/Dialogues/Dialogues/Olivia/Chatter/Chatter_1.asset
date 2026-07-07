@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Chatter_1
+  m_EditorClassIdentifier: 
+  dialogueName: Chatter_1
+  lines:
+  - speakerName: Olivia
+    text: "Did that guy at register three remember to restock the paper bags or something\u2026?
+      Whatever, not my problem."
+    hasChoices: 1
+    choices:
+    - choiceText: It happens.
+      nextDialogue: {fileID: 11400000, guid: 7ccf4d23540091e4495647dcd569ea74, type: 2}
+      relationshipChange: -10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Need any help?
+      nextDialogue: {fileID: 11400000, guid: cb86b018a4dcaa648b33855bb913e2e4, type: 2}
+      relationshipChange: 10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: b178975ca39537446acc5828cabcec22, type: 3}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

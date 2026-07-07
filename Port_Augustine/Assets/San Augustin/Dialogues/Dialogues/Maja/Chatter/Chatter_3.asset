@@ -12,9 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_3
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
-  consumesTime: 1
+  dialogueName: Chatter_3
+  lines:
+  - speakerName: Maja
+    text: "I wanna go home and play games\u2026"
+    hasChoices: 1
+    choices:
+    - choiceText: You still have a shift?
+      nextDialogue: {fileID: 11400000, guid: 5403d4d8dbbfbc44da79f92f475718c0, type: 2}
+      relationshipChange: 10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: c177aceed07b66741a73acc11fee95fd, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event_1
+  m_EditorClassIdentifier: 
+  dialogueName: Event_1
+  lines:
+  - speakerName: Olivia
+    text: <She seems to be smoking a cigarette.>
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 92b705ed427bd964fa0812016127ad93, type: 3}
+  - speakerName: Olivia
+    text: "...? What? I\u2019m on a break. It\u2019s hell in there in the back and
+      I don\u2019t want to deal with it."
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: b178975ca39537446acc5828cabcec22, type: 3}
+  - speakerName: Olivia
+    text: "God, I hate this job\u2026 I have to apply for a different one soon. This
+      is getting stupider and stupider every day."
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 92b705ed427bd964fa0812016127ad93, type: 3}
+  - speakerName: Olivia
+    text: <She takes another drag, exhaling it away from you.>
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 92b705ed427bd964fa0812016127ad93, type: 3}
+  - speakerName: Olivia
+    text: "Don\u2019t you dare pick up on this habit due to me, I\u2019ll never forgive
+      you."
+    hasChoices: 1
+    choices:
+    - choiceText: Smoking's not for me.
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Of course I won't.~
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: -1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: b178975ca39537446acc5828cabcec22, type: 3}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

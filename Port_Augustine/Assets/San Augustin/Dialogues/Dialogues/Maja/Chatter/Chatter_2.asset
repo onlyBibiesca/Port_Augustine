@@ -12,9 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
   m_Name: Chatter_2
   m_EditorClassIdentifier: 
-  dialogueName: 
-  lines: []
-  consumesTime: 1
+  dialogueName: Chatter_2
+  lines:
+  - speakerName: Maja
+    text: "...I hope I\u2019m doing alright."
+    hasChoices: 1
+    choices:
+    - choiceText: You're doing better than you think.
+      nextDialogue: {fileID: 11400000, guid: e0087be69832f3f4f99f3b869babe622, type: 2}
+      relationshipChange: 10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: c177aceed07b66741a73acc11fee95fd, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}
