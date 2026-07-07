@@ -18,7 +18,7 @@ MonoBehaviour:
     text: "Ugh, we were so short staffed today\u2026 my legs feel like lead."
     hasChoices: 0
     choices: []
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: 09f530e321296f046a6319cc4756d882, type: 3}
   - speakerName: Angeline
     text: <She groans in exasperation and exhaustion.>
     hasChoices: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: 09f530e321296f046a6319cc4756d882, type: 3}
   consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0

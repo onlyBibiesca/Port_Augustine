@@ -19,7 +19,7 @@ MonoBehaviour:
       air beforehand. You should head home and rest too, <player>. Have a good night\u2026"
     hasChoices: 0
     choices: []
-    characterPortrait: {fileID: 0}
+    characterPortrait: {fileID: 21300000, guid: 25af405dd4e2c11458c8e78c5a0dddc1, type: 3}
   consumesTime: 1
   hoursToConsume: 1
   minutesToConsume: 0
