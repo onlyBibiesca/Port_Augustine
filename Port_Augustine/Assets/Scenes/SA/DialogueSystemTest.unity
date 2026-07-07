@@ -1165,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c7c8c27b081827a4ca264e37998fd2dd, type: 2}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventName
-      value: Kimmy's Latest Project
+      value: Kimmy - An Exciting Shipment
       objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].startHour
@@ -3805,7 +3805,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 3aa4b56b8157e7444b9dbc16a4afdc43, type: 2}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventName
-      value: Maja at the Windows
+      value: Maja - Just Cleaning Up
       objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventLocation
@@ -38478,6 +38478,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4d8cf492cc1f06a46974c37fbd166bfc, type: 2}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventName
+      value: Felix - Eager Diligence, Relaxed Mind
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].startHour
       value: 9
       objectReference: {fileID: 0}
@@ -44167,7 +44171,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 1825496130}
   jobName: Sari Sari
-  salary: 10000
+  salary: 50
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
@@ -65166,7 +65170,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 2086784221}
   jobName: Kombini
-  salary: 10000
+  salary: 200
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
@@ -65472,7 +65476,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 107a6c5c8a220c34e8ee748e68122b22, type: 2}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventName
-      value: A break
+      value: Olivia - Too Much Stress at Work!
       objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventLocation
@@ -71591,6 +71595,10 @@ PrefabInstance:
       propertyPath: dialoguesByDay.Array.data[3].directory
       value: 
       objectReference: {fileID: 11400000, guid: 3a47c4d2bc04d8749aa328fe11c053d1, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventName
+      value: Carlos - A Wrong Delivery
+      objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].eventLocation
       value: 
@@ -83944,7 +83952,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 7018454850278775182}
   jobName: G&J Bakery
-  salary: 10000
+  salary: 100
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
