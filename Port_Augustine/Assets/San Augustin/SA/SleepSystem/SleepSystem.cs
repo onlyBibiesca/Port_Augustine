@@ -16,6 +16,7 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
+    [SerializeField] AudioSource buttonSound;
 
     [Header("Room")]
     [SerializeField] GameObject PlayerUI;
@@ -97,9 +98,11 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
+        buttonSound.Play();
         DisablePlayerMovement();
         homeUI.SetActive(true);
         PlayerUI.SetActive(false);
+        
 
     }
     public void SleepButton()

@@ -2301,6 +2301,7 @@ GameObject:
   - component: {fileID: 125874466}
   - component: {fileID: 125874468}
   - component: {fileID: 125874467}
+  - component: {fileID: 125874469}
   m_Layer: 0
   m_Name: SleepSystem
   m_TagString: Untagged
@@ -2385,13 +2386,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactUI: {fileID: 1540308641}
-  PlayerUI: {fileID: 1572077309}
+  buttonSound: {fileID: 125874469}
+  PlayerUI: {fileID: 0}
   homeUI: {fileID: 1730505012}
   defaultWakeUpHour: 8
   defaultWakeUpMinute: 0
   defaultSleepDuration: 8
   passedOutUI: {fileID: 1839594501}
-  showTime: 3
+  showTime: 2
   maxEnergyRecovery: 100
   minEnergyRecovery: 10
   allowOversleep: 1
@@ -2399,6 +2401,102 @@ MonoBehaviour:
   statConsumable: {fileID: 11400000, guid: 00830609253bebb48bc3a46f1e9dd800, type: 2}
   showDebugMessages: 1
   virtualCamera: {fileID: 2035489682}
+--- !u!82 &125874469
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125874465}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5b7a811c9d31aa749b259d796076c7c6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &134547228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6198,10 +6296,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1576747087}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1787985983}
+        m_TargetAssemblyTypeName: ShopSystem, Assembly-CSharp
+        m_MethodName: EnablePlayerMovement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -34108,7 +34206,7 @@ Transform:
   m_GameObject: {fileID: 319196539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.63, y: -1.62, z: 11.069319}
+  m_LocalPosition: {x: 72.97, y: -1.62, z: 11.069319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34787,10 +34885,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768694443}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 760610526}
+        m_TargetAssemblyTypeName: ShopSystem, Assembly-CSharp
+        m_MethodName: EnablePlayerMovement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -65395,7 +65493,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 2086784221}
   jobName: Kombini
-  salary: 400
+  salary: 200
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
@@ -66896,7 +66994,7 @@ Transform:
   m_GameObject: {fileID: 1261795927}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 121.6, y: -2.69, z: 0}
+  m_LocalPosition: {x: 121.42, y: -2.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67349,6 +67447,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 916094761}
+        m_TargetAssemblyTypeName: ShopSystem, Assembly-CSharp
+        m_MethodName: EnablePlayerMovement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -71784,11 +71894,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 627932729914236849, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.34
+      value: 93.4
       objectReference: {fileID: 0}
     - target: {fileID: 627932729914236849, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33.24
+      value: -36.8
       objectReference: {fileID: 0}
     - target: {fileID: 627932729914236849, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -72063,7 +72173,7 @@ Transform:
   m_GameObject: {fileID: 1523915851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 89.05, y: -38.86, z: 0}
+  m_LocalPosition: {x: 62.89, y: -39.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72580,7 +72690,7 @@ Transform:
   m_GameObject: {fileID: 1537523385}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54, y: -1.62, z: 11.069319}
+  m_LocalPosition: {x: 62.05, y: -1.62, z: 11.069319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79397,7 +79507,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 627932729914236849, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.47
+      value: 177.7
       objectReference: {fileID: 0}
     - target: {fileID: 627932729914236849, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -83189,10 +83299,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1572077309}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 125874468}
+        m_TargetAssemblyTypeName: SleepSystem, Assembly-CSharp
+        m_MethodName: EnablePlayerMovement
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
