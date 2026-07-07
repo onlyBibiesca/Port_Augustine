@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Loverboy
   m_EditorClassIdentifier: 
-  traitName: Loverboy
-  description: 
+  traitName: Orderly
+  description: 10% incom from jobs.
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
   category: 0
   uniqueCategory: 0
   movementTimeModifier: 0
-  workIncomeMultiplier: 1
-  startingBuildingID: 
-  grantedTraits: []
+  wakeUpHourModifier: 0
+  relationshipGainModifier: 10
   hungerMaxBonus: 0
   energyMaxBonus: 0
   happinessMaxBonus: 0
-  relationshipGainModifier: 10
+  workIncomeMultiplier: 1
+  startingBuildingID: 
+  grantedTraits: []

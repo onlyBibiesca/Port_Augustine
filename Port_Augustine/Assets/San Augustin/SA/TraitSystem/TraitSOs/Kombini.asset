@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Kombini
   m_EditorClassIdentifier: 
-  traitName: Kombini
-  description: SIOPAO AT ALAK
+  traitName: Kombini Branch Owner
+  description: 'Player has access and can work at a convenience store, which is a
+    miniature
+
+    Player can stay up longer (+2 end of day time)
+
+'
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
   category: 0

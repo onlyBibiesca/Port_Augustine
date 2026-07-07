@@ -7,6 +7,7 @@ public class TraitEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private Image icon;
     [SerializeField] private TMP_Text traitNameText;
+    [SerializeField] private TextMeshProUGUI traitDescriptionText;
 
     private TraitSO trait;
 
@@ -19,6 +20,10 @@ public class TraitEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
         if (traitNameText != null)
             traitNameText.text = trait.traitName;
+
+        if (traitDescriptionText != null)
+            traitDescriptionText.text = trait.description;
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

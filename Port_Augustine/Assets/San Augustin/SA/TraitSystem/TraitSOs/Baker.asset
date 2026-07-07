@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Baker
   m_EditorClassIdentifier: 
-  traitName: Baker
-  description: Free Pandesal daily and +20 Hunger
+  traitName: Panenderia
+  description: "The player has access and can work at a small bakery, which provides
+    free bread at the start of the day. \r\n\rThe player wakes up earlier in the
+    day. (+2 time) "
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 21300000, guid: 513f71c499b0b8349a4477e929ab11c5, type: 3}
   category: 0

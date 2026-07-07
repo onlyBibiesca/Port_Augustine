@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SariSari
   m_EditorClassIdentifier: 
   traitName: SariSari
-  description: COKE AT PIATTOS
+  description: "The player has access and can work at a sari-sari, which sells rotating
+    items. \r\nThe player earns 10% more money from work.\r\n"
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 21300000, guid: 267f462febc3c744aaf0639e6970166c, type: 3}
   category: 0

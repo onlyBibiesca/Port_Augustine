@@ -10,6 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     public static PlayerMovement Instance;
 
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip[] footstepClips;
+
+    [SerializeField] private float walkInterval = 0.45f;
+
+    private float footstepTimer;
+
     [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject sureButton;

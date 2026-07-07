@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Beauty
   m_EditorClassIdentifier: 
-  traitName: Beauty
-  description: Wonderful
+  traitName: Karinderya
+  description: "The player has access and can work in a small eatery, where they
+    can also eat for cheaper. \r\n\rPlayer has 20 more energy \r\n"
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
   category: 0

@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1af7f972d7231748adffe36206b1d32, type: 3}
   m_Name: Healthy
   m_EditorClassIdentifier: 
-  traitName: 
-  description: 
+  traitName: Broken Hearted
+  description: Relationships takes longer to form
   icon: {fileID: 0}
   originPreviewSprite: {fileID: 0}
   category: 0
   uniqueCategory: 0
   movementTimeModifier: 0
+  wakeUpHourModifier: 0
+  relationshipGainModifier: 0
+  hungerMaxBonus: 0
+  energyMaxBonus: 0
+  happinessMaxBonus: 0
   workIncomeMultiplier: 1
   startingBuildingID: 
   grantedTraits: []
-  maxHungerModifier: 0
-  maxEnergyModifier: 0
-  maxHappinessModifier: 0
