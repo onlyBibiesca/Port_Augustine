@@ -1535,6 +1535,17 @@ MonoBehaviour:
   questContainer: {fileID: 1633299649}
   questItemPrefab: {fileID: 3425592801664759769, guid: e3978cb330949214abfb7cf2dc1b2530, type: 3}
   showDebugMessages: 1
+--- !u!114 &75840447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4709459369500498537, guid: e3978cb330949214abfb7cf2dc1b2530, type: 3}
+  m_PrefabInstance: {fileID: 792321186}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &79584034
 GameObject:
   m_ObjectHideFlags: 0
@@ -83109,6 +83120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   savingsDisplayText: {fileID: 148005345}
+  questDescriptionText: {fileID: 75840447}
   inSave: 100
   outSave: 100
   winningCondition: 10000

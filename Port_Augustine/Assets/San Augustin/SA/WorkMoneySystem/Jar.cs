@@ -10,6 +10,7 @@ public class Jar : MonoBehaviour
 
     [Header("Text")]
     public TMPro.TMP_Text savingsDisplayText;
+    public TMPro.TMP_Text questDescriptionText;
 
     [Header("Input Money")]
     public int inSave = 100;
@@ -44,7 +45,7 @@ public class Jar : MonoBehaviour
     public void OutSavings()
     {
 
-        if (wallet != null && wallet.money >= inSave)
+        if (wallet != null)
         {
             savingJar -= outSave;
             wallet.money += outSave;
@@ -62,6 +63,7 @@ public class Jar : MonoBehaviour
     void DisplaySavings()
     {
         savingsDisplayText.text = $"{savingJar}";
+        questDescriptionText.text = "Earn " + $"{savingJar}" + "/PHP 10,000 to send back home";
     }
 
     void WinningCondition()
