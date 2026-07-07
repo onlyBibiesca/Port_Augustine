@@ -14,10 +14,12 @@ public class Jar : MonoBehaviour
     [Header("Input Money")]
     public int inSave = 100;
     public int outSave = 100;
+    public int winningCondition = 10000; //default
 
     public void Update()
     {
         DisplaySavings();
+        
     }
 
     public void PutSavings()
@@ -35,7 +37,8 @@ public class Jar : MonoBehaviour
         {
             Debug.LogError("WE ARE BROKE THERE'S NOTHING TO SAVE UP FOR");
         }
-        
+        WinningCondition();
+
     }
 
     public void OutSavings()
@@ -59,6 +62,18 @@ public class Jar : MonoBehaviour
     void DisplaySavings()
     {
         savingsDisplayText.text = $"{savingJar}";
+    }
+
+    void WinningCondition()
+    {
+        if(savingJar >= winningCondition)
+        {
+            Debug.Log("We have made 10000");
+        }
+        else
+        {
+            Debug.Log("THis is not 10000");
+        }
     }
 
 }
