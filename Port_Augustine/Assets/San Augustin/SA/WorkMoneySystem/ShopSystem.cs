@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShopSystem : MonoBehaviour, InteractableObject
 {
     // Start is called before the first frame update
     private GameObject player;
+
+    private PlayerInput playerInput;
+    private bool playerMovementEnabled = true;
 
     private InteractableObject nearbyInteractable;
 
@@ -22,6 +26,7 @@ public class ShopSystem : MonoBehaviour, InteractableObject
     {
         shopUI.SetActive(true);
         buttonSound.Play();
+        DisablePlayerMovement();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +51,39 @@ public class ShopSystem : MonoBehaviour, InteractableObject
             nearbyInteractable = null;
             if (interactUI != null)
                 interactUI.SetActive(false);
+        }
+    }
+    void FindPlayerInput()
+    {
+        if (playerInput == null)
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            if (playerInput == null)
+            {
+                Debug.LogWarning("PlayerInput component not found!");
+            }
+        }
+    }
+
+    public void DisablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+            playerMovementEnabled = false;
+            Debug.Log("Player movement disabled");
+        }
+    }
+
+    public void EnablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = true;
+            playerMovementEnabled = true;
+            Debug.Log("Player movement enabled");
         }
     }
 }

@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SleepSystem : MonoBehaviour, InteractableObject
 {
@@ -9,6 +10,9 @@ public class SleepSystem : MonoBehaviour, InteractableObject
     private GameObject player;
     private InteractableObject nearbyInteractable;
     public static SleepSystem Instance;
+
+    private PlayerInput playerInput;
+    private bool playerMovementEnabled = true;
 
     [Header("InteractUI")]
     [SerializeField] GameObject interactUI;
@@ -93,8 +97,10 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
     public void Interact()
     {
+        DisablePlayerMovement();
         homeUI.SetActive(true);
         PlayerUI.SetActive(false);
+
     }
     public void SleepButton()
     {
@@ -127,7 +133,7 @@ public class SleepSystem : MonoBehaviour, InteractableObject
 
 
     }
-    
+
     public void GoToSleep()
     {
         if (TimeSystem.Instance == null)
@@ -323,5 +329,39 @@ public class SleepSystem : MonoBehaviour, InteractableObject
         return $"Sleeping since {sleepStartHour:00}:{sleepStartMinute:00}. Default wake: {defaultWakeUpHour:00}:{defaultWakeUpMinute:00}";
     }
 
-    
+    void FindPlayerInput()
+    {
+        if (playerInput == null)
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            if (playerInput == null)
+            {
+                Debug.LogWarning("PlayerInput component not found!");
+            }
+        }
+    }
+
+    public void DisablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+            playerMovementEnabled = false;
+            Debug.Log("Player movement disabled");
+        }
+    }
+
+    public void EnablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = true;
+            playerMovementEnabled = true;
+            Debug.Log("Player movement enabled");
+        }
+    }
+
+
 }
