@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
-  m_Name: Chatter_1
+  m_Name: Chatter_3
   m_EditorClassIdentifier: 
-  dialogueName: Chatter_1
+  dialogueName: Chatter_3
   lines:
-  - speakerName: Angeline
-    text: "It\u2019s been a while since I\u2019ve last seen Matteo, one of my clients.
-      I\u2013 Oooohhh\u2026 right, he\u2019s growing out his hair. I hope he uses
-      the products I recommended\u2026"
+  - speakerName: David
+    text: God, that coffee shop down the street is amazing at making Spanish Lattes.
     hasChoices: 1
     choices:
-    - choiceText: You should text him!
-      nextDialogue: {fileID: 11400000, guid: deecab58198941349907d484f7fdca6d, type: 2}
+    - choiceText: Helps you work?
+      nextDialogue: {fileID: 11400000, guid: 50e4148d85a54174d9db98686a80b4db, type: 2}
       relationshipChange: 20
       choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    characterPortrait: {fileID: 21300000, guid: caf8402b6d51a4a43bfd8bb7c39c5012, type: 3}
-  consumesTime: 1
+    characterPortrait: {fileID: 21300000, guid: 941c7fecaba5bea43ac59a3a2079dac1, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}

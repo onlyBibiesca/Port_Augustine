@@ -40637,6 +40637,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754875480}
   m_CullTransparentMesh: 1
+--- !u!1 &754984157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 754984158}
+  m_Layer: 0
+  m_Name: David_Event_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &754984158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754984157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.44, y: -37.56, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1305279529}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758768087
 GameObject:
   m_ObjectHideFlags: 0
@@ -65851,6 +65882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1523915852}
+  - {fileID: 754984158}
   m_Father: {fileID: 260931526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1314263899
@@ -77129,7 +77161,15 @@ PrefabInstance:
       objectReference: {fileID: 516010618}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: dialoguesByDay.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.size
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: dialogueSequence.Array.data[0]
@@ -77140,9 +77180,149 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[1].day
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[2].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[3].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[4].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[5].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[1].day
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[2].day
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[3].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[4].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[5].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[6].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].endHour
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: dialoguesByDay.Array.data[0].directory
       value: 
-      objectReference: {fileID: 11400000, guid: 9383fb255f740294eb6f4cbfae4cc16c, type: 2}
+      objectReference: {fileID: 11400000, guid: 2e24f761dcbd71f40a56aeb079511c2a, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[1].directory
+      value: 
+      objectReference: {fileID: 11400000, guid: 533de9633e9f6fa4a9f3dc3c24498bed, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[2].directory
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ed321683f65b9438c0a7e332730108, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[3].directory
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c8136ef56e9e3742b2d5775fd01381b, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[4].directory
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ed321683f65b9438c0a7e332730108, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialoguesByDay.Array.data[5].directory
+      value: 
+      objectReference: {fileID: 11400000, guid: d6ed321683f65b9438c0a7e332730108, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventName
+      value: David - Long Day At Work
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].startHour
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].hasTimeRange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventLocation
+      value: 
+      objectReference: {fileID: 754984158}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[0].dialogueName
+      value: Introduction_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[1].dialogueName
+      value: Greeting_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[2].dialogueName
+      value: Chatter_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[3].dialogueName
+      value: Greeting_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[4].dialogueName
+      value: Chatter_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[5].dialogueName
+      value: Greeting_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: dialogueSequence.Array.data[6].dialogueName
+      value: Chatter_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].failureDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: aef5cb36a3c504c4899b3dd5e35425a6, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].successDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 857ddd75bb0ddbd4e82566cc5143849a, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventDescription
+      value: You spot David in front of his apartment, looking more tired than usual.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].relationshipThreshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventDialogueDirectory
+      value: 
+      objectReference: {fileID: 11400000, guid: 8e3ca9634aff1804cb756c5d5f92b42c, type: 2}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].successRelationshipBonus
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].failureRelationshipPenalty
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 7797019814532325217, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: m_BodyType
       value: 2

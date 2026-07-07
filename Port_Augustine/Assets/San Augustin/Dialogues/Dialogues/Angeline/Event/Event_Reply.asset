@@ -19,7 +19,7 @@ MonoBehaviour:
       day at work.
     hasChoices: 1
     choices:
-    - choiceText: It's okay! Glad I can help
+    - choiceText: It's okay! Glad I can help.
       nextDialogue: {fileID: 11400000, guid: 8cc163323b343024da832c30d802e10d, type: 2}
       relationshipChange: 10
       choiceType: 1

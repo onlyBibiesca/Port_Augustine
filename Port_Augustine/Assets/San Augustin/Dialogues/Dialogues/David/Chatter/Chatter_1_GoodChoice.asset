@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
-  m_Name: Event_Success
+  m_Name: Chatter_1_GoodChoice
   m_EditorClassIdentifier: 
-  dialogueName: Event_Success
+  dialogueName: Chatter_1_GoodChoice
   lines:
-  - speakerName: Angeline
-    text: "I\u2019ll probably head inside soon. I\u2019m just getting some fresh
-      air beforehand. You should head home and rest too. Have a good night\u2026"
+  - speakerName: David
+    text: Hah. Two key presses on a keyboard can make or break a career. Could you
+      imagine?
     hasChoices: 0
     choices: []
-    characterPortrait: {fileID: 21300000, guid: 25af405dd4e2c11458c8e78c5a0dddc1, type: 3}
+    characterPortrait: {fileID: 21300000, guid: df3c250e65a35164c906b720a1af4543, type: 3}
   consumesTime: 1
-  hoursToConsume: 1
-  minutesToConsume: 0
+  hoursToConsume: 0
+  minutesToConsume: 20
   statConsumable: {fileID: 0}

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57f7c1c13717fde45a124f573967b625, type: 3}
+  m_Name: Event_1
+  m_EditorClassIdentifier: 
+  dialogueName: Event_1
+  lines:
+  - speakerName: David
+    text: "Wheewww\u2026! Finally home."
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 46c1bfdd26c98f94485711204de72e76, type: 3}
+  - speakerName: David
+    text: <He stretches his limbs, audible pops and cracks heard within the vicinity.>
+    hasChoices: 0
+    choices: []
+    characterPortrait: {fileID: 21300000, guid: 941c7fecaba5bea43ac59a3a2079dac1, type: 3}
+  - speakerName: David
+    text: "Aaahh\u2026 much better! Whew. Heya, buddy. You would not believe how
+      much I had to walk around just to do stuff for my bosses\u2026"
+    hasChoices: 1
+    choices:
+    - choiceText: Hard day at work?
+      nextDialogue: {fileID: 0}
+      relationshipChange: 5
+      choiceType: 1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    - choiceText: Isn't all you do just typing? How is that hard?
+      nextDialogue: {fileID: 0}
+      relationshipChange: -5
+      choiceType: -1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: df3c250e65a35164c906b720a1af4543, type: 3}
+  consumesTime: 0
+  hoursToConsume: 1
+  minutesToConsume: 0
+  statConsumable: {fileID: 0}

@@ -14,21 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueName: Chatter_1
   lines:
-  - speakerName: Angeline
-    text: "It\u2019s been a while since I\u2019ve last seen Matteo, one of my clients.
-      I\u2013 Oooohhh\u2026 right, he\u2019s growing out his hair. I hope he uses
-      the products I recommended\u2026"
+  - speakerName: David
+    text: "Did I save that file\u2026? Nah, Alan can just press two buttons on the
+      keyboard."
     hasChoices: 1
     choices:
-    - choiceText: You should text him!
-      nextDialogue: {fileID: 11400000, guid: deecab58198941349907d484f7fdca6d, type: 2}
+    - choiceText: The wonders of technology, huh?
+      nextDialogue: {fileID: 11400000, guid: 8a6ab6b32282315488964191806a0a78, type: 2}
       relationshipChange: 20
       choiceType: 0
       requiredTrait: {fileID: 0}
       gainedTrait: {fileID: 0}
       hideIfTraitMissing: 0
-    characterPortrait: {fileID: 21300000, guid: caf8402b6d51a4a43bfd8bb7c39c5012, type: 3}
-  consumesTime: 1
+    - choiceText: You should be more attentive at work.
+      nextDialogue: {fileID: 11400000, guid: 0812411169f2d144ea7c2dbc7845b359, type: 2}
+      relationshipChange: -10
+      choiceType: 0
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
+    characterPortrait: {fileID: 21300000, guid: 941c7fecaba5bea43ac59a3a2079dac1, type: 3}
+  consumesTime: 0
   hoursToConsume: 1
   minutesToConsume: 0
   statConsumable: {fileID: 0}
