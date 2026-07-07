@@ -262,7 +262,6 @@ public class NPC_Dialogue : MonoBehaviour
         if (PlayerStats.Instance.energy >= minimumEnergy)
         {
             buttonSound.Play();
-            // Block interaction if dialogue is already active
             if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
             {
                 if (showDebugMessages)
@@ -274,11 +273,10 @@ public class NPC_Dialogue : MonoBehaviour
             if (currentEvent != null)
             {
                 if (showDebugMessages)
-                    Debug.Log($"Triggering event: {currentEvent.eventName}");
+                    Debug.Log($" Triggering event: {currentEvent.eventName}");
 
                 NPCEventManager.Instance.StartEventTracking(currentEventKey);
 
-                // Play event dialogue
                 if (currentEvent.eventDialogueDirectory != null && currentEvent.eventDialogueSequence.Count > 0)
                 {
                     string firstEventDialogue = currentEvent.eventDialogueSequence[0];
@@ -302,27 +300,19 @@ public class NPC_Dialogue : MonoBehaviour
             if (firstInteractionDay == -1)
             {
                 firstInteractionDay = currentGameDay;
-                lastInteractionDay = currentGameDay;
-                currentProgressionDay = fallbackDay;
                 if (showDebugMessages)
-                    Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}. Starting with progression day {currentProgressionDay}");
+                    Debug.Log($"{npcName} first interacted on Day {firstInteractionDay}");
             }
-            else
-            {
-                // Check if a new day has passed since last interaction
-                if (currentGameDay > lastInteractionDay)
-                {
-                    currentProgressionDay++;
-                    if (showDebugMessages)
-                        Debug.Log($"New day detected! Progression day advanced to {currentProgressionDay}");
-                }
-                lastInteractionDay = currentGameDay;
-            }
+
+            // Calculate days passed since first interaction
+            int daysSinceFirstInteraction = currentGameDay - firstInteractionDay;
+
+            // Calculate which day's dialogues to play
+            int currentProgressionDay = fallbackDay + daysSinceFirstInteraction;
 
             if (showDebugMessages)
-                Debug.Log($"NPC {gameObject.name} interacted! Using progression day {currentProgressionDay}");
+                Debug.Log($"Days passed: {daysSinceFirstInteraction}, Playing dialogues for Day {currentProgressionDay}");
 
-            // Validate dialogue sequence
             if (dialogueSequence.Count == 0)
             {
                 Debug.LogError("No dialogue sequence assigned!");
@@ -335,13 +325,33 @@ public class NPC_Dialogue : MonoBehaviour
                 return;
             }
 
-            // PlayCurrentDialogue will get the correct directory based on the DialogueSequenceItem's day
-            PlayCurrentDialogue(null);
-
+            // Find and play the first dialogue of the current progression day
+            PlayDialogueForDay(currentProgressionDay);
         }
 
-    }
+        // NEW METHOD: Play dialogue for a specific day
+        void PlayDialogueForDay(int targetDay)
+        {
+            // Find the first dialogue in the sequence that matches targetDay
+            for (int i = currentDialogueIndex; i < dialogueSequence.Count; i++)
+            {
+                DialogueSequenceItem sequenceItem = dialogueSequence[i];
 
+                if (sequenceItem.day == targetDay)
+                {
+                    // Found a dialogue for this day
+                    currentDialogueIndex = i;
+                    PlayCurrentDialogue(null);
+                    return;
+                }
+            }
+
+            // No dialogue found for this day, might be playing future content
+            if (showDebugMessages)
+                Debug.Log($"No dialogue available for Day {targetDay} yet");
+
+        }
+    }
     void OnEventDialogueFinished()
     {
         Debug.Log($"Event dialogue finished");
