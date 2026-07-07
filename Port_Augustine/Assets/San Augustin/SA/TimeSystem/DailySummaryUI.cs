@@ -28,6 +28,17 @@ public class DailySummaryUI : MonoBehaviour
             summaryPanel.SetActive(false);
     }
 
+    private Dictionary<string, int> spriteIndices = new Dictionary<string, int>()
+{
+    { "Angeline", 0 },
+    { "Carlos", 1 },
+    { "David", 2 },
+    { "Felix", 3 },
+    { "Maja", 4 },
+    { "Kimmy", 5 },
+    { "Olivia", 6 }
+};
+
     public void ShowSummary()
     {
         if (DailySummaryManager.Instance == null)
@@ -54,7 +65,14 @@ public class DailySummaryUI : MonoBehaviour
             foreach (KeyValuePair<string, int> pair in relationships)
             {
                 string sign = pair.Value >= 0 ? "+" : "";
-                builder.AppendLine($"{pair.Key}: {sign}{pair.Value}");
+                if (spriteIndices.TryGetValue(pair.Key, out int spriteIndex))
+                {
+                    builder.AppendLine($"<sprite={spriteIndex}> {pair.Key} {sign}{pair.Value}");
+                }
+                else
+                {
+                    builder.AppendLine($"{pair.Key} {sign}{pair.Value}");
+                }
             }
         }
 
