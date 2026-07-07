@@ -64,7 +64,7 @@ public class WorkSystem : MonoBehaviour, InteractableObject
 
     public void AddMoney()
     {
-        if(PlayerStats.Instance.energy >= minimumEnergy)
+        if(PlayerStats.Instance.energy >= minimumEnergy || TimeSystem.Instance.currentHour >= 7 && TimeSystem.Instance.currentHour <= 18 )
         {
             wallet.AddMoney(salary);
             Debug.Log("Salary of " + salary + " has been added to your wallet");
@@ -110,9 +110,10 @@ public class WorkSystem : MonoBehaviour, InteractableObject
             }
         }
 
+
         else
         {
-            Debug.Log("Not enough energy");
+            Debug.Log("Not enough energy or no working time");
         }
         
     }

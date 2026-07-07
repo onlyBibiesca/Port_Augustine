@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
     private string currentNPCName = "Unknown";
+
+    private PlayerInput playerInput;
+    private bool playerMovementEnabled = true;
 
     [Header("UI References")]
     public GameObject dialoguePanel;
@@ -110,12 +114,15 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log($"Starting dialogue: {dialogue.dialogueName}");
 
+        DisablePlayerMovement();
+
         IsDialogueActive = true;
         currentDialogue = dialogue;
         currentNPCName = npcName;
         currentLineIndex = 0;
         onDialogueComplete = onComplete;
         waitingForChoice = false;
+
 
         if (dialoguePanel != null)
         {
@@ -133,6 +140,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayCurrentLine();
+
+
     }
 
     // Add this overload for events:
@@ -455,6 +464,8 @@ public class DialogueManager : MonoBehaviour
     {
         Debug.Log("Dialogue ended");
 
+        EnablePlayerMovement();
+
         // Consume time when dialogue ends
         if (currentDialogue != null && currentDialogue.consumesTime)
         {
@@ -513,5 +524,40 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = null;
         waitingForChoice = false;
         onDialogueComplete?.Invoke();
+
+
+    }
+    void FindPlayerInput()
+    {
+        if (playerInput == null)
+        {
+            playerInput = FindObjectOfType<PlayerInput>();
+            if (playerInput == null)
+            {
+                Debug.LogWarning("PlayerInput component not found!");
+            }
+        }
+    }
+
+    void DisablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = false;
+            playerMovementEnabled = false;
+                Debug.Log("Player movement disabled");
+        }
+    }
+
+    void EnablePlayerMovement()
+    {
+        FindPlayerInput();
+        if (playerInput != null)
+        {
+            playerInput.enabled = true;
+            playerMovementEnabled = true;
+                Debug.Log("Player movement enabled");
+        }
     }
 }

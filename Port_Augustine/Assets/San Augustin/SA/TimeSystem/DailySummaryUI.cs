@@ -66,12 +66,6 @@ public class DailySummaryUI : MonoBehaviour
 
         Time.timeScale = 0f;
     }
-    public IEnumerator DoSomething()
-    {
-        Debug.Log("Midnight Teleport started");
-        yield return new WaitForSeconds(2f);
-        Debug.Log("Midnight Teleport finished");
-    }
 
     public void CloseSummary()
     {

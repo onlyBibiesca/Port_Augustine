@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questContainer: {fileID: 1633299649}
-  questItemPrefab: {fileID: 6237091439865936990, guid: e3978cb330949214abfb7cf2dc1b2530, type: 3}
+  questItemPrefab: {fileID: 3425592801664759769, guid: e3978cb330949214abfb7cf2dc1b2530, type: 3}
   showDebugMessages: 1
 --- !u!1 &88647183
 GameObject:
@@ -34689,6 +34689,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a8f6615f6e0d18844bd948334d3dc88c, type: 2}
     - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
+      propertyPath: availableEvents.Array.data[0].eventDescription
+      value: Angeline barely came home after work...Visit her for comfort
+      objectReference: {fileID: 0}
+    - target: {fileID: 5300357934871257920, guid: ac29acc44fb55b7429bdf17a1058e7f6, type: 3}
       propertyPath: availableEvents.Array.data[0].relationshipThreshold
       value: 70
       objectReference: {fileID: 0}
@@ -38818,6 +38822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b073cea5e016c6d40ae9005a506a9c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeSystem: {fileID: 0}
   summaryPanel: {fileID: 1419793740}
   summaryText: {fileID: 3118915}
 --- !u!4 &657904615
@@ -39920,7 +39925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &745273533
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41536,6 +41541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbec07254b3a2347b0262afbc87a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dailySummaryUI: {fileID: 0}
   currentHour: 9
   currentMinute: 0
   currentDay: 1
@@ -64849,6 +64855,7 @@ MonoBehaviour:
   currentEvent:
     relationshipThreshold: 15
     eventName: Special Event
+    eventDescription: 
     eventDialogueDirectory: {fileID: 0}
     eventDialogueSequence: []
     eventLocation: {fileID: 0}
@@ -65737,6 +65744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbec07254b3a2347b0262afbc87a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dailySummaryUI: {fileID: 0}
   currentHour: 8
   currentMinute: 0
   currentDay: 1
@@ -70822,9 +70830,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 112
     m_Right: 0
-    m_Top: 0
+    m_Top: 26
     m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 25.8
@@ -80287,7 +80295,7 @@ MonoBehaviour:
   shopUI: {fileID: 0}
   jobUI: {fileID: 7018454850278775182}
   jobName: G&J Bakery
-  salary: 10000
+  salary: 50
   hourlyRate: 1 hour
   wallet: {fileID: 11400000, guid: df3d116096b000345adf9a3d73775240, type: 2}
   walletText: {fileID: 1247267373}
