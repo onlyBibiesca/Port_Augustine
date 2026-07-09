@@ -16,8 +16,15 @@ MonoBehaviour:
   lines:
   - speakerName: Angeline
     text: <Her tired chuckle came with a sigh afterwards.>
-    hasChoices: 0
-    choices: []
+    hasChoices: 1
+    choices:
+    - choiceText: ....
+      nextDialogue: {fileID: 0}
+      relationshipChange: 0
+      choiceType: 1
+      requiredTrait: {fileID: 0}
+      gainedTrait: {fileID: 0}
+      hideIfTraitMissing: 0
     characterPortrait: {fileID: 21300000, guid: caf8402b6d51a4a43bfd8bb7c39c5012, type: 3}
   consumesTime: 0
   hoursToConsume: 1

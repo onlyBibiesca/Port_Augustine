@@ -284,7 +284,7 @@ public class NPC_Dialogue : MonoBehaviour
 
                     if (eventDialogue != null)
                     {
-                        DialogueManager.Instance.StartDialogue(eventDialogue, OnEventDialogueFinished, npcName);
+                        DialogueManager.Instance.StartEventDialogue(eventDialogue, OnEventDialogueFinished, npcName, currentEventKey);
                         return;
                     }
                 }

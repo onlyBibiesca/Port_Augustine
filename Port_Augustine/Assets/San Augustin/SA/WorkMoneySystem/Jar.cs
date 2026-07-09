@@ -45,19 +45,21 @@ public class Jar : MonoBehaviour
     public void OutSavings()
     {
 
-        if (wallet != null)
+        if (wallet == null)
         {
-            savingJar -= outSave;
-            wallet.money += outSave;
+            Debug.LogError("Wallet reference is missing!");
+            return;
         }
-        else if (wallet == null)
+
+        if (savingJar <= 0)
         {
-            Debug.LogError("WHERE THE FUCK IST HE WALLET???????");
+            Debug.Log("Jar is empty, nothing to withdraw.");
+            return;
         }
-        else
-        {
-            Debug.LogError("WE ARE BROKE THERE'S NOTHING TO GET FROM");
-        }
+
+        int amountToTake = Mathf.Min(outSave, savingJar); 
+        savingJar -= amountToTake;
+        wallet.money += amountToTake;
     }
 
     void DisplaySavings()
